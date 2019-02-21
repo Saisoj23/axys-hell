@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bullet
   - Anti Bullet
+  - Shield
   layers:
   - Default
   - TransparentFX
