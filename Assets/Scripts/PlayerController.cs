@@ -16,11 +16,13 @@ public class PlayerController : MonoBehaviour
     float lastAngle;
     Rigidbody2D rb;
     Animator anim;
+    ShieldController shield;
 
     void Awake ()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        shield = GetComponentInChildren<ShieldController>();
     }
 
     void Update ()
@@ -79,8 +81,18 @@ public class PlayerController : MonoBehaviour
         if (col.gameObject.CompareTag("Bullet"))
         {
             Destroy(col.gameObject);
-            anim.SetTrigger("Hurted");
-            Debug.Log("perdiste");
+            Hurt();
         }
+        if (col.gameObject.CompareTag("Anti Bullet"))
+        {
+            Destroy(col.gameObject);
+            shield.Defend();
+        }
+    }
+
+    public void Hurt ()
+    {
+        anim.SetTrigger("Hurted");
+        Debug.Log("perdiste");
     }
 }

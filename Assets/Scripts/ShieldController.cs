@@ -6,10 +6,12 @@ public class ShieldController : MonoBehaviour
 {
 
     Animator anim;
+    PlayerController player;
 
     void Awake ()
     {
         anim = GetComponent<Animator>();
+        player = GetComponentInParent<PlayerController>();
     }
 
     void OnTriggerEnter2D (Collider2D col)
@@ -17,8 +19,17 @@ public class ShieldController : MonoBehaviour
         if (col.gameObject.CompareTag("Bullet"))
         {
             Destroy(col.gameObject);
-            anim.SetTrigger("Hurted");
-            Debug.Log("defendido");
+            Defend();
+        } else if (col.gameObject.CompareTag("Anti Bullet"))
+        {
+            Destroy(col.gameObject);
+            player.Hurt();
         }
+    }
+
+    public void Defend ()
+    {
+        anim.SetTrigger("Hurted");
+        Debug.Log("defendido");
     }
 }

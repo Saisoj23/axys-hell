@@ -1,0 +1,27 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class InverseArrowController : ArrowController
+{
+
+    public float turnDistance;
+
+    override protected IEnumerator MoveTo ()
+    {
+        box.enabled = false;
+        Vector2 target = -rb.position.normalized * turnDistance;
+        while (rb.position != target)
+        {
+            rb.MovePosition(Vector2.MoveTowards(rb.position, target, speed * Time.deltaTime));
+            yield return null;
+        }
+        box.enabled = true;
+        speed *= 3;
+        while (rb.position != Vector2.zero)
+        {
+            rb.MovePosition(Vector2.MoveTowards(rb.position, Vector2.zero, (speed * 1.1f) * Time.deltaTime));
+            yield return null;
+        }
+    }
+}
