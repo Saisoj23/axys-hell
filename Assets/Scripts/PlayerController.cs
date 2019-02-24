@@ -80,12 +80,12 @@ public class PlayerController : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Bullet"))
         {
-            Destroy(col.gameObject);
+            col.gameObject.GetComponent<ArrowController>().DestroyArrow();
             Hurt();
         }
         if (col.gameObject.CompareTag("Anti Bullet"))
         {
-            Destroy(col.gameObject);
+            col.gameObject.GetComponent<ArrowController>().DestroyArrow();
             shield.Defend();
         }
     }
@@ -93,6 +93,5 @@ public class PlayerController : MonoBehaviour
     public void Hurt ()
     {
         anim.SetTrigger("Hurted");
-        Debug.Log("perdiste");
     }
 }

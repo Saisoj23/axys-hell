@@ -11,7 +11,7 @@ public class ArrowController : MonoBehaviour
 
     public float speed;
 
-    void Awake ()
+    protected virtual void Awake ()
     {
         rb = GetComponent<Rigidbody2D>();
         box = GetComponent<BoxCollider2D>();
@@ -31,5 +31,10 @@ public class ArrowController : MonoBehaviour
             rb.MovePosition(Vector2.MoveTowards(rb.position, Vector2.zero, speed * Time.deltaTime));
             yield return null;
         }
+    }
+
+    public virtual void DestroyArrow ()
+    {
+        Destroy(gameObject);
     }
 }

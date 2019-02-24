@@ -4,20 +4,24 @@ using UnityEngine;
 
 public class SmartArrowController : ArrowController
 {
+    bool visible = false;
     protected override IEnumerator MoveTo ()
     {
-        bool looking;
+        bool looking = false;
         while (rb.position != Vector2.zero)
         {
             RaycastHit2D hit = Physics2D.Raycast(rb.position -rb.position.normalized * 0.2f, -rb.position.normalized);
             looking = hit.collider.CompareTag("Shield");
-            Debug.Log(hit.collider);
-            Debug.Log(looking);
-            if (!looking)
+            if (!visible || (visible && !looking))
             {
                 rb.MovePosition(Vector2.MoveTowards(rb.position, Vector2.zero, speed * Time.deltaTime));
             }
             yield return null;
         }
     }
+
+    void OnBecameVisible ()
+        {
+            visible = true;
+        }
 }
