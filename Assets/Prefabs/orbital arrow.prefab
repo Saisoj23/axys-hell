@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   orbitalDistance: 2
-  rotationSpeed: 0.25
+  rotationSpeed: 0.18
 --- !u!1001 &1309612430069668750
 PrefabInstance:
   m_ObjectHideFlags: 0

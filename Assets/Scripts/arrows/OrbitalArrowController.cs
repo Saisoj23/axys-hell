@@ -16,7 +16,7 @@ public class OrbitalArrowController : ArrowController
             rb.MovePosition(Vector2.MoveTowards(rb.position, target, speed * Time.deltaTime));
             yield return null;
         }
-        GameObject pivot = Instantiate(new GameObject("Pivot"), Vector3.zero, Quaternion.identity);
+        GameObject pivot = new GameObject("Pivot");
         transform.parent = pivot.transform;
         float orbitalTime = 0f;
         do 
