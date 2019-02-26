@@ -5,8 +5,9 @@ using UnityEngine;
 public class OrbitalArrowController : ArrowController
 {
 
+    [Header("Special Values")]
     public float orbitalDistance;
-    public float rotationSpeed;
+    public float secondSpeedModifier;
 
     protected override IEnumerator MoveTo ()
     {
@@ -21,7 +22,7 @@ public class OrbitalArrowController : ArrowController
         float orbitalTime = 0f;
         do 
         {
-            orbitalTime += Time.deltaTime * rotationSpeed;
+            orbitalTime += Time.deltaTime * secondSpeed * secondSpeedModifier;
             pivot.transform.eulerAngles = new Vector3(0f, 0f, Mathf.Lerp(0f, 360f, orbitalTime));
             yield return null;
         } while (orbitalTime <= 1f);

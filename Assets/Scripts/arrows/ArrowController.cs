@@ -9,7 +9,9 @@ public class ArrowController : MonoBehaviour
     protected BoxCollider2D box;
     protected Animator anim;
 
+    [Header("Generic Values")]
     public float speed;
+    public float secondSpeed;
 
     protected virtual void Awake ()
     {

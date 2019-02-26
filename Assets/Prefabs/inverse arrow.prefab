@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  secondSpeed: 2
   turnDistance: 1
 --- !u!1001 &696482525647291459
 PrefabInstance:
@@ -84,17 +85,17 @@ PrefabInstance:
     - target: {fileID: 7013199810249728020, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
         type: 3}
       propertyPath: m_Color.r
-      value: 0.10588235
+      value: 0.15686275
       objectReference: {fileID: 0}
     - target: {fileID: 7013199810249728020, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
         type: 3}
       propertyPath: m_Color.g
-      value: 1
+      value: 0.7764706
       objectReference: {fileID: 0}
     - target: {fileID: 7013199810249728020, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
         type: 3}
       propertyPath: m_Color.b
-      value: 0.16205718
+      value: 0.25490198
       objectReference: {fileID: 0}
     - target: {fileID: 7013199810249728020, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
         type: 3}

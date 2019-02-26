@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class ChargingArrowController : ArrowController
 {
-    
+    [Header("Special Values")]
     public float chargeDistance;
-    public float chargeSpeed;
     public float laserTime;
 
     SpriteRenderer sprite;
@@ -35,7 +34,7 @@ public class ChargingArrowController : ArrowController
         float colorTime = 0f;
         while (colorTime <= 1)
         {
-            colorTime += Time.deltaTime * chargeSpeed;
+            colorTime += Time.deltaTime * secondSpeed;
             sprite.color = Color.Lerp(startColor, Color.white, colorTime);
             yield return null;
         }

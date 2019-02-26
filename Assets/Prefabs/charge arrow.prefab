@@ -108,8 +108,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  secondSpeed: 2
   chargeDistance: 2
-  chargeSpeed: 1
   laserTime: 0.2
 --- !u!1001 &8818814161005672161
 PrefabInstance:
@@ -181,17 +181,17 @@ PrefabInstance:
     - target: {fileID: 7013199810249728020, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
         type: 3}
       propertyPath: m_Color.r
-      value: 0.9921569
+      value: 0.9019608
       objectReference: {fileID: 0}
     - target: {fileID: 7013199810249728020, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
         type: 3}
       propertyPath: m_Color.g
-      value: 1
+      value: 0.85490197
       objectReference: {fileID: 0}
     - target: {fileID: 7013199810249728020, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
         type: 3}
       propertyPath: m_Color.b
-      value: 0.14509805
+      value: 0.16078432
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4428358298999141045, guid: 4e3f398fc8ff1a247b1bace4451a45a1, type: 3}

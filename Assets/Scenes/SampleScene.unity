@@ -169,7 +169,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 0}
+  m_BackGroundColor: {r: 0.105882354, g: 0.10980392, b: 0.2, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -244,32 +244,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc57e4f61f562014d966643f3f0e4994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTime: 1
-  spawns:
-  - {x: 0, y: 6, z: 0.1}
-  - {x: 0, y: -6, z: 0.1}
-  - {x: 6, y: 0, z: 0.1}
-  - {x: -6, y: 0, z: 0.1}
-  - {x: 4.2, y: 4.2, z: 0.1}
-  - {x: 4.2, y: -4.2, z: 0.1}
-  - {x: -4.2, y: 4.2, z: 0.1}
-  - {x: -4.2, y: -4.2, z: 0.1}
+  positions:
+  - {x: 6, y: 0, z: 0.11}
+  - {x: -6, y: 0, z: 0.11}
+  - {x: 0, y: 6, z: 0.11}
+  - {x: 0, y: -6, z: 0.11}
+  - {x: 4.2, y: -4.2, z: 0.11}
+  - {x: -4.2, y: -4.2, z: 0.11}
+  - {x: 4.2, y: 4.2, z: 0.11}
+  - {x: -4.2, y: 4.2, z: 0.11}
   arrows:
   - {fileID: 7013199810249728023, guid: 4e3f398fc8ff1a247b1bace4451a45a1, type: 3}
-  - {fileID: 7013199810249728023, guid: 4e3f398fc8ff1a247b1bace4451a45a1, type: 3}
-  - {fileID: 7013199810249728023, guid: 4e3f398fc8ff1a247b1bace4451a45a1, type: 3}
-  - {fileID: 618614869027402135, guid: 3c0c0ee554720ae4b95c7e88f4188ec2, type: 3}
-  - {fileID: 618614869027402135, guid: 3c0c0ee554720ae4b95c7e88f4188ec2, type: 3}
   - {fileID: 618614869027402135, guid: 3c0c0ee554720ae4b95c7e88f4188ec2, type: 3}
   - {fileID: 7564221340077319252, guid: b34e02715b6e2cd4795535536cdbdee7, type: 3}
-  - {fileID: 7564221340077319252, guid: b34e02715b6e2cd4795535536cdbdee7, type: 3}
-  - {fileID: 7564221340077319252, guid: b34e02715b6e2cd4795535536cdbdee7, type: 3}
+  - {fileID: 1959449364429068022, guid: 1451f7729aa4469499c7ebc1ad4597f8, type: 3}
   - {fileID: 9186914990277638099, guid: f40b304f547dd21499565ad3f6b1a1c1, type: 3}
-  - {fileID: 1959449364429068022, guid: 1451f7729aa4469499c7ebc1ad4597f8, type: 3}
-  - {fileID: 1959449364429068022, guid: 1451f7729aa4469499c7ebc1ad4597f8, type: 3}
-  - {fileID: 1959449364429068022, guid: 1451f7729aa4469499c7ebc1ad4597f8, type: 3}
   - {fileID: 8322451454324947865, guid: 73a48047efd31fd498fca2ccf34f8af0, type: 3}
-  - {fileID: 8322451454324947865, guid: 73a48047efd31fd498fca2ccf34f8af0, type: 3}
+  spawns:
+    spawns: []
 --- !u!4 &1721533689
 Transform:
   m_ObjectHideFlags: 0
@@ -350,6 +342,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6040607571026973627, guid: 3f0f63b24c54686428f55a9a597203fa,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.91764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 6040607571026973627, guid: 3f0f63b24c54686428f55a9a597203fa,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.46666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 6040607571026973627, guid: 3f0f63b24c54686428f55a9a597203fa,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.1882353
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f0f63b24c54686428f55a9a597203fa, type: 3}
