@@ -5,12 +5,13 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
+    public enum Axis {One, Two, Fourth};
+    public Axis axis;
+
     public float rotateSpeed;
-    public float minAxisSensibility;
-    public float minTouchSpeed;
 
     Vector2 direccion;
-    Vector3 lastMousePosition;
+    Vector2 screenMiddle = new Vector2(Screen.width, Screen.height) / 2;
     bool lastPresed;
     float timeTurning;
     float lastAngle;
@@ -27,48 +28,47 @@ public class PlayerController : MonoBehaviour
 
     void Update ()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
-
-        if (Mathf.Abs(horizontal) > minAxisSensibility) direccion.x = horizontal > 0 ? 1 : -1;
-        else direccion.x = 0;
-        if (Mathf.Abs(vertical) > minAxisSensibility) direccion.y = vertical > 0 ? 1 : -1;
-        else direccion.y = 0;
-
-        #if UNITY_ANDROID
-        Vector3 touch;
-        if (Input.touchCount > 0) 
+        Vector2 input = Vector2.zero;
+        if (Input.GetMouseButton(0))
         {
-            touch = Input.GetTouch(0).deltaPosition;
-            if (touch.magnitude * Time.deltaTime > minTouchSpeed)
-            {
-                direccion = touch.normalized; 
-            }
+            input = Input.mousePosition;
+            input = (input - screenMiddle).normalized;
+        }
+        
+        #if UNITY_EDITOR || !UNITY_ANDROID
+        if (Input.GetAxisRaw("Horizontal") != 0f || Input.GetAxisRaw("Vertical") != 0f)
+        {
+            input.x = Input.GetAxisRaw("Horizontal");
+            input.y = Input.GetAxisRaw("Vertical");
         }
         #endif
 
-        #if UNITY_EDITOR
-        Vector3 actualMousePosition;
-        if (Input.GetMouseButton(0)) 
+        switch (axis)
         {
-            actualMousePosition = Input.mousePosition;
-            if (lastMousePosition != null && lastPresed && Vector2.Distance(actualMousePosition, lastMousePosition) * Time.deltaTime > minTouchSpeed)
-            {
-                direccion = -(lastMousePosition - actualMousePosition).normalized; 
-            }
-            lastMousePosition = actualMousePosition;
-            lastPresed = true;
+            case Axis.One:
+                direccion = new Vector2(Mathf.Round(input.x), 0f);
+                break;
+            case Axis.Two:
+                if (Mathf.Abs(input.x) > Mathf.Abs(input.y))
+                {
+                    direccion = new Vector2(Mathf.Round(input.x), 0f);
+                } else
+                {
+                    direccion = new Vector2(0f, Mathf.Round(input.y));
+                }
+                break;
+            default:
+                direccion = new Vector2(Mathf.Round(input.x), Mathf.Round(input.y)).normalized;
+                break;
         }
-        else lastPresed = false;
-        #endif
     }
 
     void FixedUpdate ()
     {
-        Vector2 finalRot = new Vector2(Mathf.Round(direccion.x), Mathf.Round(direccion.y)).normalized;
-        if (finalRot.y != 0 || finalRot.x != 0)
+
+        if (direccion != Vector2.zero)
         {
-            lastAngle = Vector2.SignedAngle(Vector2.right, finalRot);
+            lastAngle = Vector2.SignedAngle(Vector2.right, direccion);
         }
         if (rb.rotation != lastAngle)
         {

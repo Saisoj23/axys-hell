@@ -117,9 +117,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c7c7511f3194514993cd8ffe160c132, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  axis: 2
   rotateSpeed: 1280
-  minAxisSensibility: 0.9
-  minTouchSpeed: 0.5
 --- !u!61 &6040607570125919125
 BoxCollider2D:
   m_ObjectHideFlags: 0
