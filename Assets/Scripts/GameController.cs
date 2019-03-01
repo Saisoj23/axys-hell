@@ -6,7 +6,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     string filePath;
-    string jsonString;
+    public string jsonString;
 
     public Vector3[] positions;
     public GameObject[] arrows;
@@ -25,8 +25,10 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+        #if UNITY_EDITOR
         filePath = Application.dataPath + "/JsonAttacks/4SideAttacks.json";
         jsonString = File.ReadAllText(filePath);
+        #endif
         attack = JsonUtility.FromJson<AttackList>(jsonString);
         StartRandomAttacks();
     }

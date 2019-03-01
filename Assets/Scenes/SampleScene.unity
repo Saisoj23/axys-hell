@@ -149,7 +149,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 30}
+  m_SizeDelta: {x: 83.99999, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5352438
 MonoBehaviour:
@@ -224,10 +224,10 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 9f464ca152d67ad4781a8569d79dcf67, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e3caaa080ad86244dbd61a93ddef8e43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
-  m_FillCenter: 1
+  m_FillCenter: 0
   m_FillMethod: 4
   m_FillAmount: 1
   m_FillClockwise: 1
@@ -278,7 +278,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 30}
+  m_SizeDelta: {x: 83.99999, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &25999383
 MonoBehaviour:
@@ -353,10 +353,10 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 9f464ca152d67ad4781a8569d79dcf67, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e3caaa080ad86244dbd61a93ddef8e43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
-  m_FillCenter: 1
+  m_FillCenter: 0
   m_FillMethod: 4
   m_FillAmount: 1
   m_FillClockwise: 1
@@ -510,7 +510,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 30}
+  m_SizeDelta: {x: 83.99999, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &817395512
 MonoBehaviour:
@@ -585,10 +585,10 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 9f464ca152d67ad4781a8569d79dcf67, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e3caaa080ad86244dbd61a93ddef8e43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
-  m_FillCenter: 1
+  m_FillCenter: 0
   m_FillMethod: 4
   m_FillAmount: 1
   m_FillClockwise: 1
@@ -639,7 +639,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 30}
+  m_SizeDelta: {x: 83.99999, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1229538491
 MonoBehaviour:
@@ -714,10 +714,10 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 9f464ca152d67ad4781a8569d79dcf67, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e3caaa080ad86244dbd61a93ddef8e43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
-  m_FillCenter: 1
+  m_FillCenter: 0
   m_FillMethod: 4
   m_FillAmount: 1
   m_FillClockwise: 1
@@ -781,7 +781,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.10588236, g: 0.10980393, b: 0.20000002, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -860,7 +860,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.10588236, g: 0.10980393, b: 0.20000002, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -949,8 +949,8 @@ MonoBehaviour:
   m_ChildAlignment: 7
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 1
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 0
   m_ChildControlHeight: 0
 --- !u!1 &1684989036
 GameObject:
@@ -1101,7 +1101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.10588236, g: 0.10980393, b: 0.20000002, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1159,6 +1159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc57e4f61f562014d966643f3f0e4994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jsonString: '{"attacks":[{"spawns":[{"arrow":0,"position":0,"spawnTime":1.0,"speed":2.0,"secondSpeed":2.0},{"arrow":0,"position":2,"spawnTime":1.0,"speed":2.0,"secondSpeed":2.0},{"arrow":0,"position":1,"spawnTime":1.0,"speed":2.0,"secondSpeed":2.0},{"arrow":0,"position":3,"spawnTime":1.0,"speed":2.0,"secondSpeed":2.0}]},{"spawns":[{"arrow":3,"position":0,"spawnTime":1.0,"speed":2.0,"secondSpeed":2.0},{"arrow":3,"position":2,"spawnTime":1.0,"speed":2.0,"secondSpeed":2.0},{"arrow":3,"position":1,"spawnTime":1.0,"speed":2.0,"secondSpeed":2.0},{"arrow":3,"position":3,"spawnTime":1.0,"speed":2.0,"secondSpeed":2.0}]},{"spawns":[{"arrow":2,"position":0,"spawnTime":1.0,"speed":2.0,"secondSpeed":2.0},{"arrow":2,"position":2,"spawnTime":1.0,"speed":2.0,"secondSpeed":2.0},{"arrow":2,"position":1,"spawnTime":1.0,"speed":2.0,"secondSpeed":2.0},{"arrow":2,"position":3,"spawnTime":0.5,"speed":2.0,"secondSpeed":2.0}]},{"spawns":[{"arrow":1,"position":2,"spawnTime":0.0,"speed":2.0,"secondSpeed":2.0},{"arrow":1,"position":1,"spawnTime":0.0,"speed":2.0,"secondSpeed":2.0},{"arrow":1,"position":3,"spawnTime":1.0,"speed":2.0,"secondSpeed":2.0},{"arrow":1,"position":0,"spawnTime":0.0,"speed":2.0,"secondSpeed":2.0},{"arrow":1,"position":1,"spawnTime":0.0,"speed":2.0,"secondSpeed":2.0},{"arrow":1,"position":3,"spawnTime":1.0,"speed":2.0,"secondSpeed":2.0},{"arrow":1,"position":3,"spawnTime":0.0,"speed":2.0,"secondSpeed":2.0},{"arrow":1,"position":0,"spawnTime":0.0,"speed":2.0,"secondSpeed":2.0},{"arrow":1,"position":2,"spawnTime":1.0,"speed":2.0,"secondSpeed":2.0},{"arrow":1,"position":0,"spawnTime":0.0,"speed":2.0,"secondSpeed":2.0},{"arrow":1,"position":2,"spawnTime":0.0,"speed":2.0,"secondSpeed":2.0},{"arrow":1,"position":1,"spawnTime":1.0,"speed":2.0,"secondSpeed":2.0}]},{"spawns":[{"arrow":4,"position":0,"spawnTime":1.0,"speed":2.0,"secondSpeed":2.0},{"arrow":4,"position":2,"spawnTime":1.0,"speed":2.0,"secondSpeed":2.0},{"arrow":4,"position":1,"spawnTime":1.0,"speed":2.0,"secondSpeed":2.0},{"arrow":4,"position":3,"spawnTime":1.0,"speed":2.0,"secondSpeed":2.0}]},{"spawns":[{"arrow":5,"position":0,"spawnTime":1.0,"speed":2.0,"secondSpeed":4.0},{"arrow":5,"position":2,"spawnTime":1.0,"speed":2.0,"secondSpeed":4.0},{"arrow":5,"position":1,"spawnTime":1.0,"speed":2.0,"secondSpeed":4.0},{"arrow":5,"position":3,"spawnTime":3.0,"speed":2.0,"secondSpeed":4.0}]}]}'
   positions:
   - {x: 6, y: 0, z: 0.11}
   - {x: -6, y: 0, z: 0.11}
@@ -1311,7 +1312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.10588236, g: 0.10980393, b: 0.20000002, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1425,6 +1426,11 @@ PrefabInstance:
     - target: {fileID: 6040607570125919131, guid: 3f0f63b24c54686428f55a9a597203fa,
         type: 3}
       propertyPath: axis
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6040607570125919131, guid: 3f0f63b24c54686428f55a9a597203fa,
+        type: 3}
+      propertyPath: minTouchSpeed
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

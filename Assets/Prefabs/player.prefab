@@ -50,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   axis: 2
   rotateSpeed: 1280
+  minTouchSpeed: 0.1
 --- !u!50 &6040607570125919130
 Rigidbody2D:
   serializedVersion: 4

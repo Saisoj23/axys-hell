@@ -9,10 +9,13 @@ public class PlayerController : MonoBehaviour
     public Axis axis;
 
     public float rotateSpeed;
+    public float minTouchSpeed;
 
     Vector2 direccion;
     Vector2 screenMiddle = new Vector2(Screen.width, Screen.height) / 2;
     bool lastPresed;
+    Vector2 lastMousePosition;
+    Vector2 actualMousePosition;
     float timeTurning;
     float lastAngle;
     Rigidbody2D rb;
@@ -29,11 +32,19 @@ public class PlayerController : MonoBehaviour
     void Update ()
     {
         Vector2 input = Vector2.zero;
-        if (Input.GetMouseButton(0))
+        #if UNITY_EDITOR || UNITY_ANDROID
+        if (Input.GetMouseButton(0)) 
         {
-            input = Input.mousePosition;
-            input = (input - screenMiddle).normalized;
+            actualMousePosition = Input.mousePosition;
+            if (lastMousePosition != null && lastPresed && Vector2.Distance(actualMousePosition, lastMousePosition) * Time.deltaTime > minTouchSpeed)
+            {
+                input = -(lastMousePosition - actualMousePosition).normalized; 
+            }
+            lastMousePosition = actualMousePosition;
+            lastPresed = true;
         }
+        else lastPresed = false;
+        #endif
         
         #if UNITY_EDITOR || !UNITY_ANDROID
         if (Input.GetAxisRaw("Horizontal") != 0f || Input.GetAxisRaw("Vertical") != 0f)
