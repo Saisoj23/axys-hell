@@ -28,7 +28,7 @@ public class OrbitalArrowController : ArrowController
         } while (orbitalTime <= 1f);
         while (rb.position != Vector2.zero)
         {
-            rb.MovePosition(Vector2.MoveTowards(rb.position, Vector2.zero, speed * 2 * Time.deltaTime));
+            rb.MovePosition(Vector2.MoveTowards(rb.position, Vector2.zero, speed * 3 * Time.deltaTime));
             yield return null;
         }
     }

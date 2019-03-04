@@ -21,12 +21,14 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     Animator anim;
     ShieldController shield;
+    GameController game;
 
     void Awake ()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         shield = GetComponentInChildren<ShieldController>();
+        game = GameObject.FindObjectOfType<GameController>();
     }
 
     void Update ()
@@ -104,5 +106,6 @@ public class PlayerController : MonoBehaviour
     public void Hurt ()
     {
         anim.SetTrigger("Hurted");
+        game.Damage();
     }
 }
