@@ -28,17 +28,18 @@ public class GameController : MonoBehaviour
 
     [Header("Attaks Values")]
     public float timeBetweenAttacks;
+    public float speedModifier;
     public int indexToTest = -1;
 
     [Header("UI objects")]
-    public Text lifesText;
-    public Text timeText;
-    public Text bestText;
+    public TMPro.TMP_Text timeText;
+    public TMPro.TMP_Text bestText;
 
     bool gamePlaying = false;
-    int lifes = 10;
+    bool editing = false;
     int bestScore;
-    float time = 0;
+    float time = 0f;
+    [HideInInspector] public float speedByTime = 1;
 
 
     void Start()
@@ -48,7 +49,7 @@ public class GameController : MonoBehaviour
         jsonString = File.ReadAllText(filePath);
         #endif
         attack = JsonUtility.FromJson<AttackList>(jsonString);
-        StartRandomAttacks();
+        PlayAttaks();
         bestScore = PlayerPrefs.GetInt("BestScore", 0);
         bestText.text = bestScore.ToString();
     }
@@ -59,6 +60,7 @@ public class GameController : MonoBehaviour
         {
             time += Time.deltaTime;
             timeText.text = ((int)time).ToString();
+            speedByTime = Mathf.Clamp((1 + (time * speedModifier)), 1f, 3f);
         }
     }
 
@@ -82,6 +84,7 @@ public class GameController : MonoBehaviour
     //corrutina de juego
     IEnumerator Attack ()
     {
+        Debug.Log (speedByTime);
         while (gamePlaying && attack.attacks.Count > 0)
         {
             if (indexToTest >= 0 && indexToTest < attack.attacks.Count) spawns = attack.attacks[indexToTest];
@@ -91,30 +94,33 @@ public class GameController : MonoBehaviour
                 int intArrow = (int)i.arrow;
                 int intPosition = (int)i.position;
                 ArrowController arrow = Instantiate(arrows[intArrow], positions[intPosition], Quaternion.identity).GetComponent<ArrowController>();
-                arrow.speed = i.speed;
-                arrow.secondSpeed = i.secondSpeed;
-                if (i.spawnTime > 0) yield return new WaitForSeconds(i.spawnTime);
+                arrow.speed = i.speed * speedByTime;
+                arrow.secondSpeed = i.secondSpeed * speedByTime;
+                if (i.spawnTime > 0) yield return new WaitForSeconds(i.spawnTime / speedByTime);
             }
-            yield return new WaitForSeconds(timeBetweenAttacks);
+            yield return new WaitForSeconds(timeBetweenAttacks / speedByTime);
         }
     }
 
     //botones de editor
-    public void OverrideJson ()
+    public void WriteJson ()
     {
         jsonString = JsonUtility.ToJson(attack);
         File.WriteAllText(filePath, jsonString);
     }
 
-    public void AddAttackToList ()
+    public void UploadToList ()
     {
         attack.attacks.Add(spawns);
     }
 
-    public void StartRandomAttacks ()
+    public void PlayAttaks ()
     {
+        time = 0;
         if (gamePlaying)
         {
+            editing = true;
+            StopAllCoroutines();
             gamePlaying = false;
         }
         else 
@@ -124,20 +130,17 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void TestActualAttack ()
+    public void TestAttack ()
     {
+        editing = true;
+        time = 0;
         StartCoroutine("Spawner");
     }
 
     //game events
     public void Damage ()
     {
-        lifes--;
-        if (lifes < 0f)
-        {
-            GameOver();
-        }
-        else lifesText.text = lifes.ToString();
+        if (!editing) GameOver();
     }
 
     public void GameOver ()

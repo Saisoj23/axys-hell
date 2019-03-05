@@ -24,7 +24,7 @@ public class ShieldController : MonoBehaviour
         {
             col.gameObject.GetComponent<ArrowController>().DestroyArrow();
             player.Hurt();
-        }
+        } 
     }
 
     public void Defend ()

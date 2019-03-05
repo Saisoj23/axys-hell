@@ -1,23 +1,22 @@
 fileFormatVersion: 2
-guid: a1caf96d06a6fa743a5f6eb82d0771af
+guid: 6644a9c4877ad7d46bfe5c8023650514
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
-  fontSize: 16
-  forceTextureCase: -1
+  fontSize: 32
+  forceTextureCase: -2
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Silkscreen
+  fontName: Bebas
   fontNames:
-  - Silkscreen
-  fallbackFontReferences:
-  - {fileID: 12800000, guid: 564636c29c2c83742bb6f7278c15e2df, type: 3}
+  - Bebas
+  fallbackFontReferences: []
   customCharacters: 
-  fontRenderingMode: 2
+  fontRenderingMode: 1
   ascentCalculationMode: 1
   useLegacyBoundsCalculation: 0
-  shouldRoundAdvanceValue: 0
+  shouldRoundAdvanceValue: 1
   userData: 
   assetBundleName: 
   assetBundleVariant: 

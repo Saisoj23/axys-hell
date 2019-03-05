@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
         }
         if (rb.rotation != lastAngle)
         {
-            rb.MoveRotation(Mathf.MoveTowardsAngle(rb.rotation, lastAngle, rotateSpeed * Time.deltaTime));
+            transform.eulerAngles = new Vector3(0f, 0f, Mathf.MoveTowardsAngle(rb.rotation, lastAngle, rotateSpeed * Time.deltaTime * game.speedByTime));
         }
     }
 
