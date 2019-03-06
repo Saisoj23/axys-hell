@@ -14,7 +14,7 @@ public class ShieldController : MonoBehaviour
         player = GetComponentInParent<PlayerController>();
     }
 
-    void OnTriggerEnter2D (Collider2D col)
+    void OnCollisionEnter2D (Collision2D col)
     {
         if (col.gameObject.CompareTag("Bullet"))
         {

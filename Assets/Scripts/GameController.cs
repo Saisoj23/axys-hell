@@ -84,16 +84,20 @@ public class GameController : MonoBehaviour
     //corrutina de juego
     IEnumerator Attack ()
     {
-        Debug.Log (speedByTime);
         while (gamePlaying && attack.attacks.Count > 0)
         {
             if (indexToTest >= 0 && indexToTest < attack.attacks.Count) spawns = attack.attacks[indexToTest];
             else spawns = attack.attacks[Random.Range(0, attack.attacks.Count)];
+            int inverse = Random.Range(0, 2);
+            int perpendicular = Random.Range(0, 2);
             foreach (Spawn i in spawns.spawns)
             {
                 int intArrow = (int)i.arrow;
                 int intPosition = (int)i.position;
-                ArrowController arrow = Instantiate(arrows[intArrow], positions[intPosition], Quaternion.identity).GetComponent<ArrowController>();
+                Vector3 thisPosition = positions[intPosition];
+                if (perpendicular == 1) thisPosition = Vector2.Perpendicular(thisPosition);
+                if (inverse == 1) thisPosition = -thisPosition;
+                ArrowController arrow = Instantiate(arrows[intArrow], thisPosition, Quaternion.identity).GetComponent<ArrowController>();
                 arrow.speed = i.speed * speedByTime;
                 arrow.secondSpeed = i.secondSpeed * speedByTime;
                 if (i.spawnTime > 0) yield return new WaitForSeconds(i.spawnTime / speedByTime);
