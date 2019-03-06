@@ -40,7 +40,8 @@ public class ChargingArrowController : ArrowController
         }
         RaycastHit2D hit = Physics2D.Raycast(rb.position -rb.position.normalized * 0.2f, -rb.position.normalized);
         bool isShield = hit.collider.CompareTag("Shield");
-        line.SetPositions(new Vector3[] {transform.position, new Vector3 (hit.point.x, hit.point.y, 0.11f)});
+        if (isShield) line.SetPositions(new Vector3[] {transform.position, new Vector3 (0f, 0f, 1f)});
+        else line.SetPositions(new Vector3[] {transform.position, new Vector3 (0f, 0f, 0.1f)});
         line.enabled = true;
         if (isShield) shield.Defend();
         else player.Hurt();
