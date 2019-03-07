@@ -531,18 +531,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 29241297}
   m_CullTransparentMesh: 0
---- !u!114 &207450095 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6040607571026973620, guid: 3f0f63b24c54686428f55a9a597203fa,
-    type: 3}
-  m_PrefabInstance: {fileID: 6040607569988528557}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5daeef53d160c8f4da93233cd02713de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &349683074
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,7 +653,7 @@ Camera:
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 0
-  m_HDR: 1
+  m_HDR: 0
   m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
@@ -686,7 +674,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &533392035 stripped
+--- !u!114 &615821677 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6040607570125919131, guid: 3f0f63b24c54686428f55a9a597203fa,
     type: 3}
@@ -1707,19 +1695,432 @@ MonoBehaviour:
   - {fileID: 1959449364429068022, guid: 1451f7729aa4469499c7ebc1ad4597f8, type: 3}
   - {fileID: 9186914990277638099, guid: f40b304f547dd21499565ad3f6b1a1c1, type: 3}
   - {fileID: 8322451454324947865, guid: 73a48047efd31fd498fca2ccf34f8af0, type: 3}
-  player: {fileID: 533392035}
-  shield: {fileID: 207450095}
+  player: {fileID: 615821677}
+  shield: {fileID: 1699236542}
   spawns:
-    spawns: []
+    spawns:
+    - arrow: 1
+      position: 0
+      spawnTime: 0
+      speed: 2
+      secondSpeed: 2
+    - arrow: 1
+      position: 1
+      spawnTime: 0.5
+      speed: 2
+      secondSpeed: 2
+    - arrow: 0
+      position: 0
+      spawnTime: 0.5
+      speed: 2
+      secondSpeed: 2
+    - arrow: 1
+      position: 2
+      spawnTime: 0
+      speed: 2
+      secondSpeed: 2
+    - arrow: 1
+      position: 3
+      spawnTime: 0.5
+      speed: 2
+      secondSpeed: 2
+    - arrow: 0
+      position: 3
+      spawnTime: 0.5
+      speed: 2
+      secondSpeed: 2
+    - arrow: 1
+      position: 0
+      spawnTime: 0
+      speed: 2
+      secondSpeed: 2
+    - arrow: 1
+      position: 1
+      spawnTime: 0.5
+      speed: 2
+      secondSpeed: 2
+    - arrow: 0
+      position: 1
+      spawnTime: 0.5
+      speed: 2
+      secondSpeed: 2
+    - arrow: 1
+      position: 2
+      spawnTime: 0
+      speed: 2
+      secondSpeed: 2
+    - arrow: 1
+      position: 3
+      spawnTime: 0.5
+      speed: 2
+      secondSpeed: 2
+    - arrow: 0
+      position: 3
+      spawnTime: 1.5
+      speed: 2
+      secondSpeed: 2
   attack:
-    attacks: []
-  jsonString: '{"attacks":[{"spawns":[{"arrow":0,"position":0,"spawnTime":1.0,"speed":2.0,"secondSpeed":2.0},{"arrow":0,"position":2,"spawnTime":1.0,"speed":2.0,"secondSpeed":2.0},{"arrow":0,"position":1,"spawnTime":1.0,"speed":2.0,"secondSpeed":2.0},{"arrow":0,"position":3,"spawnTime":1.0,"speed":2.0,"secondSpeed":2.0}]},{"spawns":[{"arrow":0,"position":0,"spawnTime":1.0,"speed":2.0,"secondSpeed":2.0},{"arrow":0,"position":1,"spawnTime":1.0,"speed":2.0,"secondSpeed":2.0},{"arrow":0,"position":0,"spawnTime":1.0,"speed":2.0,"secondSpeed":2.0},{"arrow":0,"position":1,"spawnTime":1.0,"speed":2.0,"secondSpeed":2.0},{"arrow":0,"position":2,"spawnTime":1.0,"speed":2.0,"secondSpeed":2.0},{"arrow":0,"position":3,"spawnTime":1.0,"speed":2.0,"secondSpeed":2.0},{"arrow":0,"position":2,"spawnTime":1.0,"speed":2.0,"secondSpeed":2.0},{"arrow":0,"position":3,"spawnTime":1.0,"speed":2.0,"secondSpeed":2.0}]},{"spawns":[{"arrow":2,"position":2,"spawnTime":1.0,"speed":2.0,"secondSpeed":2.0},{"arrow":2,"position":1,"spawnTime":1.0,"speed":2.0,"secondSpeed":2.0},{"arrow":2,"position":0,"spawnTime":1.0,"speed":2.0,"secondSpeed":2.0},{"arrow":2,"position":3,"spawnTime":1.0,"speed":2.0,"secondSpeed":2.0}]},{"spawns":[{"arrow":3,"position":2,"spawnTime":0.0,"speed":2.0,"secondSpeed":1.0},{"arrow":0,"position":1,"spawnTime":2.0,"speed":3.0,"secondSpeed":1.0},{"arrow":3,"position":0,"spawnTime":0.0,"speed":2.0,"secondSpeed":1.0},{"arrow":0,"position":1,"spawnTime":2.0,"speed":3.0,"secondSpeed":1.0},{"arrow":3,"position":3,"spawnTime":0.0,"speed":2.0,"secondSpeed":1.0},{"arrow":0,"position":1,"spawnTime":2.0,"speed":3.0,"secondSpeed":1.0},{"arrow":3,"position":1,"spawnTime":0.0,"speed":2.0,"secondSpeed":1.0},{"arrow":0,"position":1,"spawnTime":1.5,"speed":3.0,"secondSpeed":1.0}]},{"spawns":[{"arrow":1,"position":0,"spawnTime":0.0,"speed":2.0,"secondSpeed":2.0},{"arrow":1,"position":1,"spawnTime":0.5,"speed":2.0,"secondSpeed":2.0},{"arrow":0,"position":0,"spawnTime":0.5,"speed":2.0,"secondSpeed":2.0},{"arrow":1,"position":2,"spawnTime":0.0,"speed":2.0,"secondSpeed":2.0},{"arrow":1,"position":3,"spawnTime":0.5,"speed":2.0,"secondSpeed":2.0},{"arrow":0,"position":3,"spawnTime":0.5,"speed":2.0,"secondSpeed":2.0},{"arrow":1,"position":0,"spawnTime":0.0,"speed":2.0,"secondSpeed":2.0},{"arrow":1,"position":1,"spawnTime":0.5,"speed":2.0,"secondSpeed":2.0},{"arrow":0,"position":1,"spawnTime":0.5,"speed":2.0,"secondSpeed":2.0},{"arrow":1,"position":2,"spawnTime":0.0,"speed":2.0,"secondSpeed":2.0},{"arrow":1,"position":3,"spawnTime":0.5,"speed":2.0,"secondSpeed":2.0},{"arrow":0,"position":3,"spawnTime":1.0,"speed":2.0,"secondSpeed":2.0}]},{"spawns":[{"arrow":4,"position":0,"spawnTime":0.0,"speed":1.0,"secondSpeed":2.0},{"arrow":4,"position":1,"spawnTime":3.0,"speed":1.0,"secondSpeed":2.0},{"arrow":4,"position":2,"spawnTime":0.0,"speed":1.0,"secondSpeed":2.0},{"arrow":4,"position":3,"spawnTime":3.0,"speed":1.0,"secondSpeed":2.0},{"arrow":4,"position":0,"spawnTime":0.0,"speed":1.0,"secondSpeed":2.0},{"arrow":4,"position":1,"spawnTime":3.0,"speed":1.0,"secondSpeed":2.0},{"arrow":4,"position":2,"spawnTime":0.0,"speed":1.0,"secondSpeed":2.0},{"arrow":4,"position":3,"spawnTime":5.0,"speed":1.0,"secondSpeed":2.0}]},{"spawns":[{"arrow":5,"position":0,"spawnTime":1.0,"speed":2.0,"secondSpeed":1.0},{"arrow":0,"position":0,"spawnTime":0.5,"speed":2.0,"secondSpeed":1.0},{"arrow":0,"position":2,"spawnTime":0.5,"speed":2.0,"secondSpeed":1.0},{"arrow":0,"position":3,"spawnTime":0.5,"speed":2.0,"secondSpeed":1.0},{"arrow":0,"position":1,"spawnTime":0.5,"speed":2.0,"secondSpeed":1.0},{"arrow":0,"position":0,"spawnTime":0.5,"speed":2.0,"secondSpeed":1.0},{"arrow":0,"position":2,"spawnTime":0.5,"speed":2.0,"secondSpeed":1.0},{"arrow":0,"position":3,"spawnTime":0.5,"speed":2.0,"secondSpeed":1.0},{"arrow":0,"position":1,"spawnTime":0.5,"speed":2.0,"secondSpeed":1.0},{"arrow":0,"position":3,"spawnTime":0.5,"speed":2.0,"secondSpeed":1.0},{"arrow":0,"position":0,"spawnTime":0.5,"speed":2.0,"secondSpeed":1.0},{"arrow":0,"position":3,"spawnTime":0.5,"speed":2.0,"secondSpeed":1.0},{"arrow":0,"position":1,"spawnTime":0.5,"speed":2.0,"secondSpeed":1.0},{"arrow":0,"position":0,"spawnTime":0.5,"speed":2.0,"secondSpeed":1.0},{"arrow":0,"position":3,"spawnTime":0.5,"speed":2.0,"secondSpeed":1.0},{"arrow":0,"position":2,"spawnTime":0.5,"speed":2.0,"secondSpeed":1.0},{"arrow":0,"position":2,"spawnTime":0.5,"speed":2.0,"secondSpeed":1.0},{"arrow":0,"position":1,"spawnTime":0.5,"speed":2.0,"secondSpeed":1.0},{"arrow":0,"position":3,"spawnTime":0.5,"speed":2.0,"secondSpeed":1.0},{"arrow":0,"position":1,"spawnTime":0.5,"speed":2.0,"secondSpeed":1.0},{"arrow":0,"position":2,"spawnTime":0.5,"speed":2.0,"secondSpeed":1.0},{"arrow":0,"position":0,"spawnTime":0.5,"speed":2.0,"secondSpeed":1.0},{"arrow":0,"position":1,"spawnTime":0.5,"speed":2.0,"secondSpeed":1.0},{"arrow":0,"position":3,"spawnTime":1.0,"speed":2.0,"secondSpeed":1.0},{"arrow":2,"position":0,"spawnTime":1.5,"speed":2.0,"secondSpeed":1.0}]}]}'
-  timeBetweenAttacks: 0.5
+    attacks:
+    - spawns:
+      - arrow: 0
+        position: 0
+        spawnTime: 1
+        speed: 2
+        secondSpeed: 2
+      - arrow: 0
+        position: 2
+        spawnTime: 1
+        speed: 2
+        secondSpeed: 2
+      - arrow: 0
+        position: 1
+        spawnTime: 1
+        speed: 2
+        secondSpeed: 2
+      - arrow: 0
+        position: 3
+        spawnTime: 1.5
+        speed: 2
+        secondSpeed: 2
+    - spawns:
+      - arrow: 0
+        position: 0
+        spawnTime: 1
+        speed: 2
+        secondSpeed: 2
+      - arrow: 0
+        position: 1
+        spawnTime: 1
+        speed: 2
+        secondSpeed: 2
+      - arrow: 0
+        position: 0
+        spawnTime: 1
+        speed: 2
+        secondSpeed: 2
+      - arrow: 0
+        position: 1
+        spawnTime: 1
+        speed: 2
+        secondSpeed: 2
+      - arrow: 0
+        position: 2
+        spawnTime: 1
+        speed: 2
+        secondSpeed: 2
+      - arrow: 0
+        position: 3
+        spawnTime: 1
+        speed: 2
+        secondSpeed: 2
+      - arrow: 0
+        position: 2
+        spawnTime: 1
+        speed: 2
+        secondSpeed: 2
+      - arrow: 0
+        position: 3
+        spawnTime: 1.5
+        speed: 2
+        secondSpeed: 2
+    - spawns:
+      - arrow: 2
+        position: 2
+        spawnTime: 1
+        speed: 2
+        secondSpeed: 2
+      - arrow: 2
+        position: 1
+        spawnTime: 1
+        speed: 2
+        secondSpeed: 2
+      - arrow: 2
+        position: 0
+        spawnTime: 1
+        speed: 2
+        secondSpeed: 2
+      - arrow: 2
+        position: 3
+        spawnTime: 1.5
+        speed: 2
+        secondSpeed: 2
+    - spawns:
+      - arrow: 3
+        position: 2
+        spawnTime: 0
+        speed: 3
+        secondSpeed: 0.5
+      - arrow: 0
+        position: 1
+        spawnTime: 2
+        speed: 2
+        secondSpeed: 1
+      - arrow: 3
+        position: 0
+        spawnTime: 0
+        speed: 3
+        secondSpeed: 0.5
+      - arrow: 0
+        position: 1
+        spawnTime: 2
+        speed: 2
+        secondSpeed: 1
+      - arrow: 3
+        position: 3
+        spawnTime: 0
+        speed: 3
+        secondSpeed: 0.5
+      - arrow: 0
+        position: 1
+        spawnTime: 2
+        speed: 2
+        secondSpeed: 1
+      - arrow: 3
+        position: 1
+        spawnTime: 0
+        speed: 3
+        secondSpeed: 0.5
+      - arrow: 0
+        position: 1
+        spawnTime: 2.5
+        speed: 2
+        secondSpeed: 1
+    - spawns:
+      - arrow: 1
+        position: 0
+        spawnTime: 0
+        speed: 2
+        secondSpeed: 2
+      - arrow: 1
+        position: 1
+        spawnTime: 0.5
+        speed: 2
+        secondSpeed: 2
+      - arrow: 0
+        position: 0
+        spawnTime: 0.5
+        speed: 2
+        secondSpeed: 2
+      - arrow: 1
+        position: 2
+        spawnTime: 0
+        speed: 2
+        secondSpeed: 2
+      - arrow: 1
+        position: 3
+        spawnTime: 0.5
+        speed: 2
+        secondSpeed: 2
+      - arrow: 0
+        position: 3
+        spawnTime: 0.5
+        speed: 2
+        secondSpeed: 2
+      - arrow: 1
+        position: 0
+        spawnTime: 0
+        speed: 2
+        secondSpeed: 2
+      - arrow: 1
+        position: 1
+        spawnTime: 0.5
+        speed: 2
+        secondSpeed: 2
+      - arrow: 0
+        position: 1
+        spawnTime: 0.5
+        speed: 2
+        secondSpeed: 2
+      - arrow: 1
+        position: 2
+        spawnTime: 0
+        speed: 2
+        secondSpeed: 2
+      - arrow: 1
+        position: 3
+        spawnTime: 0.5
+        speed: 2
+        secondSpeed: 2
+      - arrow: 0
+        position: 3
+        spawnTime: 1.5
+        speed: 2
+        secondSpeed: 2
+    - spawns:
+      - arrow: 4
+        position: 0
+        spawnTime: 0
+        speed: 1
+        secondSpeed: 2
+      - arrow: 4
+        position: 1
+        spawnTime: 3
+        speed: 1
+        secondSpeed: 2
+      - arrow: 4
+        position: 2
+        spawnTime: 0
+        speed: 1
+        secondSpeed: 2
+      - arrow: 4
+        position: 3
+        spawnTime: 3
+        speed: 1
+        secondSpeed: 2
+      - arrow: 4
+        position: 0
+        spawnTime: 0
+        speed: 1
+        secondSpeed: 2
+      - arrow: 4
+        position: 1
+        spawnTime: 3
+        speed: 1
+        secondSpeed: 2
+      - arrow: 4
+        position: 2
+        spawnTime: 0
+        speed: 1
+        secondSpeed: 2
+      - arrow: 4
+        position: 3
+        spawnTime: 5
+        speed: 1
+        secondSpeed: 2
+    - spawns:
+      - arrow: 5
+        position: 0
+        spawnTime: 1
+        speed: 2
+        secondSpeed: 1
+      - arrow: 0
+        position: 0
+        spawnTime: 0.5
+        speed: 2
+        secondSpeed: 1
+      - arrow: 0
+        position: 2
+        spawnTime: 0.5
+        speed: 2
+        secondSpeed: 1
+      - arrow: 0
+        position: 3
+        spawnTime: 0.5
+        speed: 2
+        secondSpeed: 1
+      - arrow: 0
+        position: 1
+        spawnTime: 0.5
+        speed: 2
+        secondSpeed: 1
+      - arrow: 0
+        position: 0
+        spawnTime: 0.5
+        speed: 2
+        secondSpeed: 1
+      - arrow: 0
+        position: 2
+        spawnTime: 0.5
+        speed: 2
+        secondSpeed: 1
+      - arrow: 0
+        position: 3
+        spawnTime: 0.5
+        speed: 2
+        secondSpeed: 1
+      - arrow: 0
+        position: 1
+        spawnTime: 0.5
+        speed: 2
+        secondSpeed: 1
+      - arrow: 0
+        position: 3
+        spawnTime: 0.5
+        speed: 2
+        secondSpeed: 1
+      - arrow: 0
+        position: 0
+        spawnTime: 0.5
+        speed: 2
+        secondSpeed: 1
+      - arrow: 0
+        position: 3
+        spawnTime: 0.5
+        speed: 2
+        secondSpeed: 1
+      - arrow: 0
+        position: 1
+        spawnTime: 0.5
+        speed: 2
+        secondSpeed: 1
+      - arrow: 0
+        position: 0
+        spawnTime: 0.5
+        speed: 2
+        secondSpeed: 1
+      - arrow: 0
+        position: 3
+        spawnTime: 0.5
+        speed: 2
+        secondSpeed: 1
+      - arrow: 0
+        position: 2
+        spawnTime: 0.5
+        speed: 2
+        secondSpeed: 1
+      - arrow: 0
+        position: 2
+        spawnTime: 0.5
+        speed: 2
+        secondSpeed: 1
+      - arrow: 0
+        position: 1
+        spawnTime: 0.5
+        speed: 2
+        secondSpeed: 1
+      - arrow: 0
+        position: 3
+        spawnTime: 0.5
+        speed: 2
+        secondSpeed: 1
+      - arrow: 0
+        position: 1
+        spawnTime: 0.5
+        speed: 2
+        secondSpeed: 1
+      - arrow: 0
+        position: 2
+        spawnTime: 0.5
+        speed: 2
+        secondSpeed: 1
+      - arrow: 0
+        position: 0
+        spawnTime: 0.5
+        speed: 2
+        secondSpeed: 1
+      - arrow: 0
+        position: 1
+        spawnTime: 0.5
+        speed: 2
+        secondSpeed: 1
+      - arrow: 0
+        position: 3
+        spawnTime: 1
+        speed: 2
+        secondSpeed: 1
+      - arrow: 2
+        position: 0
+        spawnTime: 2
+        speed: 2
+        secondSpeed: 1
+  filePath: C:/Users/emman/Documents/Proyectos de Unity/bullet-hell/Assets/JsonAttacks/4SideAttacks.json
   speedModifier: 0.001
   indexToTest: -1
   timeText: {fileID: 29241299}
   bestText: {fileID: 1172969737}
-  speedByTime: 1
+  gamePlaying: 0
+  editing: 0
+  speedByTime: 1.0162508
 --- !u!1 &1692361722
 GameObject:
   m_ObjectHideFlags: 0
@@ -1883,6 +2284,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1692361722}
   m_CullTransparentMesh: 0
+--- !u!114 &1699236542 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6040607571026973620, guid: 3f0f63b24c54686428f55a9a597203fa,
+    type: 3}
+  m_PrefabInstance: {fileID: 6040607569988528557}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5daeef53d160c8f4da93233cd02713de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1729762953
 GameObject:
   m_ObjectHideFlags: 0
@@ -1982,10 +2395,10 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1750503747}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 0
   m_MotionVectors: 0
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -2038,8 +2451,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 1, g: 1, b: 1, a: 0.43529412}
+      key1: {r: 1, g: 1, b: 1, a: 0.43529412}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}

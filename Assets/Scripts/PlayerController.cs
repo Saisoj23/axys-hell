@@ -105,7 +105,13 @@ public class PlayerController : MonoBehaviour
 
     public void Hurt ()
     {
-        anim.SetTrigger("Hurted");
-        game.Damage();
+        if (game.editing)
+        {
+            anim.SetTrigger("Hurted");
+        }
+        else 
+        {
+            game.Damage();
+        }
     }
 }
