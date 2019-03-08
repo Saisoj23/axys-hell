@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
     [Header("Player")]
     public PlayerController player;
     public ShieldController shield;
+    public Camera cam;
 
     public enum Arrows {Arrow, Antiarrow, Inverse, Charging, Smart, Orbital}
     public enum Positions {Right, Left, Up, Down, Down_Right, Down_Left, Up_Right, Up_Left}
@@ -50,6 +51,10 @@ public class GameController : MonoBehaviour
         #else
         PlayAttaks();
         #endif
+        if (Screen.width > Screen.height)
+        {
+            cam.orthographicSize /= 2;
+        }
         bestScore = PlayerPrefs.GetInt("BestScore", 0);
         bestText.text = bestScore.ToString();
     }
