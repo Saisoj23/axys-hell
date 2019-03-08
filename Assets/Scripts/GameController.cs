@@ -42,7 +42,6 @@ public class GameController : MonoBehaviour
     float time = 0f;
     [HideInInspector] public float speedByTime = 1;
 
-
     void Start()
     {
         #if UNITY_EDITOR
@@ -53,7 +52,7 @@ public class GameController : MonoBehaviour
         #endif
         if (Screen.width > Screen.height)
         {
-            cam.orthographicSize /= 2;
+            cam.orthographicSize *= Mathf.InverseLerp(0f, Screen.width, Screen.height);
         }
         bestScore = PlayerPrefs.GetInt("BestScore", 0);
         bestText.text = bestScore.ToString();

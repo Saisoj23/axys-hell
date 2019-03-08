@@ -8,8 +8,6 @@ public class SmartArrowController : ArrowController
     public float smartDistance;
     public Color lookingColor;
 
-    bool visible = false;
-
     SpriteRenderer sprite;
     LineRenderer line; 
 
