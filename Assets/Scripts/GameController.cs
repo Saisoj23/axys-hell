@@ -20,12 +20,13 @@ public class GameController : MonoBehaviour
     public enum Positions {Right, Left, Up, Down, Down_Right, Down_Left, Up_Right, Up_Left}
 
     [Header("Attak Editor")]
-    public SpawnList spawns;
-    public AttackList attack;
+    public AttackList attacks;
 
+    #if UNITY_EDITOR
     [Header("Json Values")]
     public string filePath;
     string jsonString;
+    #endif
 
     [Header("Attaks Values")]
     public float speedModifier;
@@ -34,6 +35,9 @@ public class GameController : MonoBehaviour
     [Header("UI objects")]
     public TMPro.TMP_Text timeText;
     public TMPro.TMP_Text bestText;
+    public Button playButton;
+    public Button nextButton;
+    public Button prevButton;
 
     [Header("Game Status")]
     public bool gamePlaying = false;
@@ -42,13 +46,14 @@ public class GameController : MonoBehaviour
     float time = 0f;
     [HideInInspector] public float speedByTime = 1;
 
+    Animator anim;
+
     void Start()
     {
+        anim = GetComponent<Animator>();
         #if UNITY_EDITOR
         jsonString = File.ReadAllText(filePath);
-        attack = JsonUtility.FromJson<AttackList>(jsonString);
-        #else
-        PlayAttaks();
+        attacks = JsonUtility.FromJson<AttackList>(jsonString);
         #endif
         if (Screen.width > Screen.height)
         {
@@ -64,7 +69,12 @@ public class GameController : MonoBehaviour
         {
             time += Time.deltaTime;
             timeText.text = ((int)time).ToString();
+            if ((int)time > bestScore) bestText.text = ((int)time).ToString();
             speedByTime = Mathf.Clamp((1 + (time * speedModifier)), 1f, 3f);
+        }
+        if (!gamePlaying && Input.GetKeyDown(KeyCode.Return))
+        {
+            PlayAttaks(true);
         }
     }
 
@@ -72,14 +82,15 @@ public class GameController : MonoBehaviour
     IEnumerator Attack ()
     {
         time = 0;
-        while (gamePlaying && attack.attacks.Count > 0)
+        while (gamePlaying && attacks.attacks.Length > 0)
         {
-            if (indexToTest >= 0 && indexToTest < attack.attacks.Count) spawns = attack.attacks[indexToTest];
-            else spawns = attack.attacks[Random.Range(0, attack.attacks.Count)];
+            int newIndex = 0;
+            if (indexToTest >= 0 && indexToTest < attacks.attacks.Length) newIndex = indexToTest;
+            else newIndex = Random.Range(0, attacks.attacks.Length);
             indexToTest = -1;
             int inverse = Random.Range(0, 2);
             int perpendicular = Random.Range(0, 2);
-            foreach (Spawn i in spawns.spawns)
+            foreach (Spawn i in attacks.attacks[newIndex].spawns)
             {
                 int intArrow = (int)i.arrow;
                 int intPosition = (int)i.position;
@@ -94,68 +105,53 @@ public class GameController : MonoBehaviour
         }
     }
 
-    //corrutina de testeo
-    IEnumerator Spawner ()
-    {
-        time = 0;
-        if (spawns.spawns.Length > 0)
-        {
-            foreach (Spawn i in spawns.spawns)
-            {
-                int intArrow = (int)i.arrow;
-                int intPosition = (int)i.position;
-                ArrowController arrow = Instantiate(arrows[intArrow], positions[intPosition], Quaternion.identity).GetComponent<ArrowController>();
-                arrow.speed = i.speed;
-                arrow.secondSpeed = i.secondSpeed;
-                if (i.spawnTime > 0) yield return new WaitForSeconds(i.spawnTime);
-            }
-        }
-    }
-
     public void WriteJson ()
     {
-        jsonString = JsonUtility.ToJson(attack);
+        jsonString = JsonUtility.ToJson(attacks);
         File.WriteAllText(filePath, jsonString);
     }
 
-    public void UploadToList ()
+    public void PlayAttaks (bool active)
     {
-        attack.attacks.Add(spawns);
-    }
-
-    public void PlayAttaks ()
-    {
-        if (gamePlaying)
+        gamePlaying = active;
+        if (active)
         {
-            StopAllCoroutines();
-            gamePlaying = false;
-        }
-        else 
-        {
-            gamePlaying = true;
             StartCoroutine("Attack");
         }
-    }
-
-    public void TestAttack ()
-    {
-        StartCoroutine("Spawner");
+        else
+        {
+            StopCoroutine("Attack");
+        }
+        playButton.enabled = !active;
+        nextButton.enabled = !active;
+        prevButton.enabled = !active;
+        anim.SetBool("Playing", active);
     }
 
     //game events
     public void Damage ()
     {
-        if (!editing) GameOver();
+        if (!editing)
+        {
+            if (time > bestScore)
+            {
+                bestScore = (int)time;
+                PlayerPrefs.SetInt("BestScore", bestScore);
+            }
+            gamePlaying = false;
+            PlayAttaks(false);
+            Invoke("DestroyAllBullets", 0.05f);
+            anim.SetBool("Playing", gamePlaying);
+        }
     }
 
-    public void GameOver ()
+    void DestroyAllBullets ()
     {
-        if (time > bestScore)
-        {
-            bestScore = (int)time;
-            PlayerPrefs.SetInt("BestScore", bestScore);
-        }
-        SceneManager.LoadScene(0);
+        ArrowController[] arrows = GameObject.FindObjectsOfType<ArrowController>();
+            foreach (ArrowController item in arrows)
+            {
+                Destroy(item.gameObject);
+            }
     }
 
     [System.Serializable]
@@ -177,6 +173,6 @@ public class GameController : MonoBehaviour
     [System.Serializable]
     public struct  AttackList
     {
-        public List<SpawnList> attacks;
+        public SpawnList[] attacks;
     }
 }

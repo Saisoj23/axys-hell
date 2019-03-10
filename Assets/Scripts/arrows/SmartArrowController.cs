@@ -45,7 +45,7 @@ public class SmartArrowController : ArrowController
                 line.startColor = startColor;
                 line.endColor = startColor;
                 sprite.color = startColor;
-                rb.MovePosition(Vector2.MoveTowards(rb.position, Vector2.zero, speed * Time.deltaTime));
+                rb.MovePosition(Vector2.MoveTowards(rb.position, Vector2.zero, secondSpeed * Time.deltaTime));
             }
             yield return null;
         }

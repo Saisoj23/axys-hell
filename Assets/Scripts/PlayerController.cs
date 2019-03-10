@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     Animator anim;
     ShieldController shield;
     GameController game;
+    public Camera cam;
 
     void Awake ()
     {
@@ -35,15 +36,19 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 input = Vector2.zero;
         #if UNITY_EDITOR || UNITY_ANDROID
-        if (Input.GetMouseButton(0)) 
+        RaycastHit hit;
+        if (Input.GetMouseButton(0) && Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit, 20f)) 
         {
-            actualMousePosition = Input.mousePosition;
-            if (lastMousePosition != null && lastPresed && Vector2.Distance(actualMousePosition, lastMousePosition) * Time.deltaTime > minTouchSpeed)
+            if (hit.collider.CompareTag("Background"))
             {
-                input = -(lastMousePosition - actualMousePosition).normalized; 
+                actualMousePosition = hit.point;
+                if (lastMousePosition != null && lastPresed && Vector2.Distance(actualMousePosition, lastMousePosition) * Time.deltaTime > minTouchSpeed)
+                {
+                    input = -(lastMousePosition - actualMousePosition).normalized; 
+                }
+                lastMousePosition = actualMousePosition;
+                lastPresed = true;
             }
-            lastMousePosition = actualMousePosition;
-            lastPresed = true;
         }
         else lastPresed = false;
         #endif
@@ -105,13 +110,7 @@ public class PlayerController : MonoBehaviour
 
     public void Hurt ()
     {
-        if (game.editing)
-        {
-            anim.SetTrigger("Hurted");
-        }
-        else 
-        {
-            game.Damage();
-        }
+        anim.SetTrigger("Hurted");
+        game.Damage();
     }
 }
