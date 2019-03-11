@@ -109,6 +109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   secondSpeed: 2
+  finalSpeed: 8
   chargeDistance: 2
   laserTime: 0.2
 --- !u!1001 &8818814161005672161

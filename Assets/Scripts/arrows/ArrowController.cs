@@ -12,6 +12,7 @@ public class ArrowController : MonoBehaviour
     [Header("Generic Values")]
     public float speed;
     public float secondSpeed;
+    public float finalSpeed;
 
     protected virtual void Awake ()
     {
@@ -23,16 +24,34 @@ public class ArrowController : MonoBehaviour
     void Start ()
     {
         rb.MoveRotation(Vector2.SignedAngle(Vector2.right, -rb.position.normalized));
-        StartCoroutine("MoveTo");
+        StartCoroutine("Move");
     }
 
-    protected virtual IEnumerator MoveTo ()
+    protected virtual IEnumerator Move ()
     {
         while (rb.position != Vector2.zero)
         {
             rb.MovePosition(Vector2.MoveTowards(rb.position, Vector2.zero, speed * Time.deltaTime));
             yield return null;
         }
+    }
+
+    public void MoveAndDestroy ()
+    {
+        Debug.Log(gameObject.name + "  func");
+        StartCoroutine("MoveToCenter");
+    }
+
+    protected IEnumerator MoveToCenter ()
+    {
+        Debug.Log(gameObject.name + "  couritine");
+        box.enabled = false;
+        while (rb.position != Vector2.zero)
+        {
+            rb.MovePosition(Vector2.MoveTowards(rb.position, Vector2.zero, finalSpeed * Time.deltaTime));
+            yield return null;
+        }
+        DestroyArrow();
     }
 
     public virtual void DestroyArrow ()

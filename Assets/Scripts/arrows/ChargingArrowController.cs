@@ -22,7 +22,7 @@ public class ChargingArrowController : ArrowController
         shield = FindObjectOfType<ShieldController>();
     }
 
-    protected override IEnumerator MoveTo ()
+    protected override IEnumerator Move ()
     {
         Vector2 target = rb.position.normalized * chargeDistance;
         while (rb.position != target)

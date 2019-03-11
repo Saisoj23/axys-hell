@@ -51,7 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   axis: 1
   rotateSpeed: 1280
-  minTouchSpeed: 0.01
+  minTouchSpeed: 0.001
   cam: {fileID: 0}
 --- !u!50 &6040607570125919130
 Rigidbody2D:

@@ -9,7 +9,7 @@ public class OrbitalArrowController : ArrowController
     public float orbitalDistance;
     public float secondSpeedModifier;
 
-    protected override IEnumerator MoveTo ()
+    protected override IEnumerator Move ()
     {
         Vector2 target = rb.position.normalized * orbitalDistance;
         while (rb.position != target)

@@ -109,6 +109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   secondSpeed: 2
+  finalSpeed: 5
   smartDistance: 2
   lookingColor: {r: 0.9176471, g: 0.4666667, b: 0.18823531, a: 1}
 --- !u!1001 &2174568551534303172

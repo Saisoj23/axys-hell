@@ -7,7 +7,7 @@ public class InverseArrowController : ArrowController
 
     public float turnDistance;
 
-    override protected IEnumerator MoveTo ()
+    override protected IEnumerator Move ()
     {
         box.enabled = false;
         Vector2 target = rb.position.normalized * turnDistance;

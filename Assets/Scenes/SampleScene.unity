@@ -2174,7 +2174,7 @@ MonoBehaviour:
         speed: 2
         secondSpeed: 1
   filePath: C:/Users/emman/Documents/Proyectos de Unity/bullet-hell/Assets/JsonAttacks/4SideAttacks.json
-  speedModifier: 0.001
+  speedModifier: 0.00025
   indexToTest: -1
   timeText: {fileID: 29241299}
   bestText: {fileID: 1172969737}

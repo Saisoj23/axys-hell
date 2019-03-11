@@ -18,7 +18,7 @@ public class SmartArrowController : ArrowController
         line = GetComponent<LineRenderer>();
     }
 
-    protected override IEnumerator MoveTo ()
+    protected override IEnumerator Move ()
     {
         Vector2 target = rb.position.normalized * smartDistance;
         while (rb.position != target)

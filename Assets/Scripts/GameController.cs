@@ -67,10 +67,10 @@ public class GameController : MonoBehaviour
     {
         if (gamePlaying)
         {
-            time += Time.deltaTime;
+            time += Time.deltaTime * 10;
             timeText.text = ((int)time).ToString();
             if ((int)time > bestScore) bestText.text = ((int)time).ToString();
-            speedByTime = Mathf.Clamp((1 + (time * speedModifier)), 1f, 3f);
+            speedByTime = Mathf.Clamp((1 + (time * speedModifier)), 1f, 1.5f);
         }
         if (!gamePlaying && Input.GetKeyDown(KeyCode.Return))
         {
@@ -105,17 +105,20 @@ public class GameController : MonoBehaviour
         }
     }
 
+    #if UNITY_EDITOR
     public void WriteJson ()
     {
         jsonString = JsonUtility.ToJson(attacks);
         File.WriteAllText(filePath, jsonString);
     }
+    #endif
 
     public void PlayAttaks (bool active)
     {
         gamePlaying = active;
         if (active)
         {
+            DestroyAllBullets();
             StartCoroutine("Attack");
         }
         else
@@ -140,9 +143,18 @@ public class GameController : MonoBehaviour
             }
             gamePlaying = false;
             PlayAttaks(false);
-            Invoke("DestroyAllBullets", 0.05f);
+            PauseAllBullets();
             anim.SetBool("Playing", gamePlaying);
         }
+    }
+
+    void PauseAllBullets ()
+    {
+        ArrowController[] arrows = GameObject.FindObjectsOfType<ArrowController>();
+            foreach (ArrowController item in arrows)
+            {
+                item.StopAllCoroutines();
+            }
     }
 
     void DestroyAllBullets ()
@@ -150,7 +162,7 @@ public class GameController : MonoBehaviour
         ArrowController[] arrows = GameObject.FindObjectsOfType<ArrowController>();
             foreach (ArrowController item in arrows)
             {
-                Destroy(item.gameObject);
+                item.MoveAndDestroy();
             }
     }
 

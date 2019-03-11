@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   secondSpeed: 2
+  finalSpeed: 8
   orbitalDistance: 2
   secondSpeedModifier: 0.075
 --- !u!1001 &1309612430069668750
