@@ -48,4 +48,10 @@ public class ChargingArrowController : ArrowController
         yield return new WaitForSeconds(laserTime);
         DestroyArrow();
     }
+
+    public override void MoveAndDestroy ()
+    {
+        line.enabled = false;
+        StartCoroutine("MoveToCenter");
+    }
 }

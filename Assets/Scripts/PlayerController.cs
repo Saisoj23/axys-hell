@@ -61,23 +61,26 @@ public class PlayerController : MonoBehaviour
         }
         #endif
 
-        switch (axis)
+        if (game.gamePlaying)
         {
-            case Axis.One:
-                direccion = new Vector2(Mathf.Round(input.x), 0f);
-                break;
-            case Axis.Two:
-                if (Mathf.Abs(input.x) > Mathf.Abs(input.y))
-                {
+            switch (axis)
+            {
+                case Axis.One:
                     direccion = new Vector2(Mathf.Round(input.x), 0f);
-                } else
-                {
-                    direccion = new Vector2(0f, Mathf.Round(input.y));
-                }
-                break;
-            default:
-                direccion = new Vector2(Mathf.Round(input.x), Mathf.Round(input.y)).normalized;
-                break;
+                    break;
+                case Axis.Two:
+                    if (Mathf.Abs(input.x) > Mathf.Abs(input.y))
+                    {
+                        direccion = new Vector2(Mathf.Round(input.x), 0f);
+                    } else
+                    {
+                        direccion = new Vector2(0f, Mathf.Round(input.y));
+                    }
+                    break;
+                default:
+                    direccion = new Vector2(Mathf.Round(input.x), Mathf.Round(input.y)).normalized;
+                    break;
+            }
         }
     }
 

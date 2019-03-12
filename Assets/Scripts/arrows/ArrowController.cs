@@ -36,15 +36,13 @@ public class ArrowController : MonoBehaviour
         }
     }
 
-    public void MoveAndDestroy ()
+    public virtual void MoveAndDestroy ()
     {
-        Debug.Log(gameObject.name + "  func");
         StartCoroutine("MoveToCenter");
     }
 
     protected IEnumerator MoveToCenter ()
     {
-        Debug.Log(gameObject.name + "  couritine");
         box.enabled = false;
         while (rb.position != Vector2.zero)
         {

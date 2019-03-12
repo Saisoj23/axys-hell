@@ -50,4 +50,10 @@ public class SmartArrowController : ArrowController
             yield return null;
         }
     }
+
+    public override void MoveAndDestroy ()
+    {
+        line.enabled = false;
+        StartCoroutine("MoveToCenter");
+    }
 }
