@@ -35,6 +35,10 @@ public class OrbitalArrowController : ArrowController
 
     public override void DestroyArrow ()
     {
-        Destroy(transform.parent.gameObject);
+        box.enabled = false;
+        anim.SetTrigger("Destroy");
+        anim.speed = speed / 2;
+        StopAllCoroutines();
+        Destroy(transform.parent.gameObject, 0.5f);
     }
 }

@@ -56,4 +56,14 @@ public class SmartArrowController : ArrowController
         line.enabled = false;
         StartCoroutine("MoveToCenter");
     }
+
+    public override void DestroyArrow ()
+    {
+        line.enabled = false;
+        box.enabled = false;
+        anim.SetTrigger("Destroy");
+        anim.speed = speed / 2;
+        StopAllCoroutines();
+        Destroy(gameObject, 0.5f);
+    }
 }

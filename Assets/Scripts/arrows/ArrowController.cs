@@ -43,7 +43,7 @@ public class ArrowController : MonoBehaviour
 
     protected IEnumerator MoveToCenter ()
     {
-        box.enabled = false;
+        tag = "False Bullet";
         while (rb.position != Vector2.zero)
         {
             rb.MovePosition(Vector2.MoveTowards(rb.position, Vector2.zero, finalSpeed * Time.deltaTime));
@@ -54,6 +54,10 @@ public class ArrowController : MonoBehaviour
 
     public virtual void DestroyArrow ()
     {
-        Destroy(gameObject);
+        box.enabled = false;
+        anim.SetTrigger("Destroy");
+        anim.speed = speed / 2;
+        StopAllCoroutines();
+        Destroy(gameObject, 0.5f);
     }
 }

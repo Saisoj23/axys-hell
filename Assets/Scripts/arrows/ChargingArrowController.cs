@@ -46,6 +46,7 @@ public class ChargingArrowController : ArrowController
         if (isShield) shield.Defend();
         else player.Hurt();
         yield return new WaitForSeconds(laserTime);
+        line.enabled = false;
         DestroyArrow();
     }
 

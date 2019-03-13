@@ -20,11 +20,16 @@ public class ShieldController : MonoBehaviour
         {
             col.gameObject.GetComponent<ArrowController>().DestroyArrow();
             Defend();
-        } else if (col.gameObject.CompareTag("Anti Bullet"))
+        } 
+        else if (col.gameObject.CompareTag("Anti Bullet"))
         {
             col.gameObject.GetComponent<ArrowController>().DestroyArrow();
             player.Hurt();
-        } 
+        }
+        else if (col.gameObject.CompareTag("False Bullet"))
+        {
+            col.gameObject.GetComponent<ArrowController>().DestroyArrow();
+        }
     }
 
     public void Defend ()

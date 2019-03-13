@@ -16,17 +16,17 @@ public class InverseArrowController : ArrowController
             rb.MovePosition(Vector2.MoveTowards(rb.position, target, speed * Time.deltaTime));
             yield return null;
         }
-        speed *= 3;
+        secondSpeed = speed * 3;
         target = -target;
         while (rb.position != target)
         {
-            rb.MovePosition(Vector2.MoveTowards(rb.position, target, speed * Time.deltaTime));
+            rb.MovePosition(Vector2.MoveTowards(rb.position, target, secondSpeed * Time.deltaTime));
             yield return null;
         }
         box.enabled = true;
         while (rb.position != Vector2.zero)
         {
-            rb.MovePosition(Vector2.MoveTowards(rb.position, Vector2.zero, (speed * 1.1f) * Time.deltaTime));
+            rb.MovePosition(Vector2.MoveTowards(rb.position, Vector2.zero, (secondSpeed * 1.1f) * Time.deltaTime));
             yield return null;
         }
     }
