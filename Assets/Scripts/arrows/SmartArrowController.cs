@@ -8,13 +8,11 @@ public class SmartArrowController : ArrowController
     public float smartDistance;
     public Color lookingColor;
 
-    SpriteRenderer sprite;
     LineRenderer line; 
 
     override protected void Awake ()
     {
         base.Awake();
-        sprite = GetComponent<SpriteRenderer>();
         line = GetComponent<LineRenderer>();
     }
 
@@ -28,7 +26,7 @@ public class SmartArrowController : ArrowController
         }
         bool looking = false;
         line.enabled = true;
-        Color startColor = sprite.color;
+        Color startColor = spr.color;
         while (rb.position != Vector2.zero)
         {
             line.SetPositions(new Vector3[] {transform.position, new Vector3(0f, 0f, 0.11f)});
@@ -38,13 +36,13 @@ public class SmartArrowController : ArrowController
             {
                 line.startColor = lookingColor;
                 line.endColor = lookingColor;
-                sprite.color = lookingColor;
+                spr.color = lookingColor;
             }
             else
             {
                 line.startColor = startColor;
                 line.endColor = startColor;
-                sprite.color = startColor;
+                spr.color = startColor;
                 rb.MovePosition(Vector2.MoveTowards(rb.position, Vector2.zero, secondSpeed * Time.deltaTime));
             }
             yield return null;
@@ -65,5 +63,13 @@ public class SmartArrowController : ArrowController
         anim.speed = speed / 2;
         StopAllCoroutines();
         Destroy(gameObject, 0.5f);
+    }
+
+    public override void Stop ()
+    {
+        spr.color = Color.grey;
+        line.startColor = Color.grey;
+        line.endColor = Color.grey;
+        StopAllCoroutines();
     }
 }

@@ -8,7 +8,6 @@ public class ChargingArrowController : ArrowController
     public float chargeDistance;
     public float laserTime;
 
-    SpriteRenderer sprite;
     LineRenderer line;
     ShieldController shield;
     PlayerController player;
@@ -16,7 +15,6 @@ public class ChargingArrowController : ArrowController
     override protected void Awake ()
     {
         base.Awake();
-        sprite = GetComponent<SpriteRenderer>();
         line = GetComponent<LineRenderer>();
         player = FindObjectOfType<PlayerController>();
         shield = FindObjectOfType<ShieldController>();
@@ -30,12 +28,12 @@ public class ChargingArrowController : ArrowController
             rb.MovePosition(Vector2.MoveTowards(rb.position, target, speed * Time.deltaTime));
             yield return null;
         }
-        Color startColor = sprite.color;
+        Color startColor = spr.color;
         float colorTime = 0f;
         while (colorTime <= 1)
         {
             colorTime += Time.deltaTime * secondSpeed;
-            sprite.color = Color.Lerp(startColor, Color.white, colorTime);
+            spr.color = Color.Lerp(startColor, Color.white, colorTime);
             yield return null;
         }
         RaycastHit2D hit = Physics2D.Raycast(rb.position -rb.position.normalized * 0.2f, -rb.position.normalized);
@@ -54,5 +52,13 @@ public class ChargingArrowController : ArrowController
     {
         line.enabled = false;
         StartCoroutine("MoveToCenter");
+    }
+
+    public override void Stop ()
+    {
+        spr.color = Color.grey;
+        line.startColor = Color.grey;
+        line.endColor = Color.grey;
+        StopAllCoroutines();
     }
 }

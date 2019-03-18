@@ -35,7 +35,6 @@ public class PlayerController : MonoBehaviour
     void Update ()
     {
         Vector2 input = Vector2.zero;
-        #if UNITY_EDITOR || UNITY_ANDROID
         RaycastHit hit;
         if (Input.GetMouseButton(0) && Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit, 20f)) 
         {
@@ -51,13 +50,13 @@ public class PlayerController : MonoBehaviour
             }
         }
         else lastPresed = false;
-        #endif
         
         #if UNITY_EDITOR || !UNITY_ANDROID
-        if (Input.GetAxisRaw("Horizontal") != 0f || Input.GetAxisRaw("Vertical") != 0f)
+        Vector2 axisInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        
+        if (axisInput.magnitude != 0 && Physics.Raycast(cam.ScreenPointToRay(screenMiddle + (axisInput.normalized * 200)), out hit, 20f))
         {
-            input.x = Input.GetAxisRaw("Horizontal");
-            input.y = Input.GetAxisRaw("Vertical");
+            input = hit.point.normalized; 
         }
         #endif
 

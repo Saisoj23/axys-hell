@@ -38,6 +38,7 @@ public class GameController : MonoBehaviour
     public Button playButton;
     public Button nextButton;
     public Button prevButton;
+    public Spin spin;
 
     [Header("Game Status")]
     public bool gamePlaying = false;
@@ -82,8 +83,14 @@ public class GameController : MonoBehaviour
     IEnumerator Attack ()
     {
         time = 0;
+        bool spining = false;
         while (gamePlaying && attacks.attacks.Length > 0)
         {
+            if (time > 500 && !spining) 
+            {
+                spin.StartCoroutine("StartSpin");
+                spining = true;
+            }
             int newIndex = 0;
             if (indexToTest >= 0 && indexToTest < attacks.attacks.Length) newIndex = indexToTest;
             else newIndex = Random.Range(0, attacks.attacks.Length);
@@ -119,6 +126,7 @@ public class GameController : MonoBehaviour
         if (active)
         {
             DestroyAllBullets();
+            spin.StartCoroutine("RestarSpin");
             StartCoroutine("Attack");
         }
         else
@@ -144,6 +152,7 @@ public class GameController : MonoBehaviour
             gamePlaying = false;
             PlayAttaks(false);
             PauseAllBullets();
+            spin.StopAllCoroutines();
             anim.SetBool("Playing", gamePlaying);
         }
     }
@@ -153,7 +162,7 @@ public class GameController : MonoBehaviour
         ArrowController[] arrows = GameObject.FindObjectsOfType<ArrowController>();
             foreach (ArrowController item in arrows)
             {
-                item.StopAllCoroutines();
+                item.Stop();
             }
     }
 

@@ -38,11 +38,11 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: -2, y: 0, z: 0.11}
+  - {x: 0, y: 0, z: 0.11}
   - {x: 0, y: 0, z: 0.11}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.48
+    widthMultiplier: 1.6
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -89,7 +89,7 @@ LineRenderer:
       m_NumAlphaKeys: 2
     numCornerVertices: 0
     numCapVertices: 0
-    alignment: 0
+    alignment: 1
     textureMode: 0
     shadowBias: 0.5
     generateLightingData: 0
@@ -198,7 +198,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300016, guid: d13be02d2cf048d45b8a7c8d94acdc5b,
+      objectReference: {fileID: 21300038, guid: d13be02d2cf048d45b8a7c8d94acdc5b,
         type: 3}
     - target: {fileID: 7013199810249728020, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
         type: 3}
@@ -210,6 +210,11 @@ PrefabInstance:
       propertyPath: m_FlipX
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7013199810249728020, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1.6
+      objectReference: {fileID: 0}
     - target: {fileID: 6131399617044169334, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
@@ -219,6 +224,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Offset.x
       value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6131399617044169334, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 1.6
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4428358298999141045, guid: 4e3f398fc8ff1a247b1bace4451a45a1, type: 3}
