@@ -100,8 +100,16 @@ public class PlayerController : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Bullet"))
         {
-            col.gameObject.GetComponent<ArrowController>().DestroyArrow();
-            Hurt();
+            ArrowController arrow =  col.gameObject.GetComponent<ArrowController>();
+            if (arrow.CollisionWithShield())
+            {
+                shield.Defend();
+            }
+            else 
+            {
+                Hurt();
+            }
+            arrow.DestroyArrow();
         }
         else if (col.gameObject.CompareTag("Anti Bullet"))
         {

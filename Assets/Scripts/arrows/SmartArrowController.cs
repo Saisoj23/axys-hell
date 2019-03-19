@@ -57,6 +57,7 @@ public class SmartArrowController : ArrowController
 
     public override void DestroyArrow ()
     {
+        mask.enabled = false;
         line.enabled = false;
         box.enabled = false;
         anim.SetTrigger("Destroy");
@@ -67,9 +68,9 @@ public class SmartArrowController : ArrowController
 
     public override void Stop ()
     {
-        spr.color = Color.grey;
-        line.startColor = Color.grey;
-        line.endColor = Color.grey;
+        spr.color = stopColor;
+        line.startColor = stopColor;
+        line.endColor = stopColor;
         StopAllCoroutines();
     }
 }

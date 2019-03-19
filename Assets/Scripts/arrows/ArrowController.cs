@@ -9,11 +9,15 @@ public class ArrowController : MonoBehaviour
     protected BoxCollider2D box;
     protected Animator anim;
     protected SpriteRenderer spr;
+    protected SpriteMask mask;
 
     [Header("Generic Values")]
     public float speed;
     public float secondSpeed;
     public float finalSpeed;
+    public Color stopColor;
+
+    protected Vector2 inicialDir;
 
     protected virtual void Awake ()
     {
@@ -21,11 +25,13 @@ public class ArrowController : MonoBehaviour
         box = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
         spr = GetComponent<SpriteRenderer>();
+        mask = GetComponent<SpriteMask>();
     }
 
     void Start ()
     {
-        rb.MoveRotation(Vector2.SignedAngle(Vector2.right, -rb.position.normalized));
+        inicialDir = rb.transform.position.normalized;
+        rb.MoveRotation(Vector2.SignedAngle(Vector2.right, -inicialDir));
         StartCoroutine("Move");
     }
 
@@ -40,8 +46,14 @@ public class ArrowController : MonoBehaviour
 
     public virtual void Stop ()
     {
-        spr.color = Color.grey;
+        spr.color = stopColor;
         StopAllCoroutines();
+    }
+
+    public bool CollisionWithShield ()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(inicialDir, -inicialDir);
+        return hit.collider.CompareTag("Shield");
     }
 
     public virtual void MoveAndDestroy ()
@@ -62,6 +74,7 @@ public class ArrowController : MonoBehaviour
 
     public virtual void DestroyArrow ()
     {
+        mask.enabled = false;
         box.enabled = false;
         anim.SetTrigger("Destroy");
         anim.speed = speed / 2;

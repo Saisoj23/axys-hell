@@ -11,11 +11,14 @@ public class ChargingArrowController : ArrowController
     LineRenderer line;
     ShieldController shield;
     PlayerController player;
+    SpriteRenderer chargingSpr;
+    public GameObject charging;
 
     override protected void Awake ()
     {
         base.Awake();
-        line = GetComponent<LineRenderer>();
+        line = GetComponent<LineRenderer>();        
+        chargingSpr = charging.GetComponent<SpriteRenderer>();
         player = FindObjectOfType<PlayerController>();
         shield = FindObjectOfType<ShieldController>();
     }
@@ -29,11 +32,15 @@ public class ChargingArrowController : ArrowController
             yield return null;
         }
         Color startColor = spr.color;
-        float colorTime = 0f;
-        while (colorTime <= 1)
+        Vector3 startChargePosition = chargingSpr.transform.position;
+        float chargeTime = 0f;
+        while (chargeTime <= 1)
         {
-            colorTime += Time.deltaTime * secondSpeed;
-            spr.color = Color.Lerp(startColor, Color.white, colorTime);
+            chargeTime += Time.deltaTime * secondSpeed;
+            Color thisColor = Color.Lerp(startColor, Color.white, chargeTime);
+            spr.color = thisColor;
+            chargingSpr.color = thisColor;
+            chargingSpr.transform.position = Vector3.Lerp(startChargePosition, transform.position, chargeTime);
             yield return null;
         }
         RaycastHit2D hit = Physics2D.Raycast(rb.position -rb.position.normalized * 0.2f, -rb.position.normalized);
@@ -56,9 +63,22 @@ public class ChargingArrowController : ArrowController
 
     public override void Stop ()
     {
-        spr.color = Color.grey;
-        line.startColor = Color.grey;
-        line.endColor = Color.grey;
+        spr.color = stopColor;
+        chargingSpr.color = stopColor;
+        line.startColor = stopColor;
+        line.endColor = stopColor;
         StopAllCoroutines();
+    }
+
+    public override void DestroyArrow ()
+    {
+        mask.enabled = false;
+        spr.sprite = chargingSpr.sprite;
+        chargingSpr.enabled = false;
+        box.enabled = false;
+        anim.SetTrigger("Destroy");
+        anim.speed = speed / 2;
+        StopAllCoroutines();
+        Destroy(gameObject, 0.5f);
     }
 }

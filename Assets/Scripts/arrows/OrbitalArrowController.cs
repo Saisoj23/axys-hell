@@ -35,6 +35,7 @@ public class OrbitalArrowController : ArrowController
 
     public override void DestroyArrow ()
     {
+        mask.enabled = false;
         box.enabled = false;
         anim.SetTrigger("Destroy");
         anim.speed = speed / 2;

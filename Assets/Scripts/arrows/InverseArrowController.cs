@@ -7,8 +7,16 @@ public class InverseArrowController : ArrowController
 
     public float turnDistance;
 
+    void Start ()
+    {
+        inicialDir = rb.transform.position.normalized;
+        rb.MoveRotation(Vector2.SignedAngle(Vector2.right, inicialDir));
+        StartCoroutine("Move");
+    }
+
     override protected IEnumerator Move ()
     {
+        inicialDir = -inicialDir;
         box.enabled = false;
         Vector2 target = rb.position.normalized * turnDistance;
         while (rb.position != target)

@@ -15,6 +15,7 @@ MonoBehaviour:
   speed: 2
   secondSpeed: 2
   finalSpeed: 8
+  stopColor: {r: 0.67058825, g: 0.67058825, b: 0.67058825, a: 1}
   orbitalDistance: 2
   secondSpeedModifier: 0.075
 --- !u!1001 &1309612430069668750
@@ -125,6 +126,17 @@ PrefabInstance:
       propertyPath: m_SpriteTilingProperty.newSize.x
       value: 1.6
       objectReference: {fileID: 0}
+    - target: {fileID: 6131399617044169334, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476454169871408396, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300036, guid: d13be02d2cf048d45b8a7c8d94acdc5b,
+        type: 3}
     m_RemovedComponents:
     - {fileID: 4428358298999141045, guid: 4e3f398fc8ff1a247b1bace4451a45a1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4e3f398fc8ff1a247b1bace4451a45a1, type: 3}
