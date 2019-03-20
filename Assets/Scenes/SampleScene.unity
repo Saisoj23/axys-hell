@@ -173,8 +173,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d14d5420bc1b8ec408114fce187ef552, type: 2}
-  m_sharedMaterial: {fileID: 21753349816391734, guid: d14d5420bc1b8ec408114fce187ef552,
+  m_fontAsset: {fileID: 11400000, guid: f640aabf61813114db813c6d017bad46, type: 2}
+  m_sharedMaterial: {fileID: 21674913949068246, guid: f640aabf61813114db813c6d017bad46,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -462,8 +462,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: Tap anywhere to start
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d14d5420bc1b8ec408114fce187ef552, type: 2}
-  m_sharedMaterial: {fileID: 21753349816391734, guid: d14d5420bc1b8ec408114fce187ef552,
+  m_fontAsset: {fileID: 11400000, guid: f640aabf61813114db813c6d017bad46, type: 2}
+  m_sharedMaterial: {fileID: 21674913949068246, guid: f640aabf61813114db813c6d017bad46,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -704,7 +704,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300032, guid: d13be02d2cf048d45b8a7c8d94acdc5b, type: 3}
+  m_Sprite: {fileID: 21300012, guid: b885b8d165cef134592c08439260ec39, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -929,7 +929,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300032, guid: d13be02d2cf048d45b8a7c8d94acdc5b, type: 3}
+  m_Sprite: {fileID: 21300012, guid: b885b8d165cef134592c08439260ec39, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1004,7 +1004,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300020, guid: d13be02d2cf048d45b8a7c8d94acdc5b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b885b8d165cef134592c08439260ec39, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1161,8 +1161,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d14d5420bc1b8ec408114fce187ef552, type: 2}
-  m_sharedMaterial: {fileID: 21753349816391734, guid: d14d5420bc1b8ec408114fce187ef552,
+  m_fontAsset: {fileID: 11400000, guid: f640aabf61813114db813c6d017bad46, type: 2}
+  m_sharedMaterial: {fileID: 21674913949068246, guid: f640aabf61813114db813c6d017bad46,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1691,8 +1691,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: Welcome to
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d14d5420bc1b8ec408114fce187ef552, type: 2}
-  m_sharedMaterial: {fileID: 21753349816391734, guid: d14d5420bc1b8ec408114fce187ef552,
+  m_fontAsset: {fileID: 11400000, guid: c2f6db67edd185944bcf4bf27ed772e3, type: 2}
+  m_sharedMaterial: {fileID: 21338135245812612, guid: c2f6db67edd185944bcf4bf27ed772e3,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2419,7 +2419,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300022, guid: d13be02d2cf048d45b8a7c8d94acdc5b, type: 3}
+  m_Sprite: {fileID: 21300002, guid: b885b8d165cef134592c08439260ec39, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -2606,8 +2606,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: Axys
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d14d5420bc1b8ec408114fce187ef552, type: 2}
-  m_sharedMaterial: {fileID: 21753349816391734, guid: d14d5420bc1b8ec408114fce187ef552,
+  m_fontAsset: {fileID: 11400000, guid: f640aabf61813114db813c6d017bad46, type: 2}
+  m_sharedMaterial: {fileID: 21674913949068246, guid: f640aabf61813114db813c6d017bad46,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2739,16 +2739,16 @@ Transform:
   m_Father: {fileID: 1707948814}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &2046173457
-SpriteRenderer:
+--- !u!331 &2046173457
+SpriteMask:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2046173455}
   m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -2756,7 +2756,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10758, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2768,7 +2768,7 @@ SpriteRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 0
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -2777,15 +2777,14 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300028, guid: d13be02d2cf048d45b8a7c8d94acdc5b, type: 3}
-  m_Color: {r: 0.10196079, g: 0.10196079, b: 0.10196079, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1.6, y: 1.6}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskAlphaCutoff: 0.2
+  m_FrontSortingLayerID: 0
+  m_BackSortingLayerID: 0
+  m_FrontSortingLayer: 0
+  m_BackSortingLayer: 0
+  m_FrontSortingOrder: 0
+  m_BackSortingOrder: -3
+  m_IsCustomRangeActive: 1
   m_SpriteSortPoint: 0
 --- !u!1001 &6040607569988528557
 PrefabInstance:
