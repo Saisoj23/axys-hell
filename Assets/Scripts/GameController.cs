@@ -31,6 +31,7 @@ public class GameController : MonoBehaviour
     [Header("Attaks Values")]
     public float speedModifier;
     public int indexToTest = -1;
+    public int startSpin;
 
     [Header("UI objects")]
     public TMPro.TMP_Text timeText;
@@ -86,7 +87,7 @@ public class GameController : MonoBehaviour
         bool spining = false;
         while (gamePlaying && attacks.attacks.Length > 0)
         {
-            if (time > 500 && !spining) 
+            if (time > startSpin && !spining) 
             {
                 spin.StartCoroutine("StartSpin");
                 spining = true;

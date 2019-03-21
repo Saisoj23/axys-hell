@@ -37,7 +37,7 @@ public class OrbitalArrowController : ArrowController
     {
         mask.enabled = false;
         box.enabled = false;
-        anim.SetTrigger("Destroy");
+        if (useAnim) anim.SetTrigger("Destroy");
         anim.speed = speed / 2;
         StopAllCoroutines();
         Destroy(transform.parent.gameObject, 0.5f);

@@ -173,8 +173,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f640aabf61813114db813c6d017bad46, type: 2}
-  m_sharedMaterial: {fileID: 21674913949068246, guid: f640aabf61813114db813c6d017bad46,
+  m_fontAsset: {fileID: 11400000, guid: d14d5420bc1b8ec408114fce187ef552, type: 2}
+  m_sharedMaterial: {fileID: 21753349816391734, guid: d14d5420bc1b8ec408114fce187ef552,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -462,8 +462,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: Tap anywhere to start
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f640aabf61813114db813c6d017bad46, type: 2}
-  m_sharedMaterial: {fileID: 21674913949068246, guid: f640aabf61813114db813c6d017bad46,
+  m_fontAsset: {fileID: 11400000, guid: d14d5420bc1b8ec408114fce187ef552, type: 2}
+  m_sharedMaterial: {fileID: 21753349816391734, guid: d14d5420bc1b8ec408114fce187ef552,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -704,7 +704,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300012, guid: b885b8d165cef134592c08439260ec39, type: 3}
+  m_Sprite: {fileID: 21300032, guid: d13be02d2cf048d45b8a7c8d94acdc5b, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -929,7 +929,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300012, guid: b885b8d165cef134592c08439260ec39, type: 3}
+  m_Sprite: {fileID: 21300032, guid: d13be02d2cf048d45b8a7c8d94acdc5b, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1004,7 +1004,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: b885b8d165cef134592c08439260ec39, type: 3}
+  m_Sprite: {fileID: 21300020, guid: d13be02d2cf048d45b8a7c8d94acdc5b, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1047,7 +1047,7 @@ Transform:
   m_GameObject: {fileID: 1090322754}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 1.5}
-  m_LocalScale: {x: 12, y: 0.03, z: 1}
+  m_LocalScale: {x: 12, y: 0.04, z: 1}
   m_Children: []
   m_Father: {fileID: 1707948814}
   m_RootOrder: 3
@@ -1090,7 +1090,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d734031acfd26d345a2b1a71d45464c2, type: 3}
-  m_Color: {r: 0.67058825, g: 0.67058825, b: 0.67058825, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1161,8 +1161,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f640aabf61813114db813c6d017bad46, type: 2}
-  m_sharedMaterial: {fileID: 21674913949068246, guid: f640aabf61813114db813c6d017bad46,
+  m_fontAsset: {fileID: 11400000, guid: d14d5420bc1b8ec408114fce187ef552, type: 2}
+  m_sharedMaterial: {fileID: 21753349816391734, guid: d14d5420bc1b8ec408114fce187ef552,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1418,7 +1418,7 @@ Transform:
   m_GameObject: {fileID: 1394965208}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1.5}
-  m_LocalScale: {x: 12, y: 0.03, z: 1}
+  m_LocalScale: {x: 12, y: 0.04, z: 1}
   m_Children: []
   m_Father: {fileID: 1707948814}
   m_RootOrder: 2
@@ -1461,7 +1461,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d734031acfd26d345a2b1a71d45464c2, type: 3}
-  m_Color: {r: 0.67058825, g: 0.67058825, b: 0.67058825, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1691,8 +1691,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: Welcome to
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c2f6db67edd185944bcf4bf27ed772e3, type: 2}
-  m_sharedMaterial: {fileID: 21338135245812612, guid: c2f6db67edd185944bcf4bf27ed772e3,
+  m_fontAsset: {fileID: 11400000, guid: d14d5420bc1b8ec408114fce187ef552, type: 2}
+  m_sharedMaterial: {fileID: 21753349816391734, guid: d14d5420bc1b8ec408114fce187ef552,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2350,7 +2350,8 @@ MonoBehaviour:
         secondSpeed: 1
   filePath: C:/Users/emman/Documents/Proyectos de Unity/bullet-hell/Assets/JsonAttacks/4SideAttacks.json
   speedModifier: 0.00025
-  indexToTest: -1
+  indexToTest: 5
+  startSpin: 500
   timeText: {fileID: 29241299}
   bestText: {fileID: 1172969737}
   playButton: {fileID: 181795452}
@@ -2419,7 +2420,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300002, guid: b885b8d165cef134592c08439260ec39, type: 3}
+  m_Sprite: {fileID: 21300022, guid: d13be02d2cf048d45b8a7c8d94acdc5b, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -2606,8 +2607,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: Axys
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f640aabf61813114db813c6d017bad46, type: 2}
-  m_sharedMaterial: {fileID: 21674913949068246, guid: f640aabf61813114db813c6d017bad46,
+  m_fontAsset: {fileID: 11400000, guid: d14d5420bc1b8ec408114fce187ef552, type: 2}
+  m_sharedMaterial: {fileID: 21753349816391734, guid: d14d5420bc1b8ec408114fce187ef552,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}

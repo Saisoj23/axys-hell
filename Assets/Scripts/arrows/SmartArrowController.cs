@@ -8,14 +8,12 @@ public class SmartArrowController : ArrowController
     public float smartDistance;
     public Color lookingColor;
 
-    //LineRenderer line; 
     public GameObject line;
     SpriteRenderer lineSpr;
 
     override protected void Awake ()
     {
         base.Awake();
-        //line = GetComponent<LineRenderer>();
         lineSpr = line.GetComponent<SpriteRenderer>();
     }
 
@@ -28,26 +26,21 @@ public class SmartArrowController : ArrowController
             yield return null;
         }
         bool looking = false;
-        //line.enabled = true;
         lineSpr.enabled = true;
+        float yScale = line.transform.localScale.y;
         Color startColor = spr.color;
         while (rb.position != Vector2.zero)
         {
-            //line.SetPositions(new Vector3[] {transform.position, new Vector3(0f, 0f, 0.11f)});
-            line.transform.localScale = new Vector3(Mathf.Abs(transform.position.x + transform.position.y) * 2.1f, 0.1f, 1);
+            line.transform.localScale = new Vector3(Mathf.Abs(transform.position.x + transform.position.y) * 2.1f, yScale, 1);
             RaycastHit2D hit = Physics2D.Raycast(rb.position -rb.position.normalized * 0.2f, -rb.position.normalized);
             looking = hit.collider.CompareTag("Shield");
             if (looking)
             {
-                //line.startColor = lookingColor;
-                //line.endColor = lookingColor;
                 lineSpr.color = lookingColor;
                 spr.color = lookingColor;
             }
             else
             {
-                //line.startColor = startColor;
-                //line.endColor = startColor;
                 lineSpr.color = startColor;
                 spr.color = startColor;
                 rb.MovePosition(Vector2.MoveTowards(rb.position, Vector2.zero, secondSpeed * Time.deltaTime));
@@ -58,18 +51,22 @@ public class SmartArrowController : ArrowController
 
     public override void MoveAndDestroy ()
     {
-        //line.enabled = false;
         lineSpr.enabled = false;
+        if (visible)
         StartCoroutine("MoveToCenter");
+        else
+        {
+            useAnim = false;
+            DestroyArrow();
+        }
     }
 
     public override void DestroyArrow ()
     {
         mask.enabled = false;
-        //line.enabled = false;
         lineSpr.enabled = false;
         box.enabled = false;
-        anim.SetTrigger("Destroy");
+        if (useAnim) anim.SetTrigger("Destroy");
         anim.speed = speed / 2;
         StopAllCoroutines();
         Destroy(gameObject, 0.5f);
@@ -78,8 +75,6 @@ public class SmartArrowController : ArrowController
     public override void Stop ()
     {
         spr.color = stopColor;
-        //line.startColor = stopColor;
-        //line.endColor = stopColor;
         lineSpr.color = stopColor;
         StopAllCoroutines();
     }

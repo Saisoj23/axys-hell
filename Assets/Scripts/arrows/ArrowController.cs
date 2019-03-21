@@ -18,6 +18,8 @@ public class ArrowController : MonoBehaviour
     public Color stopColor;
 
     protected Vector2 inicialDir;
+    protected bool visible = false;
+    protected bool useAnim = true;
 
     protected virtual void Awake ()
     {
@@ -58,7 +60,13 @@ public class ArrowController : MonoBehaviour
 
     public virtual void MoveAndDestroy ()
     {
+        if (visible)
         StartCoroutine("MoveToCenter");
+        else
+        {
+            useAnim = false;
+            DestroyArrow();
+        }
     }
 
     protected IEnumerator MoveToCenter ()
@@ -76,9 +84,15 @@ public class ArrowController : MonoBehaviour
     {
         mask.enabled = false;
         box.enabled = false;
-        anim.SetTrigger("Destroy");
+        if (useAnim) anim.SetTrigger("Destroy");
         anim.speed = speed / 2;
         StopAllCoroutines();
         Destroy(gameObject, 0.5f);
+    }
+
+    void OnBecameVisible ()
+    {
+        Debug.Log("visible");
+        visible = true;
     }
 }

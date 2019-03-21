@@ -8,7 +8,6 @@ public class ChargingArrowController : ArrowController
     public float chargeDistance;
     public float laserTime;
 
-    //LineRenderer line;
     ShieldController shield;
     PlayerController player;
     SpriteRenderer chargingSpr;
@@ -18,8 +17,7 @@ public class ChargingArrowController : ArrowController
 
     override protected void Awake ()
     {
-        base.Awake();
-        //line = GetComponent<LineRenderer>();        
+        base.Awake();     
         chargingSpr = charging.GetComponent<SpriteRenderer>();
         laserSpr = laser.GetComponent<SpriteRenderer>();
         player = FindObjectOfType<PlayerController>();
@@ -51,37 +49,36 @@ public class ChargingArrowController : ArrowController
         laser.transform.localScale = new Vector3(Mathf.Abs(transform.position.x + transform.position.y) * 2.1f, 1, 1);
         if (isShield) 
         {
-            //line.SetPositions(new Vector3[] {transform.position, new Vector3 (0f, 0f, 1f)});
             laser.transform.localPosition += Vector3.forward / 2;
         }
         else 
         {
-            //line.SetPositions(new Vector3[] {transform.position, new Vector3 (0f, 0f, 0.1f)});
             laser.transform.localPosition -= Vector3.forward / 4;
         }
-        //line.enabled = true;
         laserSpr.enabled = true;
         if (isShield) shield.Defend();
         else player.Hurt();
         yield return new WaitForSeconds(laserTime);
-        //line.enabled = false;
         laserSpr.enabled = false;
         DestroyArrow();
     }
 
     public override void MoveAndDestroy ()
     {
-        //line.enabled = false;
         laserSpr.enabled = false;
+        if (visible)
         StartCoroutine("MoveToCenter");
+        else
+        {
+            useAnim = false;
+            DestroyArrow();
+        }
     }
 
     public override void Stop ()
     {
         spr.color = stopColor;
         chargingSpr.color = stopColor;
-        //line.startColor = stopColor;
-        //line.endColor = stopColor;
         laserSpr.color = stopColor;
         StopAllCoroutines();
     }
@@ -92,7 +89,7 @@ public class ChargingArrowController : ArrowController
         spr.sprite = chargingSpr.sprite;
         chargingSpr.enabled = false;
         box.enabled = false;
-        anim.SetTrigger("Destroy");
+        if (useAnim) anim.SetTrigger("Destroy");
         anim.speed = speed / 2;
         StopAllCoroutines();
         Destroy(gameObject, 0.5f);
