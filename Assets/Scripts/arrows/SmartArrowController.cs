@@ -31,16 +31,18 @@ public class SmartArrowController : ArrowController
         Color startColor = spr.color;
         while (rb.position != Vector2.zero)
         {
-            line.transform.localScale = new Vector3(Mathf.Abs(transform.position.x + transform.position.y) * 2.1f, yScale, 1);
             RaycastHit2D hit = Physics2D.Raycast(rb.position -rb.position.normalized * 0.2f, -rb.position.normalized);
+            line.transform.localScale = new Vector3(Mathf.Abs(transform.position.x + transform.position.y) * 2.1f, yScale, 1);
             looking = hit.collider.CompareTag("Shield");
             if (looking)
             {
+                line.transform.localPosition = Vector3.forward / 2;
                 lineSpr.color = lookingColor;
                 spr.color = lookingColor;
             }
             else
             {
+                line.transform.localPosition = -Vector3.forward / 2;
                 lineSpr.color = startColor;
                 spr.color = startColor;
                 rb.MovePosition(Vector2.MoveTowards(rb.position, Vector2.zero, secondSpeed * Time.deltaTime));
