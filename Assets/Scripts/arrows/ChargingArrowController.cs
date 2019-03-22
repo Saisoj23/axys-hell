@@ -41,7 +41,7 @@ public class ChargingArrowController : ArrowController
             Color thisColor = Color.Lerp(startColor, Color.white, chargeTime);
             spr.color = thisColor;
             chargingSpr.color = thisColor;
-            charging.transform.position = Vector3.Lerp(startChargePosition, transform.position, chargeTime);
+            charging.transform.position = Vector3.Lerp(startChargePosition, transform.position + Vector3.forward, chargeTime);
             yield return null;
         }
         RaycastHit2D hit = Physics2D.Raycast(rb.position -rb.position.normalized * 0.2f, -rb.position.normalized);

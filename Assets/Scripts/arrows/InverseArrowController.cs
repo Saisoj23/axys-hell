@@ -9,6 +9,7 @@ public class InverseArrowController : ArrowController
 
     void Start ()
     {
+        inicialColor = spr.color;
         inicialDir = rb.transform.position.normalized;
         rb.MoveRotation(Vector2.SignedAngle(Vector2.right, inicialDir));
         StartCoroutine("Move");

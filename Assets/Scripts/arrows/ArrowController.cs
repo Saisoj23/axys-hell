@@ -15,9 +15,11 @@ public class ArrowController : MonoBehaviour
     public float speed;
     public float secondSpeed;
     public float finalSpeed;
+    public Sprite[] sprites;
     public Color stopColor;
 
     protected Vector2 inicialDir;
+    protected Color inicialColor;
     protected bool visible = false;
     protected bool useAnim = true;
 
@@ -32,6 +34,7 @@ public class ArrowController : MonoBehaviour
 
     void Start ()
     {
+        
         inicialDir = rb.transform.position.normalized;
         rb.MoveRotation(Vector2.SignedAngle(Vector2.right, -inicialDir));
         StartCoroutine("Move");

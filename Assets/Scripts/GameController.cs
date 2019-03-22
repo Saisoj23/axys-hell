@@ -90,6 +90,7 @@ public class GameController : MonoBehaviour
             if (time > startSpin && !spining) 
             {
                 spin.StartCoroutine("StartSpin");
+                anim.SetTrigger("Spining");
                 spining = true;
             }
             int newIndex = 0;
