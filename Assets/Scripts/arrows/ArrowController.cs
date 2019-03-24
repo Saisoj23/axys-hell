@@ -33,8 +33,7 @@ public class ArrowController : MonoBehaviour
     }
 
     void Start ()
-    {
-        
+    {    
         inicialDir = rb.transform.position.normalized;
         rb.MoveRotation(Vector2.SignedAngle(Vector2.right, -inicialDir));
         StartCoroutine("Move");
@@ -97,5 +96,10 @@ public class ArrowController : MonoBehaviour
     {
         Debug.Log("visible");
         visible = true;
+    }
+
+    public virtual void ChangeSprite (int sprite)
+    {
+        spr.sprite = sprites[sprite];
     }
 }

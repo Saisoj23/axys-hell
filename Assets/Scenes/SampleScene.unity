@@ -761,7 +761,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 465120710}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1707948816}
+        m_MethodName: ChangeLevel
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &465120710
@@ -1121,7 +1132,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 851171668}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1707948816}
+        m_MethodName: ChangeLevel
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &851171668
@@ -2406,16 +2428,55 @@ MonoBehaviour:
         secondSpeed: 1
   filePath: C:/Users/emman/Documents/Proyectos de Unity/bullet-hell/Assets/JsonAttacks/4SideAttacks.json
   speedModifier: 0.00025
-  indexToTest: 5
+  indexToTest: -1
   startSpin: 500
   timeText: {fileID: 29241299}
   bestText: {fileID: 1172969737}
+  tittleText: {fileID: 1870539111}
+  subTittleText: {fileID: 186563253}
+  bestImage: {fileID: 1729762955}
+  timeImage: {fileID: 868941390}
+  pauseImage: {fileID: 844199360}
+  nextImage:
+  - {fileID: 465120710}
+  - {fileID: 851171668}
   playButton: {fileID: 181795452}
-  nextButton: {fileID: 465120709}
-  prevButton: {fileID: 851171667}
+  nextButton:
+  - {fileID: 465120709}
+  - {fileID: 851171667}
+  lines:
+  - {fileID: 1394965210}
+  - {fileID: 1090322756}
+  - {fileID: 381155108}
+  - {fileID: 2036851748}
   spin: {fileID: 519420030}
+  nextSprites:
+  - {fileID: 21300032, guid: d13be02d2cf048d45b8a7c8d94acdc5b, type: 3}
+  - {fileID: 21300032, guid: d13be02d2cf048d45b8a7c8d94acdc5b, type: 3}
+  - {fileID: 21300012, guid: b885b8d165cef134592c08439260ec39, type: 3}
+  bestSprites:
+  - {fileID: 21300022, guid: d13be02d2cf048d45b8a7c8d94acdc5b, type: 3}
+  - {fileID: 21300002, guid: e963c9f715900eb41bd40f029174ea38, type: 3}
+  - {fileID: 21300002, guid: b885b8d165cef134592c08439260ec39, type: 3}
+  timeSprites:
+  - {fileID: 21300020, guid: d13be02d2cf048d45b8a7c8d94acdc5b, type: 3}
+  - {fileID: 21300000, guid: e963c9f715900eb41bd40f029174ea38, type: 3}
+  - {fileID: 21300000, guid: b885b8d165cef134592c08439260ec39, type: 3}
+  pauseSprites:
+  - {fileID: 21300024, guid: d13be02d2cf048d45b8a7c8d94acdc5b, type: 3}
+  - {fileID: 21300024, guid: d13be02d2cf048d45b8a7c8d94acdc5b, type: 3}
+  - {fileID: 21300004, guid: b885b8d165cef134592c08439260ec39, type: 3}
+  fonts:
+  - {fileID: 11400000, guid: d14d5420bc1b8ec408114fce187ef552, type: 2}
+  - {fileID: 11400000, guid: c2f6db67edd185944bcf4bf27ed772e3, type: 2}
+  - {fileID: 11400000, guid: c3c4884fc55c09f4d866ffdf49e8a14c, type: 2}
+  backgroundColors:
+  - {r: 0.10196079, g: 0.10196079, b: 0.10196079, a: 1}
+  - {r: 0.9490196, g: 0.9490196, b: 0.9490196, a: 1}
+  - {r: 0.03773582, g: 0.03773582, b: 0.03773582, a: 1}
   gamePlaying: 0
   editing: 0
+  level: 0
   speedByTime: 1.0084655
 --- !u!1 &1729762953
 GameObject:

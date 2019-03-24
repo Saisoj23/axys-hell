@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 
     public float rotateSpeed;
     public float minTouchSpeed;
+    public Sprite[] sprites;
 
     Vector2 direccion;
     Vector2 screenMiddle = new Vector2(Screen.width, Screen.height) / 2;
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
     float lastAngle;
     Rigidbody2D rb;
     Animator anim;
+    SpriteRenderer spr;
     ShieldController shield;
     GameController game;
     public Camera cam;
@@ -28,6 +30,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        spr = GetComponent<SpriteRenderer>();
         shield = GetComponentInChildren<ShieldController>();
         game = GameObject.FindObjectOfType<GameController>();
     }
@@ -103,13 +106,14 @@ public class PlayerController : MonoBehaviour
             ArrowController arrow =  col.gameObject.GetComponent<ArrowController>();
             if (arrow.CollisionWithShield())
             {
+                arrow.DestroyArrow();
                 shield.Defend();
             }
             else 
             {
+                arrow.DestroyArrow();
                 Hurt();
             }
-            arrow.DestroyArrow();
         }
         else if (col.gameObject.CompareTag("Anti Bullet"))
         {
@@ -126,5 +130,10 @@ public class PlayerController : MonoBehaviour
     {
         anim.SetTrigger("Hurted");
         game.Damage();
+    }
+
+    public void ChangeSprite (int sprite)
+    {
+        spr.sprite = sprites[sprite];
     }
 }

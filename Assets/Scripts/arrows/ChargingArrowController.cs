@@ -94,4 +94,11 @@ public class ChargingArrowController : ArrowController
         StopAllCoroutines();
         Destroy(gameObject, 0.5f);
     }
+
+    public override void ChangeSprite (int sprite)
+    {
+        spr.sprite = sprites[sprite];
+        chargingSpr.sprite = sprites[3 + sprite];
+        laserSpr.sprite = sprites[6 + sprite];
+    }
 }

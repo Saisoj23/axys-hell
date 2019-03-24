@@ -7,11 +7,15 @@ public class ShieldController : MonoBehaviour
 
     Animator anim;
     PlayerController player;
+    SpriteRenderer spr;
+
+    public Sprite[] sprites;
 
     void Awake ()
     {
         anim = GetComponent<Animator>();
         player = GetComponentInParent<PlayerController>();
+        spr = GetComponent<SpriteRenderer>();
     }
 
     void OnCollisionEnter2D (Collision2D col)
@@ -35,5 +39,10 @@ public class ShieldController : MonoBehaviour
     public void Defend ()
     {
         anim.SetTrigger("Hurted");
+    }
+
+    public void ChangeSprite (int sprite)
+    {
+        spr.sprite = sprites[sprite];
     }
 }

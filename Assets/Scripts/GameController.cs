@@ -36,14 +36,29 @@ public class GameController : MonoBehaviour
     [Header("UI objects")]
     public TMPro.TMP_Text timeText;
     public TMPro.TMP_Text bestText;
+    public TMPro.TMP_Text tittleText;
+    public TMPro.TMP_Text subTittleText;
+    public Image bestImage;
+    public Image timeImage;
+    public Image pauseImage;
+    public Image[] nextImage;
     public Button playButton;
-    public Button nextButton;
-    public Button prevButton;
+    public Button[] nextButton;
+    public SpriteRenderer[] lines;
     public Spin spin;
+
+    [Header("Ui Resources")]
+    public Sprite[] nextSprites;
+    public Sprite[] bestSprites;
+    public Sprite[] timeSprites;
+    public Sprite[] pauseSprites;
+    public TMPro.TMP_FontAsset[] fonts;
+    public Color[] backgroundColors;
 
     [Header("Game Status")]
     public bool gamePlaying = false;
     public bool editing = false;
+    public int level = 0;
     int bestScore;
     float time = 0f;
     [HideInInspector] public float speedByTime = 1;
@@ -109,6 +124,7 @@ public class GameController : MonoBehaviour
                 ArrowController arrow = Instantiate(arrows[intArrow], thisPosition, Quaternion.identity).GetComponent<ArrowController>();
                 arrow.speed = i.speed * speedByTime;
                 arrow.secondSpeed = i.secondSpeed * speedByTime;
+                arrow.ChangeSprite(level);
                 if (i.spawnTime > 0) yield return new WaitForSeconds(i.spawnTime / speedByTime);
             }
         }
@@ -136,8 +152,8 @@ public class GameController : MonoBehaviour
             StopCoroutine("Attack");
         }
         playButton.enabled = !active;
-        nextButton.enabled = !active;
-        prevButton.enabled = !active;
+        nextButton[0].enabled = !active;
+        nextButton[1].enabled = !active;
         anim.SetBool("Playing", active);
     }
 
@@ -161,8 +177,8 @@ public class GameController : MonoBehaviour
 
     void PauseAllBullets ()
     {
-        ArrowController[] arrows = GameObject.FindObjectsOfType<ArrowController>();
-            foreach (ArrowController item in arrows)
+        ArrowController[] actualArrows = GameObject.FindObjectsOfType<ArrowController>();
+            foreach (ArrowController item in actualArrows)
             {
                 item.Stop();
             }
@@ -170,11 +186,58 @@ public class GameController : MonoBehaviour
 
     void DestroyAllBullets ()
     {
-        ArrowController[] arrows = GameObject.FindObjectsOfType<ArrowController>();
-            foreach (ArrowController item in arrows)
+        ArrowController[] actualArrows = GameObject.FindObjectsOfType<ArrowController>();
+            foreach (ArrowController item in actualArrows)
             {
                 item.MoveAndDestroy();
             }
+    }
+
+    public void ChangeLevel (bool next)
+    {
+        level += next ? 1 : -1;
+        if (level > 2) level = 0;
+        else if (level < 0) level = 2;
+
+        ArrowController[] actualArrows = GameObject.FindObjectsOfType<ArrowController>();
+        foreach (ArrowController item in actualArrows)
+        {
+            item.ChangeSprite(level);
+        }
+        shield.ChangeSprite(level);
+        player.ChangeSprite(level);
+        bestImage.sprite = bestSprites[level];
+        timeImage.sprite = timeSprites[level];
+        pauseImage.sprite = pauseSprites[level];
+        nextImage[0].sprite = nextSprites[level];
+        nextImage[1].sprite = nextSprites[level];
+        bestText.font = fonts[level];
+        timeText.font = fonts[level];
+        tittleText.font = fonts[level];
+        subTittleText.font = fonts[level];
+        cam.backgroundColor = backgroundColors[level];
+
+        if (level == 1)
+        {
+            Debug.Log("deberia verse negro");
+            nextImage[0].color = backgroundColors[0];
+            nextImage[1].color = backgroundColors[0];
+            pauseImage.color = backgroundColors[0];
+            foreach (SpriteRenderer item in lines)
+            {
+                item.color = backgroundColors[0];
+            }
+        }
+        else
+        {
+            nextImage[0].color = Color.white;
+            nextImage[1].color = Color.white;
+            pauseImage.color = Color.white;
+            foreach (SpriteRenderer item in lines)
+            {
+                item.color = Color.white;
+            }
+        }
     }
 
     [System.Serializable]
