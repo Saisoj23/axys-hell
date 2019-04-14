@@ -71,7 +71,7 @@ public class SmartArrowController : ArrowController
         if (useAnim) anim.SetTrigger("Destroy");
         anim.speed = speed / 2;
         StopAllCoroutines();
-        Destroy(gameObject, 0.5f);
+        StartCoroutine("Destroy");
     }
 
     public override void Stop ()

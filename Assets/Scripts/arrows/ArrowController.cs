@@ -15,6 +15,7 @@ public class ArrowController : MonoBehaviour
     public float speed;
     public float secondSpeed;
     public float finalSpeed;
+    float[] originalValues;
     public Sprite[] sprites;
     public Color stopColor;
 
@@ -39,12 +40,38 @@ public class ArrowController : MonoBehaviour
         StartCoroutine("Move");
     }
 
+    public void StartValues (float speed, float secondSpeed, int sprite)
+    {
+        this.speed = speed;
+        this.secondSpeed = secondSpeed;
+        ChangeSprite(sprite);
+    }
+
     protected virtual IEnumerator Move ()
     {
         while (rb.position != Vector2.zero)
         {
             rb.MovePosition(Vector2.MoveTowards(rb.position, Vector2.zero, speed * Time.deltaTime));
             yield return null;
+        }
+    }
+
+    public void Pause (bool pause)
+    {
+        if (pause)
+        {
+            originalValues = new float[] {speed, secondSpeed, finalSpeed};
+            speed = 0f;
+            secondSpeed = 0f;
+            finalSpeed = 0f;
+            anim.speed = 0f;
+        }
+        else
+        {
+            speed = originalValues[0];
+            secondSpeed = originalValues[1];
+            finalSpeed = originalValues[2];
+            anim.speed = speed / 2;
         }
     }
 
@@ -82,6 +109,15 @@ public class ArrowController : MonoBehaviour
         DestroyArrow();
     }
 
+    protected virtual IEnumerator Destroy ()
+    {
+        for (float i = 0; i < 0.5f; i += Time.deltaTime * speed)
+        {
+            yield return null;
+        }
+        Destroy(gameObject);
+    }
+
     public virtual void DestroyArrow ()
     {
         mask.enabled = false;
@@ -89,7 +125,7 @@ public class ArrowController : MonoBehaviour
         if (useAnim) anim.SetTrigger("Destroy");
         anim.speed = speed / 2;
         StopAllCoroutines();
-        Destroy(gameObject, 0.5f);
+        StartCoroutine("Destroy");
     }
 
     void OnBecameVisible ()

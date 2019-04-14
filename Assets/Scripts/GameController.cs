@@ -43,6 +43,7 @@ public class GameController : MonoBehaviour
     public Image pauseImage;
     public Image[] nextImage;
     public Button playButton;
+    public Button pauseButton;
     public Button[] nextButton;
     public SpriteRenderer[] lines;
     public Spin spin;
@@ -57,8 +58,10 @@ public class GameController : MonoBehaviour
 
     [Header("Game Status")]
     public bool gamePlaying = false;
+    public bool pause = false;
     public bool editing = false;
     public int level = 0;
+    public int pauseMultiplier = 1;
     int bestScore;
     float time = 0f;
     [HideInInspector] public float speedByTime = 1;
@@ -82,16 +85,20 @@ public class GameController : MonoBehaviour
 
     void Update ()
     {
-        if (gamePlaying)
+        if (gamePlaying && !pause)
         {
             time += Time.deltaTime * 10;
             timeText.text = ((int)time).ToString();
             if ((int)time > bestScore) bestText.text = ((int)time).ToString();
             speedByTime = Mathf.Clamp((1 + (time * speedModifier)), 1f, 1.5f);
         }
-        if (!gamePlaying && Input.GetKeyDown(KeyCode.Return))
+        if (!gamePlaying && Input.GetButtonDown("Submit"))
         {
             PlayAttaks(true);
+        }
+        if (gamePlaying && Input.GetButtonDown("Cancel"))
+        {
+            Pause();
         }
     }
 
@@ -99,6 +106,7 @@ public class GameController : MonoBehaviour
     IEnumerator Attack ()
     {
         time = 0;
+        speedByTime = 1;
         bool spining = false;
         while (gamePlaying && attacks.attacks.Length > 0)
         {
@@ -111,7 +119,7 @@ public class GameController : MonoBehaviour
             int newIndex = 0;
             if (indexToTest >= 0 && indexToTest < attacks.attacks.Length) newIndex = indexToTest;
             else newIndex = Random.Range(0, attacks.attacks.Length);
-            indexToTest = -1;
+            //indexToTest = -1;
             int inverse = Random.Range(0, 2);
             int perpendicular = Random.Range(0, 2);
             foreach (Spawn i in attacks.attacks[newIndex].spawns)
@@ -122,10 +130,11 @@ public class GameController : MonoBehaviour
                 if (perpendicular == 1) thisPosition = Vector2.Perpendicular(thisPosition);
                 if (inverse == 1) thisPosition = -thisPosition;
                 ArrowController arrow = Instantiate(arrows[intArrow], thisPosition, Quaternion.identity).GetComponent<ArrowController>();
-                arrow.speed = i.speed * speedByTime;
-                arrow.secondSpeed = i.secondSpeed * speedByTime;
-                arrow.ChangeSprite(level);
-                if (i.spawnTime > 0) yield return new WaitForSeconds(i.spawnTime / speedByTime);
+                arrow.StartValues(i.speed * speedByTime, i.secondSpeed * speedByTime, level);
+                for (float t = 0f; t < i.spawnTime / speedByTime; t += Time.deltaTime * pauseMultiplier)
+                {
+                    yield return null;
+                }
             }
         }
     }
@@ -140,6 +149,11 @@ public class GameController : MonoBehaviour
 
     public void PlayAttaks (bool active)
     {
+        if (pause)
+        {
+            Pause();
+            return;
+        }
         gamePlaying = active;
         if (active)
         {
@@ -151,28 +165,58 @@ public class GameController : MonoBehaviour
         {
             StopCoroutine("Attack");
         }
+        pauseButton.enabled = active;
         playButton.enabled = !active;
         nextButton[0].enabled = !active;
         nextButton[1].enabled = !active;
         anim.SetBool("Playing", active);
     }
 
+    public void Pause ()
+    {
+        pause = !pause;
+        if (pause) 
+        {
+            tittleText.SetText("Paused");
+            subTittleText.SetText("Tap anywhere to resume");
+            pauseMultiplier = 0;
+        }
+        else 
+        {
+            pauseMultiplier = 1;
+        }
+        anim.SetBool("Pause", pause);
+        playButton.enabled = pause;
+        PauseAllBullets();
+    }
+
     //game events
     public void Damage ()
     {
-        if (!editing)
+        if (editing) return;
+        if (time > bestScore)
         {
-            if (time > bestScore)
-            {
-                bestScore = (int)time;
-                PlayerPrefs.SetInt("BestScore", bestScore);
-            }
-            gamePlaying = false;
-            PlayAttaks(false);
-            PauseAllBullets();
-            spin.StopAllCoroutines();
-            anim.SetBool("Playing", gamePlaying);
+            bestScore = (int)time;
+            PlayerPrefs.SetInt("BestScore", bestScore);
         }
+        gamePlaying = false;
+        PlayAttaks(false);
+        StopAllBullets();
+        spin.StopAllCoroutines();
+        anim.SetBool("Playing", gamePlaying);
+        tittleText.SetText("Paused");
+        subTittleText.SetText("Tap anywhere to resume");
+        tittleText.SetText("You lose!");
+        subTittleText.SetText("Tap anywhere to restart");
+    }
+
+    void StopAllBullets ()
+    {
+        ArrowController[] actualArrows = GameObject.FindObjectsOfType<ArrowController>();
+            foreach (ArrowController item in actualArrows)
+            {
+                item.Stop();
+            }
     }
 
     void PauseAllBullets ()
@@ -180,7 +224,7 @@ public class GameController : MonoBehaviour
         ArrowController[] actualArrows = GameObject.FindObjectsOfType<ArrowController>();
             foreach (ArrowController item in actualArrows)
             {
-                item.Stop();
+                item.Pause(pause);
             }
     }
 

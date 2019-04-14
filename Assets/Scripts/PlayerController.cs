@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
         }
         #endif
 
-        if (game.gamePlaying)
+        if (game.gamePlaying && !game.pause)
         {
             switch (axis)
             {
@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour
         }
         if (rb.rotation != lastAngle)
         {
-            transform.eulerAngles = new Vector3(0f, 0f, Mathf.MoveTowardsAngle(rb.rotation, lastAngle, rotateSpeed * Time.deltaTime * game.speedByTime));
+            transform.eulerAngles = new Vector3(0f, 0f, Mathf.MoveTowardsAngle(rb.rotation, lastAngle, rotateSpeed * Time.deltaTime * game.speedByTime * game.pauseMultiplier));
         }
     }
 

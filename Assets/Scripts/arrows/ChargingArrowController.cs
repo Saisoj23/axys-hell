@@ -58,7 +58,10 @@ public class ChargingArrowController : ArrowController
         laserSpr.enabled = true;
         if (isShield) shield.Defend();
         else player.Hurt();
-        yield return new WaitForSeconds(laserTime);
+        for (float t = 0f; t < laserTime; t += Time.deltaTime * secondSpeed)
+                {
+                    yield return null;
+                }
         laserSpr.enabled = false;
         DestroyArrow();
     }
@@ -92,7 +95,7 @@ public class ChargingArrowController : ArrowController
         if (useAnim) anim.SetTrigger("Destroy");
         anim.speed = speed / 2;
         StopAllCoroutines();
-        Destroy(gameObject, 0.5f);
+        StartCoroutine("Destroy");
     }
 
     public override void ChangeSprite (int sprite)

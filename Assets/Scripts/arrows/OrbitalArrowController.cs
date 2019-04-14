@@ -40,6 +40,15 @@ public class OrbitalArrowController : ArrowController
         if (useAnim) anim.SetTrigger("Destroy");
         anim.speed = speed / 2;
         StopAllCoroutines();
-        Destroy(transform.parent.gameObject, 0.5f);
+        StartCoroutine("Destroy");
+    }
+
+    protected override IEnumerator Destroy ()
+    {
+        for (float i = 0; i < 0.5f; i += Time.deltaTime * speed)
+        {
+            yield return null;
+        }
+        Destroy(transform.parent.gameObject);
     }
 }
