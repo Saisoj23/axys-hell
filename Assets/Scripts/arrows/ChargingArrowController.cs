@@ -98,10 +98,10 @@ public class ChargingArrowController : ArrowController
         StartCoroutine("Destroy");
     }
 
-    public override void ChangeSprite (int sprite)
+    public override void ChangeSprite (Sprite[] newSprite)
     {
-        spr.sprite = sprites[sprite];
-        chargingSpr.sprite = sprites[3 + sprite];
-        laserSpr.sprite = sprites[6 + sprite];
+        spr.sprite = newSprite[0];
+        chargingSpr.sprite = newSprite[1];
+        laserSpr.sprite = newSprite[2];
     }
 }

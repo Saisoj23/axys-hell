@@ -16,7 +16,6 @@ public class ArrowController : MonoBehaviour
     public float secondSpeed;
     public float finalSpeed;
     float[] originalValues;
-    public Sprite[] sprites;
     public Color stopColor;
 
     protected Vector2 inicialDir;
@@ -36,15 +35,15 @@ public class ArrowController : MonoBehaviour
     void Start ()
     {    
         inicialDir = rb.transform.position.normalized;
-        rb.MoveRotation(Vector2.SignedAngle(Vector2.right, -inicialDir));
-        StartCoroutine("Move");
+        rb.MoveRotation(Vector2.SignedAngle(Vector2.right, inicialDir));
+        StartCoroutine("Move"); 
     }
 
     public void StartValues (float speed, float secondSpeed, int sprite)
     {
         this.speed = speed;
         this.secondSpeed = secondSpeed;
-        ChangeSprite(sprite);
+        //ChangeSprite(sprite);
     }
 
     protected virtual IEnumerator Move ()
@@ -83,7 +82,7 @@ public class ArrowController : MonoBehaviour
 
     public bool CollisionWithShield ()
     {
-        RaycastHit2D hit = Physics2D.Raycast(inicialDir, -inicialDir);
+        RaycastHit2D hit = Physics2D.Raycast(rb.position.normalized, -rb.position.normalized);
         return hit.collider.CompareTag("Shield");
     }
 
@@ -130,12 +129,12 @@ public class ArrowController : MonoBehaviour
 
     void OnBecameVisible ()
     {
-        Debug.Log("visible");
+        //Debug.Log("visible");
         visible = true;
     }
 
-    public virtual void ChangeSprite (int sprite)
+    public virtual void ChangeSprite (Sprite[] newSprite)
     {
-        spr.sprite = sprites[sprite];
+        spr.sprite = newSprite[0];
     }
 }

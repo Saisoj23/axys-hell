@@ -31,7 +31,6 @@ public class GameController : MonoBehaviour
     [Header("Attaks Values")]
     public float speedModifier;
     public int indexToTest = -1;
-    public int startSpin;
 
     [Header("UI objects")]
     public TMPro.TMP_Text timeText;
@@ -41,15 +40,11 @@ public class GameController : MonoBehaviour
     public Image bestImage;
     public Image timeImage;
     public Image pauseImage;
-    public Image[] nextImage;
     public Button playButton;
     public Button pauseButton;
-    public Button[] nextButton;
     public SpriteRenderer[] lines;
-    public Spin spin;
 
     [Header("Ui Resources")]
-    public Sprite[] nextSprites;
     public Sprite[] bestSprites;
     public Sprite[] timeSprites;
     public Sprite[] pauseSprites;
@@ -107,15 +102,8 @@ public class GameController : MonoBehaviour
     {
         time = 0;
         speedByTime = 1;
-        bool spining = false;
         while (gamePlaying && attacks.attacks.Length > 0)
         {
-            if (time > startSpin && !spining) 
-            {
-                spin.StartCoroutine("StartSpin");
-                anim.SetTrigger("Spining");
-                spining = true;
-            }
             int newIndex = 0;
             if (indexToTest >= 0 && indexToTest < attacks.attacks.Length) newIndex = indexToTest;
             else newIndex = Random.Range(0, attacks.attacks.Length);
@@ -129,7 +117,7 @@ public class GameController : MonoBehaviour
                 Vector3 thisPosition = positions[intPosition];
                 if (perpendicular == 1) thisPosition = Vector2.Perpendicular(thisPosition);
                 if (inverse == 1) thisPosition = -thisPosition;
-                ArrowController arrow = Instantiate(arrows[intArrow], thisPosition, Quaternion.identity).GetComponent<ArrowController>();
+                ArrowController arrow = Instantiate(arrows[intArrow], thisPosition, Quaternion.Euler(0, 0, 180)).GetComponent<ArrowController>();
                 arrow.StartValues(i.speed * speedByTime, i.secondSpeed * speedByTime, level);
                 for (float t = 0f; t < i.spawnTime / speedByTime; t += Time.deltaTime * pauseMultiplier)
                 {
@@ -158,7 +146,6 @@ public class GameController : MonoBehaviour
         if (active)
         {
             DestroyAllBullets();
-            spin.StartCoroutine("RestarSpin");
             StartCoroutine("Attack");
         }
         else
@@ -167,8 +154,6 @@ public class GameController : MonoBehaviour
         }
         pauseButton.enabled = active;
         playButton.enabled = !active;
-        nextButton[0].enabled = !active;
-        nextButton[1].enabled = !active;
         anim.SetBool("Playing", active);
     }
 
@@ -202,7 +187,6 @@ public class GameController : MonoBehaviour
         gamePlaying = false;
         PlayAttaks(false);
         StopAllBullets();
-        spin.StopAllCoroutines();
         anim.SetBool("Playing", gamePlaying);
         tittleText.SetText("Paused");
         subTittleText.SetText("Tap anywhere to resume");
@@ -235,53 +219,6 @@ public class GameController : MonoBehaviour
             {
                 item.MoveAndDestroy();
             }
-    }
-
-    public void ChangeLevel (bool next)
-    {
-        level += next ? 1 : -1;
-        if (level > 2) level = 0;
-        else if (level < 0) level = 2;
-
-        ArrowController[] actualArrows = GameObject.FindObjectsOfType<ArrowController>();
-        foreach (ArrowController item in actualArrows)
-        {
-            item.ChangeSprite(level);
-        }
-        shield.ChangeSprite(level);
-        player.ChangeSprite(level);
-        bestImage.sprite = bestSprites[level];
-        timeImage.sprite = timeSprites[level];
-        pauseImage.sprite = pauseSprites[level];
-        nextImage[0].sprite = nextSprites[level];
-        nextImage[1].sprite = nextSprites[level];
-        bestText.font = fonts[level];
-        timeText.font = fonts[level];
-        tittleText.font = fonts[level];
-        subTittleText.font = fonts[level];
-        cam.backgroundColor = backgroundColors[level];
-
-        if (level == 1)
-        {
-            Debug.Log("deberia verse negro");
-            nextImage[0].color = backgroundColors[0];
-            nextImage[1].color = backgroundColors[0];
-            pauseImage.color = backgroundColors[0];
-            foreach (SpriteRenderer item in lines)
-            {
-                item.color = backgroundColors[0];
-            }
-        }
-        else
-        {
-            nextImage[0].color = Color.white;
-            nextImage[1].color = Color.white;
-            pauseImage.color = Color.white;
-            foreach (SpriteRenderer item in lines)
-            {
-                item.color = Color.white;
-            }
-        }
     }
 
     [System.Serializable]

@@ -7,14 +7,13 @@ public class SmartArrowController : ArrowController
     [Header("Special Values")]
     public float smartDistance;
     public Color lookingColor;
+    public float secondSpeedModifier;
 
-    public GameObject line;
-    SpriteRenderer lineSpr;
+    bool onParent = false;
 
     override protected void Awake ()
     {
         base.Awake();
-        lineSpr = line.GetComponent<SpriteRenderer>();
     }
 
     protected override IEnumerator Move ()
@@ -25,35 +24,49 @@ public class SmartArrowController : ArrowController
             rb.MovePosition(Vector2.MoveTowards(rb.position, target, speed * Time.deltaTime));
             yield return null;
         }
+        GameObject pivot = new GameObject("Pivot");
+        transform.parent = pivot.transform;
+        //Rigidbody2D pivotRb = pivot.AddComponent<Rigidbody2D>();
+        //pivotRb.isKinematic = true;
         bool looking = false;
-        lineSpr.enabled = true;
-        float yScale = line.transform.localScale.y;
         Color startColor = spr.color;
+        bool spining = false;
+        float orbitalTime = 0f;
+        float initialRot = pivot.transform.eulerAngles.z;
         while (rb.position != Vector2.zero)
         {
             RaycastHit2D hit = Physics2D.Raycast(rb.position -rb.position.normalized * 0.2f, -rb.position.normalized);
-            line.transform.localScale = new Vector3(Mathf.Abs(transform.position.x + transform.position.y) * 2.1f, yScale, 1);
             looking = hit.collider.CompareTag("Shield");
             if (looking)
             {
-                line.transform.localPosition = Vector3.forward / 2;
-                lineSpr.color = lookingColor;
                 spr.color = lookingColor;
+                spining = true;
             }
-            else
+            else 
             {
-                line.transform.localPosition = -Vector3.forward / 2;
-                lineSpr.color = startColor;
                 spr.color = startColor;
-                rb.MovePosition(Vector2.MoveTowards(rb.position, Vector2.zero, secondSpeed * Time.deltaTime));
             }
+            if  (spining)
+            {
+                orbitalTime += Time.deltaTime * secondSpeed * secondSpeedModifier;
+                pivot.transform.eulerAngles = new Vector3(0f, 0f, Mathf.Lerp(initialRot, initialRot + 90, orbitalTime));
+                //rb.MovePosition(Vector2.MoveTowards(rb.position, Vector2.zero, speed * Time.deltaTime));
+                //pivotRb.SetRotation(Mathf.Lerp(initialRot, initialRot + 90, orbitalTime));
+                if (orbitalTime >= 1f)
+                {
+                    initialRot = pivot.transform.eulerAngles.z;
+                    spining = false;
+                    orbitalTime = 0;
+                }
+            }
+            transform.localPosition = Vector2.MoveTowards(transform.localPosition, Vector2.zero, speed * Time.deltaTime);
+            print(Vector2.Distance(Vector2.zero, rb.position));
             yield return null;
         }
     }
 
     public override void MoveAndDestroy ()
     {
-        lineSpr.enabled = false;
         if (visible)
         StartCoroutine("MoveToCenter");
         else
@@ -66,7 +79,6 @@ public class SmartArrowController : ArrowController
     public override void DestroyArrow ()
     {
         mask.enabled = false;
-        lineSpr.enabled = false;
         box.enabled = false;
         if (useAnim) anim.SetTrigger("Destroy");
         anim.speed = speed / 2;
@@ -77,7 +89,22 @@ public class SmartArrowController : ArrowController
     public override void Stop ()
     {
         spr.color = stopColor;
-        lineSpr.color = stopColor;
         StopAllCoroutines();
+    }
+
+    protected override IEnumerator Destroy ()
+    {
+        for (float i = 0; i < 0.5f; i += Time.deltaTime * speed)
+        {
+            yield return null;
+        }
+        if (onParent)
+        {
+            Destroy(transform.parent.gameObject);
+        }
+        else 
+        {
+            Destroy(gameObject);
+        }
     }
 }

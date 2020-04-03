@@ -9,16 +9,19 @@ public class OrbitalArrowController : ArrowController
     public float orbitalDistance;
     public float secondSpeedModifier;
 
-    protected override IEnumerator Move ()
+    bool onParent = false;
+
+    protected override IEnumerator Move () 
     {
-        GameObject pivot = new GameObject("Pivot");
-        transform.parent = pivot.transform;
         Vector2 target = rb.position.normalized * orbitalDistance;
         while (rb.position != target)
         {
             rb.MovePosition(Vector2.MoveTowards(rb.position, target, speed * Time.deltaTime));
             yield return null;
         }
+        GameObject pivot = new GameObject("Pivot");
+        transform.parent = pivot.transform;
+        onParent = true;
         float orbitalTime = 0f;
         do 
         {
@@ -49,6 +52,13 @@ public class OrbitalArrowController : ArrowController
         {
             yield return null;
         }
-        Destroy(transform.parent.gameObject);
+        if (onParent)
+        {
+            Destroy(transform.parent.gameObject);
+        }
+        else 
+        {
+            Destroy(gameObject);
+        }
     }
 }
