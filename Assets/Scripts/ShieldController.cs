@@ -40,9 +40,4 @@ public class ShieldController : MonoBehaviour
     {
         anim.SetTrigger("Hurted");
     }
-
-    public void ChangeSprite (int sprite)
-    {
-        spr.sprite = sprites[sprite];
-    }
 }

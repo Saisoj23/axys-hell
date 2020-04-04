@@ -35,9 +35,12 @@ public class ChargingArrowController : ArrowController
         Color startColor = spr.color;
         Vector3 startChargePosition = charging.transform.position;
         float chargeTime = 0f;
-        while (chargeTime <= 1)
+        float chargeDistanceTime = 0f;
+        while (chargeTime < 1)
         {
-            chargeTime += Time.deltaTime * secondSpeed;
+            chargeTime = Mathf.InverseLerp(0f, chargeDistance, chargeDistanceTime);
+            //chargeTime += Time.deltaTime * secondSpeed;
+            chargeDistanceTime += speed * Time.deltaTime; 
             Color thisColor = Color.Lerp(startColor, Color.white, chargeTime);
             spr.color = thisColor;
             chargingSpr.color = thisColor;
@@ -88,7 +91,6 @@ public class ChargingArrowController : ArrowController
 
     public override void DestroyArrow ()
     {
-        mask.enabled = false;
         spr.sprite = chargingSpr.sprite;
         chargingSpr.enabled = false;
         box.enabled = false;

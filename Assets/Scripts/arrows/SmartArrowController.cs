@@ -50,17 +50,18 @@ public class SmartArrowController : ArrowController
             {
                 orbitalTime += Time.deltaTime * secondSpeed * secondSpeedModifier;
                 pivot.transform.eulerAngles = new Vector3(0f, 0f, Mathf.Lerp(initialRot, initialRot + 90, orbitalTime));
-                //rb.MovePosition(Vector2.MoveTowards(rb.position, Vector2.zero, speed * Time.deltaTime));
-                //pivotRb.SetRotation(Mathf.Lerp(initialRot, initialRot + 90, orbitalTime));
                 if (orbitalTime >= 1f)
                 {
                     initialRot = pivot.transform.eulerAngles.z;
                     spining = false;
                     orbitalTime = 0;
                 }
+                transform.localPosition = Vector2.MoveTowards(transform.localPosition, Vector2.zero, speed * Time.deltaTime);
             }
-            transform.localPosition = Vector2.MoveTowards(transform.localPosition, Vector2.zero, speed * Time.deltaTime);
-            print(Vector2.Distance(Vector2.zero, rb.position));
+            else
+            {
+                rb.MovePosition(Vector2.MoveTowards(rb.position, Vector2.zero, speed * Time.deltaTime));
+            }
             yield return null;
         }
     }
@@ -78,7 +79,6 @@ public class SmartArrowController : ArrowController
 
     public override void DestroyArrow ()
     {
-        mask.enabled = false;
         box.enabled = false;
         if (useAnim) anim.SetTrigger("Destroy");
         anim.speed = speed / 2;

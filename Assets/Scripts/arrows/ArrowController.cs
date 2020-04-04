@@ -9,7 +9,6 @@ public class ArrowController : MonoBehaviour
     protected BoxCollider2D box;
     protected Animator anim;
     protected SpriteRenderer spr;
-    protected SpriteMask mask;
 
     [Header("Generic Values")]
     public float speed;
@@ -29,7 +28,6 @@ public class ArrowController : MonoBehaviour
         box = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
         spr = GetComponent<SpriteRenderer>();
-        mask = GetComponent<SpriteMask>();
     }
 
     void Start ()
@@ -119,7 +117,6 @@ public class ArrowController : MonoBehaviour
 
     public virtual void DestroyArrow ()
     {
-        mask.enabled = false;
         box.enabled = false;
         if (useAnim) anim.SetTrigger("Destroy");
         anim.speed = speed / 2;

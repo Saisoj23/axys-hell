@@ -9,7 +9,16 @@ public class OrbitalArrowController : ArrowController
     public float orbitalDistance;
     public float secondSpeedModifier;
 
+    TrailRenderer trail;
+
     bool onParent = false;
+
+    override protected void Awake()
+    {
+        base.Awake();
+        trail = GetComponent<TrailRenderer>();
+        trail.enabled = false;
+    }
 
     protected override IEnumerator Move () 
     {
@@ -23,22 +32,22 @@ public class OrbitalArrowController : ArrowController
         transform.parent = pivot.transform;
         onParent = true;
         float orbitalTime = 0f;
-        do 
+        float orbitalDistanceTime = 0f;
+        while (orbitalTime < 1f)
         {
-            orbitalTime += Time.deltaTime * secondSpeed * secondSpeedModifier;
+            orbitalTime = Mathf.InverseLerp(0f, orbitalDistance, orbitalDistanceTime);
+            orbitalDistanceTime += speed * Time.deltaTime;
+            //orbitalTime += Time.deltaTime * secondSpeed * secondSpeedModifier;
             pivot.transform.eulerAngles = new Vector3(0f, 0f, Mathf.Lerp(0f, 360f, orbitalTime));
             yield return null;
-        } while (orbitalTime <= 1f);
-        while (rb.position != Vector2.zero)
-        {
-            rb.MovePosition(Vector2.MoveTowards(rb.position, Vector2.zero, speed * 3 * Time.deltaTime));
-            yield return null;
         }
+        trail.enabled = true;
+        print(Time.time);
+        rb.MovePosition(Vector2.zero);
     }
 
     public override void DestroyArrow ()
     {
-        mask.enabled = false;
         box.enabled = false;
         if (useAnim) anim.SetTrigger("Destroy");
         anim.speed = speed / 2;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InverseArrowController : ArrowController
 {
-
+    [Header("Special Values")]
     public float turnDistance;
 
     void Start ()
@@ -25,17 +25,16 @@ public class InverseArrowController : ArrowController
             rb.MovePosition(Vector2.MoveTowards(rb.position, target, speed * Time.deltaTime));
             yield return null;
         }
-        secondSpeed = speed * 3;
         target = -target;
         while (rb.position != target)
         {
-            rb.MovePosition(Vector2.MoveTowards(rb.position, target, secondSpeed * Time.deltaTime));
+            rb.MovePosition(Vector2.MoveTowards(rb.position, target, speed * 3 * Time.deltaTime));
             yield return null;
         }
         box.enabled = true;
         while (rb.position != Vector2.zero)
         {
-            rb.MovePosition(Vector2.MoveTowards(rb.position, Vector2.zero, (secondSpeed * 1.1f) * Time.deltaTime));
+            rb.MovePosition(Vector2.MoveTowards(rb.position, Vector2.zero, speed * 3 * Time.deltaTime));
             yield return null;
         }
     }

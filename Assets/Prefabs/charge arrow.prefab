@@ -82,6 +82,76 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 1
   m_SpriteSortPoint: 0
+--- !u!114 &5970723767323672784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1959449364429068022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b0339fe4cf989340b6c9400abcd2949, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  secondSpeed: 2
+  finalSpeed: 8
+  stopColor: {r: 0.67058825, g: 0.67058825, b: 0.67058825, a: 1}
+  chargeDistance: 2
+  laserTime: 0.2
+  charging: {fileID: 1027052339971193322}
+  laser: {fileID: 3975122359863391178}
+--- !u!331 &2236039897756690000
+SpriteMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1959449364429068022}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10758, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: -4467854702265146362, guid: 24324e8bfd56e0a48b16b45cb8a0b812,
+    type: 3}
+  m_MaskAlphaCutoff: 0.2
+  m_FrontSortingLayerID: 0
+  m_BackSortingLayerID: 0
+  m_FrontSortingLayer: 0
+  m_BackSortingLayer: 0
+  m_FrontSortingOrder: 0
+  m_BackSortingOrder: 0
+  m_IsCustomRangeActive: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &3975122359863391178
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,36 +234,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 2
   m_SpriteSortPoint: 0
---- !u!114 &5970723767323672784
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1959449364429068022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b0339fe4cf989340b6c9400abcd2949, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2
-  secondSpeed: 2
-  finalSpeed: 8
-  sprites:
-  - {fileID: 21300026, guid: d13be02d2cf048d45b8a7c8d94acdc5b, type: 3}
-  - {fileID: 21300006, guid: e963c9f715900eb41bd40f029174ea38, type: 3}
-  - {fileID: 21300006, guid: b885b8d165cef134592c08439260ec39, type: 3}
-  - {fileID: 21300038, guid: d13be02d2cf048d45b8a7c8d94acdc5b, type: 3}
-  - {fileID: 21300018, guid: e963c9f715900eb41bd40f029174ea38, type: 3}
-  - {fileID: 21300018, guid: b885b8d165cef134592c08439260ec39, type: 3}
-  - {fileID: 21300042, guid: d13be02d2cf048d45b8a7c8d94acdc5b, type: 3}
-  - {fileID: 21300022, guid: e963c9f715900eb41bd40f029174ea38, type: 3}
-  - {fileID: 21300022, guid: b885b8d165cef134592c08439260ec39, type: 3}
-  stopColor: {r: 0.67058825, g: 0.67058825, b: 0.67058825, a: 1}
-  chargeDistance: 2
-  laserTime: 0.2
-  charging: {fileID: 1027052339971193322}
-  laser: {fileID: 3975122359863391178}
 --- !u!1001 &8818814161005672161
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -201,6 +241,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4192693434197186380, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 1.6
+      objectReference: {fileID: 0}
     - target: {fileID: 5476454169871408396, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
         type: 3}
       propertyPath: m_Sprite
@@ -262,7 +307,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 755ad003325e6b54cab13dc5499c25c4, type: 2}
+      objectReference: {fileID: 2100000, guid: 82b6342ba8044444ea9f862f26bbc362, type: 2}
     - target: {fileID: 7013199810249728021, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -325,6 +370,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4428358298999141045, guid: 4e3f398fc8ff1a247b1bace4451a45a1, type: 3}
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 4e3f398fc8ff1a247b1bace4451a45a1, type: 3}
 --- !u!1 &1959449364429068022 stripped
 GameObject:

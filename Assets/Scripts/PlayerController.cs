@@ -131,9 +131,4 @@ public class PlayerController : MonoBehaviour
         anim.SetTrigger("Hurted");
         game.Damage();
     }
-
-    public void ChangeSprite (int sprite)
-    {
-        spr.sprite = sprites[sprite];
-    }
 }
