@@ -43,8 +43,11 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Lines
-    uniqueID: 79209761
+  - name: Background
+    uniqueID: 882281979
+    locked: 0
+  - name: Shadows
+    uniqueID: 2506988201
     locked: 0
   - name: Default
     uniqueID: 0

@@ -6,8 +6,7 @@ public class SmartArrowController : ArrowController
 {
     [Header("Special Values")]
     public float smartDistance;
-    public Color lookingColor;
-    public float secondSpeedModifier;
+    public float turnSpeed;
 
     bool onParent = false;
 
@@ -26,10 +25,10 @@ public class SmartArrowController : ArrowController
         }
         GameObject pivot = new GameObject("Pivot");
         transform.parent = pivot.transform;
+        onParent = true;
         //Rigidbody2D pivotRb = pivot.AddComponent<Rigidbody2D>();
         //pivotRb.isKinematic = true;
         bool looking = false;
-        Color startColor = spr.color;
         bool spining = false;
         float orbitalTime = 0f;
         float initialRot = pivot.transform.eulerAngles.z;
@@ -37,21 +36,18 @@ public class SmartArrowController : ArrowController
         {
             RaycastHit2D hit = Physics2D.Raycast(rb.position -rb.position.normalized * 0.2f, -rb.position.normalized);
             looking = hit.collider.CompareTag("Shield");
-            if (looking)
+            if (looking && !spining)
             {
-                spr.color = lookingColor;
+                spriteChange.ChangeSprite(2);
                 spining = true;
-            }
-            else 
-            {
-                spr.color = startColor;
             }
             if  (spining)
             {
-                orbitalTime += Time.deltaTime * secondSpeed * secondSpeedModifier;
+                orbitalTime += Time.deltaTime * turnSpeed;
                 pivot.transform.eulerAngles = new Vector3(0f, 0f, Mathf.Lerp(initialRot, initialRot + 90, orbitalTime));
                 if (orbitalTime >= 1f)
                 {
+                    spriteChange.ChangeSprite(0);
                     initialRot = pivot.transform.eulerAngles.z;
                     spining = false;
                     orbitalTime = 0;
@@ -77,24 +73,18 @@ public class SmartArrowController : ArrowController
         }
     }
 
-    public override void DestroyArrow ()
+    /*public override void DestroyArrow ()
     {
         box.enabled = false;
         if (useAnim) anim.SetTrigger("Destroy");
-        anim.speed = speed / 2;
+        //anim.speed = speed / 2;
         StopAllCoroutines();
         StartCoroutine("Destroy");
-    }
-
-    public override void Stop ()
-    {
-        spr.color = stopColor;
-        StopAllCoroutines();
-    }
+    }*/
 
     protected override IEnumerator Destroy ()
     {
-        for (float i = 0; i < 0.5f; i += Time.deltaTime * speed)
+        for (float i = 0; i < 0.5f; i += Time.deltaTime/* * speed*/)
         {
             yield return null;
         }

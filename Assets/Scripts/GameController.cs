@@ -32,24 +32,26 @@ public class GameController : MonoBehaviour
     public float speedModifier;
     public int indexToTest = -1;
 
-    [Header("UI objects")]
+    [Header("UI Texts")]
     public TMPro.TMP_Text timeText;
     public TMPro.TMP_Text bestText;
     public TMPro.TMP_Text tittleText;
     public TMPro.TMP_Text subTittleText;
+
+    [Header("UI Objects")]
+    public Button playButton;
+    public Button pauseButton;
     public Image bestImage;
     public Image timeImage;
     public Image pauseImage;
-    public Button playButton;
-    public Button pauseButton;
-    public SpriteRenderer[] lines;
 
-    [Header("Ui Resources")]
+    /*[Header("Ui Resources")]
     public Sprite[] bestSprites;
     public Sprite[] timeSprites;
     public Sprite[] pauseSprites;
-    public TMPro.TMP_FontAsset[] fonts;
-    public Color[] backgroundColors;
+    //public TMPro.TMP_FontAsset[] fonts;
+    public TextMesh[] fonts;
+    public Color[] backgroundColors;*/
 
     [Header("Game Status")]
     public bool gamePlaying = false;
@@ -152,7 +154,9 @@ public class GameController : MonoBehaviour
         {
             StopCoroutine("Attack");
         }
+        //pauseButton.enabled = active;
         pauseButton.enabled = active;
+        //playButton.enabled = !active;
         playButton.enabled = !active;
         anim.SetBool("Playing", active);
     }
@@ -163,7 +167,9 @@ public class GameController : MonoBehaviour
         if (pause) 
         {
             tittleText.SetText("Paused");
+            //tittleText.text = "Paused";
             subTittleText.SetText("Tap anywhere to resume");
+            //subTittleText.text = "Tap Anywhere to resume";
             pauseMultiplier = 0;
         }
         else 
@@ -171,6 +177,7 @@ public class GameController : MonoBehaviour
             pauseMultiplier = 1;
         }
         anim.SetBool("Pause", pause);
+        //playButton.enabled = pause;
         playButton.enabled = pause;
         PauseAllBullets();
     }
@@ -189,9 +196,13 @@ public class GameController : MonoBehaviour
         StopAllBullets();
         anim.SetBool("Playing", gamePlaying);
         tittleText.SetText("Paused");
+        //tittleText.text = "Paused";
         subTittleText.SetText("Tap anywhere to resume");
+        //subTittleText.text = "Tap anywhere to resume";
         tittleText.SetText("You lose!");
+        //tittleText.text = "You lose!";
         subTittleText.SetText("Tap anywhere to restart");
+        //subTittleText.text = "Tap anywhere to restart";
     }
 
     void StopAllBullets ()

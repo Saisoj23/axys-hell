@@ -8,7 +8,7 @@ public class ArrowController : MonoBehaviour
     protected Rigidbody2D rb;
     protected BoxCollider2D box;
     protected Animator anim;
-    protected SpriteRenderer spr;
+    protected SpriteChange spriteChange;
 
     [Header("Generic Values")]
     public float speed;
@@ -27,7 +27,7 @@ public class ArrowController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         box = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
-        spr = GetComponent<SpriteRenderer>();
+        spriteChange = GetComponent<SpriteChange>();
     }
 
     void Start ()
@@ -68,13 +68,13 @@ public class ArrowController : MonoBehaviour
             speed = originalValues[0];
             secondSpeed = originalValues[1];
             finalSpeed = originalValues[2];
-            anim.speed = speed / 2;
+            anim.speed = 1f;
         }
     }
 
     public virtual void Stop ()
     {
-        spr.color = stopColor;
+        spriteChange.ChangeSprite(1);
         StopAllCoroutines();
     }
 
@@ -108,7 +108,7 @@ public class ArrowController : MonoBehaviour
 
     protected virtual IEnumerator Destroy ()
     {
-        for (float i = 0; i < 0.5f; i += Time.deltaTime * speed)
+        for (float i = 0; i < 0.5f; i += Time.deltaTime/* * speed*/)
         {
             yield return null;
         }
@@ -119,7 +119,7 @@ public class ArrowController : MonoBehaviour
     {
         box.enabled = false;
         if (useAnim) anim.SetTrigger("Destroy");
-        anim.speed = speed / 2;
+        //anim.speed = 1;
         StopAllCoroutines();
         StartCoroutine("Destroy");
     }
@@ -128,10 +128,5 @@ public class ArrowController : MonoBehaviour
     {
         //Debug.Log("visible");
         visible = true;
-    }
-
-    public virtual void ChangeSprite (Sprite[] newSprite)
-    {
-        spr.sprite = newSprite[0];
     }
 }

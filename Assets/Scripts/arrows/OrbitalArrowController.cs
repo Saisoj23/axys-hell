@@ -7,7 +7,7 @@ public class OrbitalArrowController : ArrowController
 
     [Header("Special Values")]
     public float orbitalDistance;
-    public float secondSpeedModifier;
+    public float colisionTime;
 
     TrailRenderer trail;
 
@@ -16,7 +16,7 @@ public class OrbitalArrowController : ArrowController
     override protected void Awake()
     {
         base.Awake();
-        trail = GetComponent<TrailRenderer>();
+        trail = GetComponentInChildren<TrailRenderer>();
         trail.enabled = false;
     }
 
@@ -42,22 +42,27 @@ public class OrbitalArrowController : ArrowController
             yield return null;
         }
         trail.enabled = true;
-        print(Time.time);
-        rb.MovePosition(Vector2.zero);
+        RaycastHit2D hit = Physics2D.Raycast(rb.position/*-rb.position.normalized * 0.2f*/, -rb.position.normalized);
+        rb.MovePosition(hit.point);
+        for (float t = 0f; t < colisionTime; t += Time.deltaTime)
+        {
+            yield return null;
+        }
+        trail.enabled = false;
     }
 
-    public override void DestroyArrow ()
+    /*public override void DestroyArrow ()
     {
         box.enabled = false;
         if (useAnim) anim.SetTrigger("Destroy");
-        anim.speed = speed / 2;
+        //anim.speed = speed / 2;
         StopAllCoroutines();
         StartCoroutine("Destroy");
-    }
+    }*/
 
     protected override IEnumerator Destroy ()
     {
-        for (float i = 0; i < 0.5f; i += Time.deltaTime * speed)
+        for (float i = 0; i < 0.5f; i += Time.deltaTime/* * speed*/)
         {
             yield return null;
         }

@@ -16,7 +16,7 @@ MonoBehaviour:
   secondSpeed: 2
   finalSpeed: 8
   stopColor: {r: 0.67058825, g: 0.67058825, b: 0.67058825, a: 1}
-  turnDistance: 0.5
+  turnDistance: 1
 --- !u!1001 &696482525647291459
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24,6 +24,39 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4192693434197186380, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -4192693434197186380, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1047605231794694973, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
+        type: 3}
+      propertyPath: sprites.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1047605231794694973, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
+        type: 3}
+      propertyPath: sprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 6708733205153277002, guid: 7691fadbc8dfcda44953ecca60b44040,
+        type: 3}
+    - target: {fileID: 1047605231794694973, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
+        type: 3}
+      propertyPath: sprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 9062030643222288878, guid: e2080eac7e37d2d4688fe5aae555dd6c,
+        type: 3}
+    - target: {fileID: 1047605231794694973, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
+        type: 3}
+      propertyPath: sprites.Array.data[2]
+      value: 
+      objectReference: {fileID: -5717795354444781658, guid: 7691fadbc8dfcda44953ecca60b44040,
+        type: 3}
     - target: {fileID: 3425247313057582076, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
         type: 3}
       propertyPath: turnDistance
@@ -42,21 +75,6 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 7013199810249728020, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
         type: 3}
-      propertyPath: m_Color.r
-      value: 0.42745098
-      objectReference: {fileID: 0}
-    - target: {fileID: 7013199810249728020, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.8352941
-      objectReference: {fileID: 0}
-    - target: {fileID: 7013199810249728020, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.15294118
-      objectReference: {fileID: 0}
-    - target: {fileID: 7013199810249728020, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
-        type: 3}
       propertyPath: m_FlipX
       value: 0
       objectReference: {fileID: 0}
@@ -64,13 +82,18 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 6183646021978349643, guid: 24324e8bfd56e0a48b16b45cb8a0b812,
+      objectReference: {fileID: 6708733205153277002, guid: 7691fadbc8dfcda44953ecca60b44040,
         type: 3}
     - target: {fileID: 7013199810249728020, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 82b6342ba8044444ea9f862f26bbc362, type: 2}
+    - target: {fileID: 7013199810249728020, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7013199810249728021, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -126,16 +149,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7013199810249728021, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: -0.3
-      objectReference: {fileID: 0}
     - target: {fileID: 7013199810249728023, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
         type: 3}
       propertyPath: m_Name
       value: inverse arrow
       objectReference: {fileID: 0}
+    - target: {fileID: 7786854333687930087, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 2705116674255266497, guid: 6e8c8971db435db45a05be3e891b0799,
+        type: 3}
     m_RemovedComponents:
     - {fileID: 4428358298999141045, guid: 4e3f398fc8ff1a247b1bace4451a45a1, type: 3}
     - {fileID: 0}

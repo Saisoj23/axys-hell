@@ -10,8 +10,20 @@ PrefabInstance:
     - target: {fileID: -4192693434197186380, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
         type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.x
-      value: 1.6
+      value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1047605231794694973, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
+        type: 3}
+      propertyPath: sprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 8553092956536608252, guid: 7691fadbc8dfcda44953ecca60b44040,
+        type: 3}
+    - target: {fileID: 1047605231794694973, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
+        type: 3}
+      propertyPath: sprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 1082858112030063694, guid: e2080eac7e37d2d4688fe5aae555dd6c,
+        type: 3}
     - target: {fileID: 4428358298999141045, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
         type: 3}
       propertyPath: sprites.Array.data[0]
@@ -63,34 +75,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7013199810249728020, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
         type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7013199810249728020, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.49803922
-      objectReference: {fileID: 0}
-    - target: {fileID: 7013199810249728020, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.16470589
-      objectReference: {fileID: 0}
-    - target: {fileID: 7013199810249728020, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
-        type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 8024849793206712274, guid: 24324e8bfd56e0a48b16b45cb8a0b812,
+      objectReference: {fileID: 8553092956536608252, guid: 7691fadbc8dfcda44953ecca60b44040,
         type: 3}
     - target: {fileID: 7013199810249728020, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
         type: 3}
       propertyPath: m_Size.x
-      value: 1.6
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7013199810249728020, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
         type: 3}
       propertyPath: m_Size.y
-      value: 1.6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7013199810249728020, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
         type: 3}
@@ -167,6 +164,12 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Anti Bullet
       objectReference: {fileID: 0}
+    - target: {fileID: 7786854333687930087, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2062024289182998554, guid: 6e8c8971db435db45a05be3e891b0799,
+        type: 3}
     m_RemovedComponents:
     - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 4e3f398fc8ff1a247b1bace4451a45a1, type: 3}

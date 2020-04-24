@@ -12,6 +12,8 @@ public class ChargingArrowController : ArrowController
     PlayerController player;
     SpriteRenderer chargingSpr;
     SpriteRenderer laserSpr;
+    SpriteChange chargingChange;
+    SpriteChange laserChange;
     public GameObject charging;
     public GameObject laser;
 
@@ -20,6 +22,8 @@ public class ChargingArrowController : ArrowController
         base.Awake();     
         chargingSpr = charging.GetComponent<SpriteRenderer>();
         laserSpr = laser.GetComponent<SpriteRenderer>();
+        chargingChange = charging.GetComponent<SpriteChange>();
+        laserChange = laser.GetComponent<SpriteChange>();
         player = FindObjectOfType<PlayerController>();
         shield = FindObjectOfType<ShieldController>();
     }
@@ -32,7 +36,7 @@ public class ChargingArrowController : ArrowController
             rb.MovePosition(Vector2.MoveTowards(rb.position, target, speed * Time.deltaTime));
             yield return null;
         }
-        Color startColor = spr.color;
+        //Color startColor = spr.color;
         Vector3 startChargePosition = charging.transform.position;
         float chargeTime = 0f;
         float chargeDistanceTime = 0f;
@@ -41,30 +45,31 @@ public class ChargingArrowController : ArrowController
             chargeTime = Mathf.InverseLerp(0f, chargeDistance, chargeDistanceTime);
             //chargeTime += Time.deltaTime * secondSpeed;
             chargeDistanceTime += speed * Time.deltaTime; 
-            Color thisColor = Color.Lerp(startColor, Color.white, chargeTime);
-            spr.color = thisColor;
-            chargingSpr.color = thisColor;
+            //Color thisColor = Color.Lerp(startColor, Color.white, chargeTime);
+            //spr.color = thisColor;
+            //chargingSpr.color = thisColor;
             charging.transform.position = Vector3.Lerp(startChargePosition, transform.position + Vector3.forward, chargeTime);
             yield return null;
         }
-        RaycastHit2D hit = Physics2D.Raycast(rb.position -rb.position.normalized * 0.2f, -rb.position.normalized);
+        RaycastHit2D hit = Physics2D.Raycast(rb.position/*-rb.position.normalized * 0.2f*/, -rb.position.normalized);
         bool isShield = hit.collider.CompareTag("Shield");
-        laser.transform.localScale = new Vector3(Mathf.Abs(transform.position.x + transform.position.y) * 2.1f, 1, 1);
         if (isShield) 
         {
-            laser.transform.localPosition += Vector3.forward / 2;
+            laser.transform.localScale = new Vector3((Mathf.Abs(laser.transform.position.x + laser.transform.position.y) - 0.375f) * 2, 1, 1);
         }
         else 
         {
-            laser.transform.localPosition -= Vector3.forward / 4;
+            laser.transform.localScale = new Vector3(Mathf.Abs(laser.transform.position.x + laser.transform.position.y) * 2, 1, 1);
         }
         laserSpr.enabled = true;
         if (isShield) shield.Defend();
         else player.Hurt();
-        for (float t = 0f; t < laserTime; t += Time.deltaTime * secondSpeed)
-                {
-                    yield return null;
-                }
+        for (float t = 0f; t < laserTime; t += Time.deltaTime)
+        {
+            laserSpr.color = new Color(1f, 1f, 1f, Mathf.InverseLerp(laserTime, 0f, t));
+            laser.transform.localScale = new Vector3(laser.transform.localScale.x, Mathf.InverseLerp(0, laserTime, t) + 0.5f, 1f);
+            yield return null;
+        }
         laserSpr.enabled = false;
         DestroyArrow();
     }
@@ -83,27 +88,20 @@ public class ChargingArrowController : ArrowController
 
     public override void Stop ()
     {
-        spr.color = stopColor;
-        chargingSpr.color = stopColor;
-        laserSpr.color = stopColor;
+        spriteChange.ChangeSprite(1);
+        laserChange.ChangeSprite(1);
+        chargingChange.ChangeSprite(1);
         StopAllCoroutines();
     }
 
     public override void DestroyArrow ()
     {
-        spr.sprite = chargingSpr.sprite;
+        //spr.sprite = chargingSpr.sprite;
         chargingSpr.enabled = false;
         box.enabled = false;
         if (useAnim) anim.SetTrigger("Destroy");
-        anim.speed = speed / 2;
+        //anim.speed = speed / 2;
         StopAllCoroutines();
         StartCoroutine("Destroy");
-    }
-
-    public override void ChangeSprite (Sprite[] newSprite)
-    {
-        spr.sprite = newSprite[0];
-        chargingSpr.sprite = newSprite[1];
-        laserSpr.sprite = newSprite[2];
     }
 }
