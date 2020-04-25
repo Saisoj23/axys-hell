@@ -61,7 +61,6 @@ public class PlayerController : MonoBehaviour
         if (axisInput.magnitude != 0 && Physics.Raycast(cam.ScreenPointToRay(screenMiddle + (axisInput.normalized * 50)), out hit, 20f))
         {
             input = hit.point.normalized; 
-            //input = axisInput;
         }
         #endif
 
@@ -97,7 +96,6 @@ public class PlayerController : MonoBehaviour
         }
         if (rot.transform.eulerAngles.z != lastAngle)
         {
-            //transform.eulerAngles = new Vector3(0f, 0f, Mathf.MoveTowardsAngle(rb.rotation, lastAngle, rotateSpeed * Time.deltaTime * game.speedByTime * game.pauseMultiplier));
             rot.transform.eulerAngles = new Vector3(0f, 0f, Mathf.MoveTowardsAngle(rot.transform.eulerAngles.z, lastAngle, rotateSpeed * Time.deltaTime * game.speedByTime * game.pauseMultiplier));
         }
     }

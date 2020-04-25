@@ -6,13 +6,12 @@ public class ShadowFixer : MonoBehaviour
 {
     Vector3 inputOffset;
     Vector3 newOffset;
-    // Start is called before the first frame update
+
     void Start()
     {
         inputOffset = transform.localPosition / 2;
     }
 
-    // Update is called once per frame
     void Update()
     {
         newOffset = transform.parent.position + inputOffset;

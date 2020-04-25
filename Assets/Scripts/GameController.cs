@@ -45,14 +45,6 @@ public class GameController : MonoBehaviour
     public Image timeImage;
     public Image pauseImage;
 
-    /*[Header("Ui Resources")]
-    public Sprite[] bestSprites;
-    public Sprite[] timeSprites;
-    public Sprite[] pauseSprites;
-    //public TMPro.TMP_FontAsset[] fonts;
-    public TextMesh[] fonts;
-    public Color[] backgroundColors;*/
-
     [Header("Game Status")]
     public bool gamePlaying = false;
     public bool pause = false;
@@ -109,7 +101,6 @@ public class GameController : MonoBehaviour
             int newIndex = 0;
             if (indexToTest >= 0 && indexToTest < attacks.attacks.Length) newIndex = indexToTest;
             else newIndex = Random.Range(0, attacks.attacks.Length);
-            //indexToTest = -1;
             int inverse = Random.Range(0, 2);
             int perpendicular = Random.Range(0, 2);
             foreach (Spawn i in attacks.attacks[newIndex].spawns)
@@ -154,9 +145,7 @@ public class GameController : MonoBehaviour
         {
             StopCoroutine("Attack");
         }
-        //pauseButton.enabled = active;
         pauseButton.enabled = active;
-        //playButton.enabled = !active;
         playButton.enabled = !active;
         anim.SetBool("Playing", active);
     }
@@ -167,9 +156,7 @@ public class GameController : MonoBehaviour
         if (pause) 
         {
             tittleText.SetText("Paused");
-            //tittleText.text = "Paused";
-            subTittleText.SetText("Tap anywhere to resume");
-            //subTittleText.text = "Tap Anywhere to resume";
+            subTittleText.SetText("Tap anywhere to\nresume");
             pauseMultiplier = 0;
         }
         else 
@@ -177,7 +164,6 @@ public class GameController : MonoBehaviour
             pauseMultiplier = 1;
         }
         anim.SetBool("Pause", pause);
-        //playButton.enabled = pause;
         playButton.enabled = pause;
         PauseAllBullets();
     }
@@ -196,13 +182,9 @@ public class GameController : MonoBehaviour
         StopAllBullets();
         anim.SetBool("Playing", gamePlaying);
         tittleText.SetText("Paused");
-        //tittleText.text = "Paused";
-        subTittleText.SetText("Tap anywhere to resume");
-        //subTittleText.text = "Tap anywhere to resume";
+        subTittleText.SetText("Tap anywhere to\nresume");
         tittleText.SetText("You lose!");
-        //tittleText.text = "You lose!";
-        subTittleText.SetText("Tap anywhere to restart");
-        //subTittleText.text = "Tap anywhere to restart";
+        subTittleText.SetText("Tap anywhere to\nrestart");
     }
 
     void StopAllBullets ()

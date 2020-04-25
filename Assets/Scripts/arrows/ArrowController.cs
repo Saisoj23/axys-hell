@@ -17,7 +17,7 @@ public class ArrowController : MonoBehaviour
     float[] originalValues;
     public Color stopColor;
 
-    protected Vector2 inicialDir;
+    protected Vector2 inicialPos;
     protected Color inicialColor;
     protected bool visible = false;
     protected bool useAnim = true;
@@ -32,8 +32,8 @@ public class ArrowController : MonoBehaviour
 
     void Start ()
     {    
-        inicialDir = rb.transform.position.normalized;
-        rb.MoveRotation(Vector2.SignedAngle(Vector2.right, inicialDir));
+        inicialPos = rb.transform.position;
+        rb.MoveRotation(Vector2.SignedAngle(Vector2.right, inicialPos.normalized));
         StartCoroutine("Move"); 
     }
 
@@ -41,7 +41,6 @@ public class ArrowController : MonoBehaviour
     {
         this.speed = speed;
         this.secondSpeed = secondSpeed;
-        //ChangeSprite(sprite);
     }
 
     protected virtual IEnumerator Move ()
@@ -108,7 +107,7 @@ public class ArrowController : MonoBehaviour
 
     protected virtual IEnumerator Destroy ()
     {
-        for (float i = 0; i < 0.5f; i += Time.deltaTime/* * speed*/)
+        for (float i = 0; i < 0.5f; i += Time.deltaTime)
         {
             yield return null;
         }
@@ -119,14 +118,12 @@ public class ArrowController : MonoBehaviour
     {
         box.enabled = false;
         if (useAnim) anim.SetTrigger("Destroy");
-        //anim.speed = 1;
         StopAllCoroutines();
         StartCoroutine("Destroy");
     }
 
     void OnBecameVisible ()
     {
-        //Debug.Log("visible");
         visible = true;
     }
 }

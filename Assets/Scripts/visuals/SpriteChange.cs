@@ -37,28 +37,4 @@ public class SpriteChange : MonoBehaviour
     {
         spr.sortingOrder = order;
     }
-
-    /*public void StartChecking ()
-    {
-        //StopCoroutine("TimeUpdate");
-        StartCoroutine("TimedUpdate");
-    }
-
-    public void StopChecking ()
-    {
-        StopCoroutine("TimeUpdate");
-    }
-
-    IEnumerator TimedUpdate ()
-    {
-        while (true)
-        {
-            if (sprite != lastSprite)
-            {
-                lastSprite = sprite;
-                ChangeSprite(sprite);
-                yield return null;
-            }
-        }
-    }*/
 }

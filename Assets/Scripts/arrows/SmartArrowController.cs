@@ -26,8 +26,6 @@ public class SmartArrowController : ArrowController
         GameObject pivot = new GameObject("Pivot");
         transform.parent = pivot.transform;
         onParent = true;
-        //Rigidbody2D pivotRb = pivot.AddComponent<Rigidbody2D>();
-        //pivotRb.isKinematic = true;
         bool looking = false;
         bool spining = false;
         float orbitalTime = 0f;
@@ -72,15 +70,6 @@ public class SmartArrowController : ArrowController
             DestroyArrow();
         }
     }
-
-    /*public override void DestroyArrow ()
-    {
-        box.enabled = false;
-        if (useAnim) anim.SetTrigger("Destroy");
-        //anim.speed = speed / 2;
-        StopAllCoroutines();
-        StartCoroutine("Destroy");
-    }*/
 
     protected override IEnumerator Destroy ()
     {

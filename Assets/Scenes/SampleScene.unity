@@ -460,7 +460,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Tap anywhere to start
+  m_text: Tap anywhere to\nstart
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8892dee77cc0d5c4387b18782fd95828, type: 2}
   m_sharedMaterial: {fileID: 7857658379665812288, guid: 8892dee77cc0d5c4387b18782fd95828,
@@ -499,14 +499,14 @@ MonoBehaviour:
   m_textAlignment: 1026
   m_characterSpacing: 0
   m_wordSpacing: -4
-  m_lineSpacing: 0
+  m_lineSpacing: -7
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 16
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -527,7 +527,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 30, z: 0, w: 0}
+  m_margin: {x: 0, y: 8.29541, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 186563253}
     characterCount: 21
@@ -535,7 +535,7 @@ MonoBehaviour:
     spaceCount: 3
     wordCount: 4
     linkCount: 0
-    lineCount: 1
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -974,7 +974,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RenderShadows: 1
+  m_RenderShadows: 0
   m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
@@ -2064,47 +2064,6 @@ MonoBehaviour:
         speed: 2
         secondSpeed: 2
     - spawns:
-      - arrow: 0
-        position: 0
-        spawnTime: 1
-        speed: 2
-        secondSpeed: 2
-      - arrow: 0
-        position: 1
-        spawnTime: 1
-        speed: 2
-        secondSpeed: 2
-      - arrow: 0
-        position: 0
-        spawnTime: 1
-        speed: 2
-        secondSpeed: 2
-      - arrow: 0
-        position: 1
-        spawnTime: 1
-        speed: 2
-        secondSpeed: 2
-      - arrow: 0
-        position: 2
-        spawnTime: 1
-        speed: 2
-        secondSpeed: 2
-      - arrow: 0
-        position: 3
-        spawnTime: 1
-        speed: 2
-        secondSpeed: 2
-      - arrow: 0
-        position: 2
-        spawnTime: 1
-        speed: 2
-        secondSpeed: 2
-      - arrow: 0
-        position: 3
-        spawnTime: 1.5
-        speed: 2
-        secondSpeed: 2
-    - spawns:
       - arrow: 2
         position: 2
         spawnTime: 1
@@ -2126,42 +2085,42 @@ MonoBehaviour:
         speed: 2
         secondSpeed: 2
     - spawns:
+      - arrow: 0
+        position: 1
+        spawnTime: 0.4
+        speed: 2
+        secondSpeed: 0.5
       - arrow: 3
         position: 2
-        spawnTime: 0
-        speed: 3
-        secondSpeed: 0.5
-      - arrow: 0
-        position: 1
         spawnTime: 2
         speed: 2
         secondSpeed: 1
+      - arrow: 0
+        position: 1
+        spawnTime: 0.4
+        speed: 2
+        secondSpeed: 0.5
       - arrow: 3
         position: 0
-        spawnTime: 0
-        speed: 3
-        secondSpeed: 0.5
-      - arrow: 0
-        position: 1
         spawnTime: 2
         speed: 2
         secondSpeed: 1
+      - arrow: 0
+        position: 1
+        spawnTime: 0.4
+        speed: 2
+        secondSpeed: 0.5
       - arrow: 3
         position: 3
-        spawnTime: 0
-        speed: 3
-        secondSpeed: 0.5
-      - arrow: 0
-        position: 1
         spawnTime: 2
         speed: 2
         secondSpeed: 1
-      - arrow: 3
-        position: 1
-        spawnTime: 0
-        speed: 3
-        secondSpeed: 0.5
       - arrow: 0
+        position: 1
+        spawnTime: 0.4
+        speed: 2
+        secondSpeed: 0.5
+      - arrow: 3
         position: 1
         spawnTime: 2.5
         speed: 2
@@ -2235,27 +2194,12 @@ MonoBehaviour:
         secondSpeed: 1
       - arrow: 4
         position: 2
-        spawnTime: 0
-        speed: 1
-        secondSpeed: 1
-      - arrow: 4
-        position: 3
         spawnTime: 3
-        speed: 1
-        secondSpeed: 1
-      - arrow: 4
-        position: 0
-        spawnTime: 0
         speed: 1
         secondSpeed: 1
       - arrow: 4
         position: 1
         spawnTime: 3
-        speed: 1
-        secondSpeed: 1
-      - arrow: 4
-        position: 2
-        spawnTime: 0
         speed: 1
         secondSpeed: 1
       - arrow: 4
@@ -2267,7 +2211,7 @@ MonoBehaviour:
       - arrow: 5
         position: 0
         spawnTime: 1
-        speed: 2
+        speed: 0.395
         secondSpeed: 1
       - arrow: 0
         position: 0
@@ -2390,7 +2334,7 @@ MonoBehaviour:
         speed: 2
         secondSpeed: 1
   filePath: C:/Users/emman/Documents/Proyectos de Unity/bullet-hell/Assets/JsonAttacks/4SideAttacks.json
-  speedModifier: 0.00025
+  speedModifier: 0
   indexToTest: -1
   timeText: {fileID: 29241299}
   bestText: {fileID: 1172969737}
@@ -2406,7 +2350,7 @@ MonoBehaviour:
   editing: 0
   level: 0
   pauseMultiplier: 1
-  speedByTime: 1.0084655
+  speedByTime: 1
 --- !u!1 &1729762953
 GameObject:
   m_ObjectHideFlags: 0
@@ -2474,7 +2418,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 12, y: 12, z: 0.2}
+  m_Size: {x: 24, y: 24, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1750503749
 Transform:

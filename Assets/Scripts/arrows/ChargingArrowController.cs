@@ -33,25 +33,21 @@ public class ChargingArrowController : ArrowController
         Vector2 target = rb.position.normalized * chargeDistance;
         while (rb.position != target)
         {
-            rb.MovePosition(Vector2.MoveTowards(rb.position, target, speed * Time.deltaTime));
+            rb.MovePosition(Vector2.MoveTowards(rb.position, target, speed * 2 * Time.deltaTime));
             yield return null;
         }
-        //Color startColor = spr.color;
         Vector3 startChargePosition = charging.transform.position;
+        chargeDistance += (inicialPos.magnitude - chargeDistance) / 2;
         float chargeTime = 0f;
         float chargeDistanceTime = 0f;
         while (chargeTime < 1)
         {
             chargeTime = Mathf.InverseLerp(0f, chargeDistance, chargeDistanceTime);
-            //chargeTime += Time.deltaTime * secondSpeed;
             chargeDistanceTime += speed * Time.deltaTime; 
-            //Color thisColor = Color.Lerp(startColor, Color.white, chargeTime);
-            //spr.color = thisColor;
-            //chargingSpr.color = thisColor;
             charging.transform.position = Vector3.Lerp(startChargePosition, transform.position + Vector3.forward, chargeTime);
             yield return null;
         }
-        RaycastHit2D hit = Physics2D.Raycast(rb.position/*-rb.position.normalized * 0.2f*/, -rb.position.normalized);
+        RaycastHit2D hit = Physics2D.Raycast(rb.position, -rb.position.normalized);
         bool isShield = hit.collider.CompareTag("Shield");
         if (isShield) 
         {
@@ -96,11 +92,9 @@ public class ChargingArrowController : ArrowController
 
     public override void DestroyArrow ()
     {
-        //spr.sprite = chargingSpr.sprite;
         chargingSpr.enabled = false;
         box.enabled = false;
         if (useAnim) anim.SetTrigger("Destroy");
-        //anim.speed = speed / 2;
         StopAllCoroutines();
         StartCoroutine("Destroy");
     }
