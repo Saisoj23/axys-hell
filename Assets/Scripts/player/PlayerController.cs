@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
         }
         if (rot.transform.eulerAngles.z != lastAngle)
         {
-            rot.transform.eulerAngles = new Vector3(0f, 0f, Mathf.MoveTowardsAngle(rot.transform.eulerAngles.z, lastAngle, rotateSpeed * Time.deltaTime * game.speedByTime * game.pauseMultiplier));
+            rot.transform.eulerAngles = new Vector3(0f, 0f, Mathf.MoveTowardsAngle(rot.transform.eulerAngles.z, lastAngle, rotateSpeed * Time.deltaTime * game.pauseMultiplier));
         }
     }
 

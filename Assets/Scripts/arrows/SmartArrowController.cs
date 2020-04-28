@@ -5,7 +5,6 @@ using UnityEngine;
 public class SmartArrowController : ArrowController
 {
     [Header("Special Values")]
-    public float smartDistance;
     public float turnSpeed;
 
     bool onParent = false;
@@ -17,7 +16,7 @@ public class SmartArrowController : ArrowController
 
     protected override IEnumerator Move ()
     {
-        Vector2 target = rb.position.normalized * smartDistance;
+        Vector2 target = rb.position.normalized * actionDistance;
         while (rb.position != target)
         {
             rb.MovePosition(Vector2.MoveTowards(rb.position, target, speed * Time.deltaTime));

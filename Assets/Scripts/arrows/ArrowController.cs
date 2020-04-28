@@ -12,7 +12,7 @@ public class ArrowController : MonoBehaviour
 
     [Header("Generic Values")]
     public float speed;
-    public float secondSpeed;
+    public float actionDistance;
     public float finalSpeed;
     float[] originalValues;
     public Color stopColor;
@@ -37,10 +37,10 @@ public class ArrowController : MonoBehaviour
         StartCoroutine("Move"); 
     }
 
-    public void StartValues (float speed, float secondSpeed, int sprite)
+    public void StartValues (float speed, float actionDistance)
     {
         this.speed = speed;
-        this.secondSpeed = secondSpeed;
+        this.actionDistance = actionDistance;
     }
 
     protected virtual IEnumerator Move ()
@@ -56,17 +56,15 @@ public class ArrowController : MonoBehaviour
     {
         if (pause)
         {
-            originalValues = new float[] {speed, secondSpeed, finalSpeed};
+            originalValues = new float[] {speed, finalSpeed};
             speed = 0f;
-            secondSpeed = 0f;
             finalSpeed = 0f;
             anim.speed = 0f;
         }
         else
         {
             speed = originalValues[0];
-            secondSpeed = originalValues[1];
-            finalSpeed = originalValues[2];
+            finalSpeed = originalValues[1];
             anim.speed = 1f;
         }
     }

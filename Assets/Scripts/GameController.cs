@@ -2,84 +2,61 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
+    [Header("Player")]
+    public PlayerController player;
+    public ShieldController shield;
+
     [Header("Attaks Values")]
     public Vector3[] positions;
     public GameObject[] arrows;
 
-    [Header("Player")]
-    public PlayerController player;
-    public ShieldController shield;
-    public Camera cam;
-
-    public enum Arrows {Arrow, Antiarrow, Inverse, Charging, Smart, Orbital}
-    public enum Positions {Right, Left, Up, Down, Down_Right, Down_Left, Up_Right, Up_Left}
-
     [Header("Attak Editor")]
-    public AttackList attacks;
-
-    #if UNITY_EDITOR
-    [Header("Json Values")]
-    public string filePath;
-    string jsonString;
-    #endif
+    SpawnController spawn;
+    public List<SpawnController.Spawn> spawnsFixedTime;
 
     [Header("Attaks Values")]
-    public float speedModifier;
-    public int indexToTest = -1;
-
-    [Header("UI Texts")]
-    public TMPro.TMP_Text timeText;
-    public TMPro.TMP_Text bestText;
-    public TMPro.TMP_Text tittleText;
-    public TMPro.TMP_Text subTittleText;
-
-    [Header("UI Objects")]
-    public Button playButton;
-    public Button pauseButton;
-    public Image bestImage;
-    public Image timeImage;
-    public Image pauseImage;
+    public float arrowSpanwDistance;
+    public float secondToTest = 0;
 
     [Header("Game Status")]
     public bool gamePlaying = false;
     public bool pause = false;
     public bool editing = false;
-    public int level = 0;
     public int pauseMultiplier = 1;
-    int bestScore;
-    float time = 0f;
-    [HideInInspector] public float speedByTime = 1;
+    public float levelTime;
+    [HideInInspector] public float score;
+    [HideInInspector] public int bestScore;
+    [HideInInspector] public float time = 0f;
+    UIController ui;
 
-    Animator anim;
-
-    void Start()
-    {
-        anim = GetComponent<Animator>();
-        #if UNITY_EDITOR
-        jsonString = File.ReadAllText(filePath);
-        attacks = JsonUtility.FromJson<AttackList>(jsonString);
-        #endif
-        if (Screen.width > Screen.height)
-        {
-            cam.orthographicSize *= Mathf.InverseLerp(0f, Screen.width, Screen.height);
-        }
+    void Start ()
+    {   
+        spawn = GetComponent<SpawnController>();
+        ui = GetComponent<UIController>();
         bestScore = PlayerPrefs.GetInt("BestScore", 0);
-        bestText.text = bestScore.ToString();
+
+        foreach (SpawnController.Spawns listItem in spawn.attacks)
+        {
+            foreach (SpawnController.Spawn item in listItem.SpawnList)
+            {
+                SpawnController.Spawn spawn = item;
+                spawn.spawnTime -= arrowSpanwDistance / item.speed;
+                spawnsFixedTime.Add(item);
+            }
+        }
+        spawnsFixedTime.Sort((x, y) => x.spawnTime.CompareTo(y.spawnTime));
     }
 
     void Update ()
     {
         if (gamePlaying && !pause)
         {
-            time += Time.deltaTime * 10;
-            timeText.text = ((int)time).ToString();
-            if ((int)time > bestScore) bestText.text = ((int)time).ToString();
-            speedByTime = Mathf.Clamp((1 + (time * speedModifier)), 1f, 1.5f);
+            time += Time.deltaTime;
+            score += Time.deltaTime * 10f;
         }
         if (!gamePlaying && Input.GetButtonDown("Submit"))
         {
@@ -91,42 +68,47 @@ public class GameController : MonoBehaviour
         }
     }
 
-    //corrutina de juego
     IEnumerator Attack ()
     {
         time = 0;
-        speedByTime = 1;
-        while (gamePlaying && attacks.attacks.Length > 0)
+        #if UNITY_EDITOR
+        time = secondToTest;
+        #endif
+        float lastWaitFor = spawnsFixedTime[0].spawnTime;
+        int actualIndex = 0;
+        int indexCount = spawnsFixedTime.Count;
+        while (gamePlaying)
         {
-            int newIndex = 0;
-            if (indexToTest >= 0 && indexToTest < attacks.attacks.Length) newIndex = indexToTest;
-            else newIndex = Random.Range(0, attacks.attacks.Length);
-            int inverse = Random.Range(0, 2);
-            int perpendicular = Random.Range(0, 2);
-            foreach (Spawn i in attacks.attacks[newIndex].spawns)
+            if (time >= lastWaitFor && actualIndex >= 0)
             {
-                int intArrow = (int)i.arrow;
-                int intPosition = (int)i.position;
-                Vector3 thisPosition = positions[intPosition];
-                if (perpendicular == 1) thisPosition = Vector2.Perpendicular(thisPosition);
-                if (inverse == 1) thisPosition = -thisPosition;
-                ArrowController arrow = Instantiate(arrows[intArrow], thisPosition, Quaternion.Euler(0, 0, 180)).GetComponent<ArrowController>();
-                arrow.StartValues(i.speed * speedByTime, i.secondSpeed * speedByTime, level);
-                for (float t = 0f; t < i.spawnTime / speedByTime; t += Time.deltaTime * pauseMultiplier)
+                SpawnController.Spawn thisArrow = spawnsFixedTime[actualIndex];
+                ArrowController arrow = Instantiate(arrows[(int)thisArrow.arrow], 
+                    positions[(int)thisArrow.position], 
+                    Quaternion.Euler(0, 0, 180)).GetComponent<ArrowController>();
+                arrow.StartValues(thisArrow.speed, thisArrow.actionDistance);
+                actualIndex++;
+                if (actualIndex < indexCount)
                 {
-                    yield return null;
+                    print ("update last wait for " + actualIndex);
+                    lastWaitFor = spawnsFixedTime[actualIndex].spawnTime;
+                }
+                else 
+                {
+                    print ("damage " + actualIndex);
+                    actualIndex = -1;
                 }
             }
+            else 
+            {
+                if (time >= levelTime)
+                {
+                    PlayAttaks(false);
+                }
+                yield return null;
+            }
         }
+        yield return null;
     }
-
-    #if UNITY_EDITOR
-    public void WriteJson ()
-    {
-        jsonString = JsonUtility.ToJson(attacks);
-        File.WriteAllText(filePath, jsonString);
-    }
-    #endif
 
     public void PlayAttaks (bool active)
     {
@@ -138,6 +120,7 @@ public class GameController : MonoBehaviour
         gamePlaying = active;
         if (active)
         {
+            score = 0;
             DestroyAllBullets();
             StartCoroutine("Attack");
         }
@@ -145,9 +128,7 @@ public class GameController : MonoBehaviour
         {
             StopCoroutine("Attack");
         }
-        pauseButton.enabled = active;
-        playButton.enabled = !active;
-        anim.SetBool("Playing", active);
+        ui.Play(active);
     }
 
     public void Pause ()
@@ -155,16 +136,13 @@ public class GameController : MonoBehaviour
         pause = !pause;
         if (pause) 
         {
-            tittleText.SetText("Paused");
-            subTittleText.SetText("Tap anywhere to\nresume");
             pauseMultiplier = 0;
         }
         else 
         {
             pauseMultiplier = 1;
         }
-        anim.SetBool("Pause", pause);
-        playButton.enabled = pause;
+        ui.Pause(pause);
         PauseAllBullets();
     }
 
@@ -172,19 +150,15 @@ public class GameController : MonoBehaviour
     public void Damage ()
     {
         if (editing) return;
-        if (time > bestScore)
+        if (time * 10 > bestScore)
         {
-            bestScore = (int)time;
+            bestScore = (int)score;
             PlayerPrefs.SetInt("BestScore", bestScore);
         }
         gamePlaying = false;
+        ui.Stop();
         PlayAttaks(false);
         StopAllBullets();
-        anim.SetBool("Playing", gamePlaying);
-        tittleText.SetText("Paused");
-        subTittleText.SetText("Tap anywhere to\nresume");
-        tittleText.SetText("You lose!");
-        subTittleText.SetText("Tap anywhere to\nrestart");
     }
 
     void StopAllBullets ()
@@ -212,27 +186,5 @@ public class GameController : MonoBehaviour
             {
                 item.MoveAndDestroy();
             }
-    }
-
-    [System.Serializable]
-    public struct Spawn
-    {
-        public Arrows arrow;
-        public Positions position;
-        public float spawnTime;
-        public float speed;
-        public float secondSpeed;
-    }
-
-    [System.Serializable]
-    public struct SpawnList
-    {
-        public Spawn[] spawns;
-    }
-
-    [System.Serializable]
-    public struct  AttackList
-    {
-        public SpawnList[] attacks;
     }
 }

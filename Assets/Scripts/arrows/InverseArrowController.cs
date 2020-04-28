@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class InverseArrowController : ArrowController
 {
-    [Header("Special Values")]
-    public float turnDistance;
-
     override protected IEnumerator Move ()
     {
         box.enabled = false;
-        Vector2 target = rb.position.normalized * turnDistance;
+        Vector2 target = rb.position.normalized * actionDistance;
         while (rb.position != target)
         {
             rb.MovePosition(Vector2.MoveTowards(rb.position, target, speed * Time.deltaTime));

@@ -6,7 +6,6 @@ public class OrbitalArrowController : ArrowController
 {
 
     [Header("Special Values")]
-    public float orbitalDistance;
     public float colisionTime;
 
     TrailRenderer trail;
@@ -22,7 +21,7 @@ public class OrbitalArrowController : ArrowController
 
     protected override IEnumerator Move () 
     {
-        Vector2 target = rb.position.normalized * orbitalDistance;
+        Vector2 target = rb.position.normalized * actionDistance;
         while (rb.position != target)
         {
             rb.MovePosition(Vector2.MoveTowards(rb.position, target, speed * 2 * Time.deltaTime));
@@ -31,12 +30,12 @@ public class OrbitalArrowController : ArrowController
         GameObject pivot = new GameObject("Pivot");
         transform.parent = pivot.transform;
         onParent = true;
-        orbitalDistance += (inicialPos.magnitude - orbitalDistance) / 2;
+        actionDistance += (inicialPos.magnitude - actionDistance) / 2;
         float orbitalTime = 0f;
         float orbitalDistanceTime = 0f;
         while (orbitalTime < 1f)
         {
-            orbitalTime = Mathf.InverseLerp(0f, orbitalDistance, orbitalDistanceTime);
+            orbitalTime = Mathf.InverseLerp(0f, actionDistance, orbitalDistanceTime);
             orbitalDistanceTime += speed * Time.deltaTime;
             pivot.transform.eulerAngles = new Vector3(0f, 0f, Mathf.Lerp(0f, 360f, orbitalTime));
             yield return null;

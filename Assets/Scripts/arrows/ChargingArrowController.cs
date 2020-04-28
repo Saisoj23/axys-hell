@@ -5,7 +5,6 @@ using UnityEngine;
 public class ChargingArrowController : ArrowController
 {
     [Header("Special Values")]
-    public float chargeDistance;
     public float laserTime;
 
     ShieldController shield;
@@ -30,19 +29,19 @@ public class ChargingArrowController : ArrowController
 
     protected override IEnumerator Move ()
     {
-        Vector2 target = rb.position.normalized * chargeDistance;
+        Vector2 target = rb.position.normalized * actionDistance;
         while (rb.position != target)
         {
             rb.MovePosition(Vector2.MoveTowards(rb.position, target, speed * 2 * Time.deltaTime));
             yield return null;
         }
         Vector3 startChargePosition = charging.transform.position;
-        chargeDistance += (inicialPos.magnitude - chargeDistance) / 2;
+        actionDistance += (inicialPos.magnitude - actionDistance) / 2;
         float chargeTime = 0f;
         float chargeDistanceTime = 0f;
         while (chargeTime < 1)
         {
-            chargeTime = Mathf.InverseLerp(0f, chargeDistance, chargeDistanceTime);
+            chargeTime = Mathf.InverseLerp(0f, actionDistance, chargeDistanceTime);
             chargeDistanceTime += speed * Time.deltaTime; 
             charging.transform.position = Vector3.Lerp(startChargePosition, transform.position + Vector3.forward, chargeTime);
             yield return null;
