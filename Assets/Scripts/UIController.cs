@@ -30,13 +30,13 @@ public class UIController : MonoBehaviour
         {
             cam.orthographicSize *= Mathf.InverseLerp(0f, Screen.width, Screen.height);
         }
-        bestText.text = PlayerPrefs.GetInt("BestScore", 0).ToString();
+        bestText.text = PlayerPrefs.GetInt("BestScore", 0).ToString() + "%";
     }
 
     void Update()
     {
-        timeText.text = ((int)game.score).ToString();
-        if ((int)game.score > game.bestScore) bestText.text = ((int)game.score).ToString();
+        timeText.text = ((int)game.score).ToString() + "%";
+        if ((int)game.score > game.bestScore) bestText.text = ((int)game.score).ToString() + "%";
     }
 
     public void Play (bool active)

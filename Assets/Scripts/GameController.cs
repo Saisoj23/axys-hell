@@ -20,7 +20,7 @@ public class GameController : MonoBehaviour
 
     [Header("Attaks Values")]
     public float arrowSpanwDistance;
-    public float secondToTest = 0;
+    public float secondToPlay = 0;
 
     [Header("Game Status")]
     public bool gamePlaying = false;
@@ -56,7 +56,7 @@ public class GameController : MonoBehaviour
         if (gamePlaying && !pause)
         {
             time += Time.deltaTime;
-            score += Time.deltaTime * 10f;
+            score = Mathf.InverseLerp(0f, levelTime, time) * 100;
         }
         if (!gamePlaying && Input.GetButtonDown("Submit"))
         {
@@ -70,13 +70,23 @@ public class GameController : MonoBehaviour
 
     IEnumerator Attack ()
     {
-        time = 0;
-        #if UNITY_EDITOR
-        time = secondToTest;
-        #endif
-        float lastWaitFor = spawnsFixedTime[0].spawnTime;
-        int actualIndex = 0;
+        time = secondToPlay;
         int indexCount = spawnsFixedTime.Count;
+        int actualIndex = 0;
+        float lastWaitFor = spawnsFixedTime[0].spawnTime;
+        if (secondToPlay != 0f)
+        {
+            for (int i = 0; i < indexCount; i++)
+            {
+                if (spawnsFixedTime[i].spawnTime >= secondToPlay)
+                {
+                    lastWaitFor = spawnsFixedTime[i].spawnTime;
+                    actualIndex = i;
+                    break;
+                }
+            }
+        }
+        
         while (gamePlaying)
         {
             if (time >= lastWaitFor && actualIndex >= 0)
@@ -120,7 +130,6 @@ public class GameController : MonoBehaviour
         gamePlaying = active;
         if (active)
         {
-            score = 0;
             DestroyAllBullets();
             StartCoroutine("Attack");
         }
@@ -150,7 +159,7 @@ public class GameController : MonoBehaviour
     public void Damage ()
     {
         if (editing) return;
-        if (time * 10 > bestScore)
+        if (score > bestScore)
         {
             bestScore = (int)score;
             PlayerPrefs.SetInt("BestScore", bestScore);
