@@ -36,7 +36,7 @@ public class UIController : MonoBehaviour
     void Update()
     {
         timeText.text = ((int)game.score).ToString() + "%";
-        if ((int)game.score > game.bestScore) bestText.text = ((int)game.score).ToString() + "%";
+        bestText.text = ((int)game.bestScore).ToString() + "%";
     }
 
     public void Play (bool active)

@@ -14,11 +14,9 @@ public class SpawnController : MonoBehaviour
     [Reorderable(paginate = true, pageSize = 0)]
     public Attacks attacks;
 
-    #if UNITY_EDITOR
     [Header("Json Values")]
     public string filePath;
     string jsonString;
-    #endif
 
     [System.Serializable]
     public class Spawn
@@ -28,6 +26,11 @@ public class SpawnController : MonoBehaviour
         public float spawnTime = 1;
         public float speed = 2;
         public float actionDistance = 1.5f;
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 
     [System.Serializable]
@@ -37,14 +40,7 @@ public class SpawnController : MonoBehaviour
         public SpawnList SpawnList;
     }
 
-    #if UNITY_EDITOR
-    public void WriteJson ()
-    {
-        jsonString = JsonUtility.ToJson(attacks);
-        File.WriteAllText(filePath, jsonString);
-    }
-
-    void Start ()
+    public void ReadJson()
     {
         jsonString = File.ReadAllText(filePath);
         if (jsonString != "")
@@ -52,7 +48,12 @@ public class SpawnController : MonoBehaviour
             attacks = JsonUtility.FromJson<Attacks>(jsonString);
         }
     }
-    #endif
+
+    public void WriteJson ()
+    {
+        jsonString = JsonUtility.ToJson(attacks);
+        File.WriteAllText(filePath, jsonString);
+    }
 
     [System.Serializable]
     public class SpawnList : ReorderableArray<Spawn> {}

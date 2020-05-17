@@ -31,32 +31,30 @@ public class GameController : MonoBehaviour
     [HideInInspector] public float score;
     [HideInInspector] public int bestScore;
     [HideInInspector] public float time = 0f;
+    float timeBeforePlay;
+    AudioSource sound;
     UIController ui;
 
     void Start ()
     {   
         spawn = GetComponent<SpawnController>();
         ui = GetComponent<UIController>();
+        sound = GetComponent<AudioSource>();
         bestScore = PlayerPrefs.GetInt("BestScore", 0);
-
-        foreach (SpawnController.Spawns listItem in spawn.attacks)
-        {
-            foreach (SpawnController.Spawn item in listItem.SpawnList)
-            {
-                SpawnController.Spawn spawn = item;
-                spawn.spawnTime -= arrowSpanwDistance / item.speed;
-                spawnsFixedTime.Add(item);
-            }
-        }
-        spawnsFixedTime.Sort((x, y) => x.spawnTime.CompareTo(y.spawnTime));
+        spawn.ReadJson();
+        OverrideInspector();
     }
 
     void Update ()
     {
         if (gamePlaying && !pause)
         {
-            time += Time.deltaTime;
+            time = Time.time - timeBeforePlay;
             score = Mathf.InverseLerp(0f, levelTime, time) * 100;
+            if ((int)score > bestScore)
+            {
+                bestScore = (int)score;
+            }
         }
         if (!gamePlaying && Input.GetButtonDown("Submit"))
         {
@@ -64,13 +62,29 @@ public class GameController : MonoBehaviour
         }
         if (gamePlaying && Input.GetButtonDown("Cancel"))
         {
-            Pause();
+            PlayAttaks(false);
         }
+    }
+
+    public void OverrideInspector()
+    {
+        spawnsFixedTime = new List<SpawnController.Spawn>();
+        foreach (SpawnController.Spawns listItem in spawn.attacks)
+        {
+            foreach (SpawnController.Spawn item in listItem.SpawnList)
+            {
+                SpawnController.Spawn spawnItem = (SpawnController.Spawn)item.Clone();
+                spawnItem.spawnTime -= arrowSpanwDistance / spawnItem.speed;
+                spawnsFixedTime.Add(spawnItem);
+            }
+        }
+        spawnsFixedTime.Sort((x, y) => x.spawnTime.CompareTo(y.spawnTime));
     }
 
     IEnumerator Attack ()
     {
         time = secondToPlay;
+        timeBeforePlay = Time.time - secondToPlay;
         int indexCount = spawnsFixedTime.Count;
         int actualIndex = 0;
         float lastWaitFor = spawnsFixedTime[0].spawnTime;
@@ -125,16 +139,20 @@ public class GameController : MonoBehaviour
         if (pause)
         {
             Pause();
+            sound.Pause();
             return;
         }
         gamePlaying = active;
         if (active)
         {
+            sound.time = secondToPlay;
+            sound.Play();
             DestroyAllBullets();
             StartCoroutine("Attack");
         }
         else
         {
+            sound.Stop();
             StopCoroutine("Attack");
         }
         ui.Play(active);
@@ -159,11 +177,7 @@ public class GameController : MonoBehaviour
     public void Damage ()
     {
         if (editing) return;
-        if (score > bestScore)
-        {
-            bestScore = (int)score;
-            PlayerPrefs.SetInt("BestScore", bestScore);
-        }
+        PlayerPrefs.SetInt("BestScore", bestScore);
         gamePlaying = false;
         ui.Stop();
         PlayAttaks(false);
