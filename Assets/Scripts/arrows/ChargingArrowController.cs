@@ -58,7 +58,11 @@ public class ChargingArrowController : ArrowController
         }
         laserSpr.enabled = true;
         if (isShield) shield.Defend();
-        else player.Hurt();
+        else 
+        {
+            player.Hurt();
+            DestroyArrow();
+        }
         for (float t = 0f; t < laserTime; t += Time.deltaTime)
         {
             laserSpr.color = new Color(1f, 1f, 1f, Mathf.InverseLerp(laserTime, 0f, t));
@@ -89,12 +93,18 @@ public class ChargingArrowController : ArrowController
         StopAllCoroutines();
     }
 
-    public override void DestroyArrow ()
+    protected override IEnumerator Destroy ()
     {
-        chargingSpr.enabled = false;
-        box.enabled = false;
-        if (useAnim) anim.SetTrigger("Destroy");
-        StopAllCoroutines();
-        StartCoroutine("Destroy");
+        for (float t = 0f; t < laserTime; t += Time.deltaTime)
+        {
+            laserSpr.color = new Color(1f, 1f, 1f, Mathf.InverseLerp(laserTime, 0f, t));
+            laser.transform.localScale = new Vector3(laser.transform.localScale.x, Mathf.InverseLerp(0, laserTime, t) + 0.5f, 1f);
+            yield return null;
+        }
+        for (float i = 0; i < 0.5f; i += Time.deltaTime)
+        {
+            yield return null;
+        }
+        Destroy(gameObject);
     }
 }

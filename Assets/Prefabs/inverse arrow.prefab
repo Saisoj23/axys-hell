@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  secondSpeed: 2
+  actionDistance: 0
   finalSpeed: 8
   stopColor: {r: 0.67058825, g: 0.67058825, b: 0.67058825, a: 1}
-  turnDistance: 1
 --- !u!1001 &696482525647291459
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57,10 +56,65 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -5717795354444781658, guid: 7691fadbc8dfcda44953ecca60b44040,
         type: 3}
+    - target: {fileID: 2899594849481972277, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
+        type: 3}
+      propertyPath: m_ShapePath.Array.data[2].x
+      value: -0.4375
+      objectReference: {fileID: 0}
+    - target: {fileID: 2899594849481972277, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
+        type: 3}
+      propertyPath: m_ShapePathHash
+      value: 508949781
+      objectReference: {fileID: 0}
+    - target: {fileID: 2899594849481972277, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
+        type: 3}
+      propertyPath: m_ShapePath.Array.data[3].x
+      value: -0.0625
+      objectReference: {fileID: 0}
+    - target: {fileID: 2899594849481972277, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
+        type: 3}
+      propertyPath: m_ShapePath.Array.data[0].x
+      value: -0.0625
+      objectReference: {fileID: 0}
+    - target: {fileID: 2899594849481972277, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
+        type: 3}
+      propertyPath: m_ShapePath.Array.data[1].x
+      value: -0.4375
+      objectReference: {fileID: 0}
+    - target: {fileID: 2899594849481972277, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
+        type: 3}
+      propertyPath: m_InstanceId
+      value: -60550
+      objectReference: {fileID: 0}
     - target: {fileID: 3425247313057582076, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
         type: 3}
       propertyPath: turnDistance
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4734551899278791000, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
+        type: 3}
+      propertyPath: m_ShapePath.Array.data[0].x
+      value: -0.0625
+      objectReference: {fileID: 0}
+    - target: {fileID: 4734551899278791000, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
+        type: 3}
+      propertyPath: m_ShapePath.Array.data[1].x
+      value: -0.4375
+      objectReference: {fileID: 0}
+    - target: {fileID: 4734551899278791000, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
+        type: 3}
+      propertyPath: m_ShapePath.Array.data[2].x
+      value: -0.4375
+      objectReference: {fileID: 0}
+    - target: {fileID: 4734551899278791000, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
+        type: 3}
+      propertyPath: m_ShapePath.Array.data[3].x
+      value: -0.0625
+      objectReference: {fileID: 0}
+    - target: {fileID: 4734551899278791000, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
+        type: 3}
+      propertyPath: m_InstanceId
+      value: -60550
       objectReference: {fileID: 0}
     - target: {fileID: 5476454169871408396, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
         type: 3}

@@ -1,5 +1,62 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1192459406192701505
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3136265813694647484}
+  - component: {fileID: 4734551899278791000}
+  m_Layer: 2
+  m_Name: caster
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3136265813694647484
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192459406192701505}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7013199810249728021}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4734551899278791000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192459406192701505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 0
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: fb8d9634a99a6d9500000000
+  m_ShapePath:
+  - {x: 0.0625, y: -0.0625, z: 0}
+  - {x: 0.4375, y: -0.4375, z: 0}
+  - {x: 0.4375, y: 0.4375, z: 0}
+  - {x: 0.0625, y: 0.0625, z: 0}
+  m_ShapePathHash: 508949781
+  m_Mesh: {fileID: 0}
+  m_InstanceId: 27924
 --- !u!1 &2015702155335787559
 GameObject:
   m_ObjectHideFlags: 0
@@ -50,7 +107,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 82b6342ba8044444ea9f862f26bbc362, type: 2}
+  - {fileID: 2100000, guid: bc702a4bdebc91c408f449b79189cae7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -110,6 +167,7 @@ GameObject:
   - component: {fileID: -4192693434197186380}
   - component: {fileID: 7098514240958928563}
   - component: {fileID: 1047605231794694973}
+  - component: {fileID: 3211389379499839128}
   m_Layer: 2
   m_Name: arrow
   m_TagString: Bullet
@@ -129,6 +187,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 5908053631954314024}
+  - {fileID: 3136265813694647484}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -145,7 +204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  secondSpeed: 2
+  actionDistance: 0
   finalSpeed: 8
   stopColor: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 1}
 --- !u!212 &7013199810249728020
@@ -283,3 +342,16 @@ MonoBehaviour:
   sprite: 0
   lastSprite: 0
   cheking: 0
+--- !u!114 &3211389379499839128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7013199810249728023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38f48a8d66b2adc46887f23a3a88ac01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
