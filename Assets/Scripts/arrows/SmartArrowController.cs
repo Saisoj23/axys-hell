@@ -23,6 +23,8 @@ public class SmartArrowController : ArrowController
             yield return null;
         }
         GameObject pivot = new GameObject("Pivot");
+        /*Rigidbody2D pivotRb = pivot.AddComponent<Rigidbody2D>();
+        pivotRb.isKinematic = true;*/
         transform.parent = pivot.transform;
         onParent = true;
         bool looking = false;
@@ -35,6 +37,7 @@ public class SmartArrowController : ArrowController
             looking = hit.collider.CompareTag("Shield");
             if (looking && !spining)
             {
+                //yield return null;
                 spriteChange.ChangeSprite(2);
                 spining = true;
             }
@@ -42,6 +45,7 @@ public class SmartArrowController : ArrowController
             {
                 orbitalTime += Time.deltaTime * turnSpeed;
                 pivot.transform.eulerAngles = new Vector3(0f, 0f, Mathf.Lerp(initialRot, initialRot + 90, orbitalTime));
+                //pivotRb.MoveRotation(Mathf.Lerp(initialRot, initialRot + 90, orbitalTime));
                 if (orbitalTime >= 1f)
                 {
                     spriteChange.ChangeSprite(0);
@@ -50,10 +54,12 @@ public class SmartArrowController : ArrowController
                     orbitalTime = 0;
                 }
                 transform.localPosition = Vector2.MoveTowards(transform.localPosition, Vector2.zero, speed * Time.deltaTime);
+                //rb.MovePosition(rb.position - (new Vector2 (transform.right.x, transform.right.y) * speed * Time.deltaTime));
             }
             else
             {
-                rb.MovePosition(Vector2.MoveTowards(rb.position, Vector2.zero, speed * Time.deltaTime));
+                transform.localPosition = Vector2.MoveTowards(transform.localPosition, Vector2.zero, speed * Time.deltaTime);
+                //rb.MovePosition(Vector2.MoveTowards(rb.position, Vector2.zero, speed * Time.deltaTime));
             }
             yield return null;
         }

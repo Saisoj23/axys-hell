@@ -9,6 +9,7 @@ TagManager:
   - Shield
   - Background
   - False Bullet
+  - Dont Destroy On Load
   layers:
   - Default
   - TransparentFX
@@ -51,4 +52,7 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Transitions
+    uniqueID: 3924168229
     locked: 0

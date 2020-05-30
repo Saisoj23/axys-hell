@@ -95,6 +95,7 @@ public class ChargingArrowController : ArrowController
 
     protected override IEnumerator Destroy ()
     {
+        chargingChange.ChangeMaskInteraction(0);
         for (float t = 0f; t < laserTime; t += Time.deltaTime)
         {
             laserSpr.color = new Color(1f, 1f, 1f, Mathf.InverseLerp(laserTime, 0f, t));

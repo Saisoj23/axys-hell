@@ -14,11 +14,9 @@ public class ArrowController : MonoBehaviour
     public float speed;
     public float actionDistance;
     public float finalSpeed;
-    float[] originalValues;
     public Color stopColor;
 
     protected Vector2 inicialPos;
-    protected Color inicialColor;
     protected bool visible = false;
     protected bool useAnim = true;
 
@@ -49,23 +47,6 @@ public class ArrowController : MonoBehaviour
         {
             rb.MovePosition(Vector2.MoveTowards(rb.position, Vector2.zero, speed * Time.deltaTime));
             yield return null;
-        }
-    }
-
-    public void Pause (bool pause)
-    {
-        if (pause)
-        {
-            originalValues = new float[] {speed, finalSpeed};
-            speed = 0f;
-            finalSpeed = 0f;
-            anim.speed = 0f;
-        }
-        else
-        {
-            speed = originalValues[0];
-            finalSpeed = originalValues[1];
-            anim.speed = 1f;
         }
     }
 

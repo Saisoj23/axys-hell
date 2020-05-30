@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8556527051049752093}
-  m_Father: {fileID: 1959449364429068020}
+  m_Father: {fileID: 8818814161005672083}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &502083713719783246
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: -2950032572879587788, guid: 7691fadbc8dfcda44953ecca60b44040,
+  m_Sprite: {fileID: -7039003182478323700, guid: 7691fadbc8dfcda44953ecca60b44040,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -97,8 +97,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: -2950032572879587788, guid: 7691fadbc8dfcda44953ecca60b44040, type: 3}
-  - {fileID: 4622656924047046824, guid: e2080eac7e37d2d4688fe5aae555dd6c, type: 3}
+  - {fileID: -7039003182478323700, guid: 7691fadbc8dfcda44953ecca60b44040, type: 3}
+  - {fileID: -5266502555794755610, guid: e2080eac7e37d2d4688fe5aae555dd6c, type: 3}
   sprite: 0
   lastSprite: 0
   cheking: 0
@@ -131,7 +131,7 @@ Transform:
   m_LocalPosition: {x: 0.375, y: 0, z: 0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1959449364429068020}
+  m_Father: {fileID: 8818814161005672083}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6430753519217553744
@@ -173,7 +173,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -2
-  m_Sprite: {fileID: -7039003182478323700, guid: 7691fadbc8dfcda44953ecca60b44040,
+  m_Sprite: {fileID: -2408033011751398356, guid: 7691fadbc8dfcda44953ecca60b44040,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -198,8 +198,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: -7039003182478323700, guid: 7691fadbc8dfcda44953ecca60b44040, type: 3}
-  - {fileID: -5266502555794755610, guid: e2080eac7e37d2d4688fe5aae555dd6c, type: 3}
+  - {fileID: -2408033011751398356, guid: 7691fadbc8dfcda44953ecca60b44040, type: 3}
+  - {fileID: -6230016032235102315, guid: e2080eac7e37d2d4688fe5aae555dd6c, type: 3}
   sprite: 0
   lastSprite: 0
   cheking: 0
@@ -274,7 +274,7 @@ SpriteRenderer:
   m_SortingLayerID: -1787979095
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3307582251462001536, guid: 6e8c8971db435db45a05be3e891b0799,
+  m_Sprite: {fileID: 1779326428436615066, guid: 6e8c8971db435db45a05be3e891b0799,
     type: 3}
   m_Color: {r: 0.07450981, g: 0.07450981, b: 0.07450981, a: 1}
   m_FlipX: 0
@@ -304,7 +304,7 @@ SpriteMask:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1959449364429068022}
+  m_GameObject: {fileID: 8818814161005672118}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -337,7 +337,7 @@ SpriteMask:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2408033011751398356, guid: 7691fadbc8dfcda44953ecca60b44040,
+  m_Sprite: {fileID: 1779326428436615066, guid: 6e8c8971db435db45a05be3e891b0799,
     type: 3}
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: 0
@@ -354,7 +354,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1959449364429068022}
+  m_GameObject: {fileID: 8818814161005672118}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b0339fe4cf989340b6c9400abcd2949, type: 3}
@@ -464,7 +464,7 @@ PrefabInstance:
     - target: {fileID: 3136265813694647484, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4734551899278791000, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
         type: 3}
@@ -499,7 +499,7 @@ PrefabInstance:
     - target: {fileID: 4734551899278791000, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
         type: 3}
       propertyPath: m_InstanceId
-      value: -60134
+      value: -30006
       objectReference: {fileID: 0}
     - target: {fileID: 4734551899278791000, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
         type: 3}
@@ -521,6 +521,11 @@ PrefabInstance:
       propertyPath: m_ShapePath.Array.data[5].y
       value: 0.0625
       objectReference: {fileID: 0}
+    - target: {fileID: 4734551899278791000, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5476454169871408396, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
         type: 3}
       propertyPath: m_Sprite
@@ -530,7 +535,7 @@ PrefabInstance:
     - target: {fileID: 5908053631954314024, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6131399617044169334, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
         type: 3}
@@ -583,11 +588,6 @@ PrefabInstance:
       propertyPath: m_Size.x
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7013199810249728020, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 82b6342ba8044444ea9f862f26bbc362, type: 2}
     - target: {fileID: 7013199810249728020, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
         type: 3}
       propertyPath: m_Enabled
@@ -663,13 +663,13 @@ PrefabInstance:
     - {fileID: 4428358298999141045, guid: 4e3f398fc8ff1a247b1bace4451a45a1, type: 3}
     - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 4e3f398fc8ff1a247b1bace4451a45a1, type: 3}
---- !u!1 &1959449364429068022 stripped
+--- !u!1 &8818814161005672118 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7013199810249728023, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
     type: 3}
   m_PrefabInstance: {fileID: 8818814161005672161}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1959449364429068020 stripped
+--- !u!4 &8818814161005672083 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7013199810249728021, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
     type: 3}

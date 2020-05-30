@@ -16,18 +16,16 @@ public class GameController : MonoBehaviour
 
     [Header("Attak Editor")]
     SpawnController spawn;
-    public List<SpawnController.Spawn> spawnsFixedTime;
+    List<List<SpawnController.Spawn>> spawnsFixedTime;
 
     [Header("Attaks Values")]
     public float arrowSpanwDistance;
-    public float secondToPlay = 0;
 
     [Header("Game Status")]
+    public int indexToTest;
     public bool gamePlaying = false;
     public bool pause = false;
     public bool editing = false;
-    public int pauseMultiplier = 1;
-    public float levelTime;
     [HideInInspector] public float score;
     [HideInInspector] public int bestScore;
     [HideInInspector] public float time = 0f;
@@ -41,7 +39,9 @@ public class GameController : MonoBehaviour
         ui = GetComponent<UIController>();
         sound = GetComponent<AudioSource>();
         bestScore = PlayerPrefs.GetInt("BestScore", 0);
+        #if UNITY_EDITOR
         spawn.ReadJson();
+        #endif
         OverrideInspector();
     }
 
@@ -50,7 +50,7 @@ public class GameController : MonoBehaviour
         if (gamePlaying && !pause)
         {
             time = Time.time - timeBeforePlay;
-            score = Mathf.InverseLerp(0f, levelTime, time) * 100;
+            score = time * 10;
             if ((int)score > bestScore)
             {
                 bestScore = (int)score;
@@ -68,67 +68,69 @@ public class GameController : MonoBehaviour
 
     public void OverrideInspector()
     {
-        spawnsFixedTime = new List<SpawnController.Spawn>();
+        spawnsFixedTime = new List<List<SpawnController.Spawn>>();
+        int index = 0;
         foreach (SpawnController.Spawns listItem in spawn.attacks)
         {
+            spawnsFixedTime.Add(new List<SpawnController.Spawn>());
             foreach (SpawnController.Spawn item in listItem.SpawnList)
             {
                 SpawnController.Spawn spawnItem = (SpawnController.Spawn)item.Clone();
                 spawnItem.spawnTime -= arrowSpanwDistance / spawnItem.speed;
-                spawnsFixedTime.Add(spawnItem);
+                spawnsFixedTime[index].Add(spawnItem);
+                print("override");
             }
+            spawnsFixedTime[index].Sort((x, y) => x.spawnTime.CompareTo(y.spawnTime));
+            index += 1;
         }
-        spawnsFixedTime.Sort((x, y) => x.spawnTime.CompareTo(y.spawnTime));
     }
 
     IEnumerator Attack ()
     {
-        time = secondToPlay;
-        timeBeforePlay = Time.time - secondToPlay;
+        timeBeforePlay = Time.time;
+        time = 0f;
         int indexCount = spawnsFixedTime.Count;
-        int actualIndex = 0;
-        float lastWaitFor = spawnsFixedTime[0].spawnTime;
-        if (secondToPlay != 0f)
-        {
-            for (int i = 0; i < indexCount; i++)
-            {
-                if (spawnsFixedTime[i].spawnTime >= secondToPlay)
-                {
-                    lastWaitFor = spawnsFixedTime[i].spawnTime;
-                    actualIndex = i;
-                    break;
-                }
-            }
-        }
         
+        float firstSpawn = 0f;
+        float lastCollision = 0f;
+
         while (gamePlaying)
         {
-            if (time >= lastWaitFor && actualIndex >= 0)
+            print("while");
+            int newIndex = 0;
+            if (indexToTest >= 0 && indexToTest < indexCount) newIndex = indexToTest;
+            else newIndex = Random.Range(0, indexCount);
+            int inverse = Random.Range(0, 2);
+            int perpendicular = Random.Range(0, 2);
+
+            float attackSpawnTime = spawnsFixedTime[newIndex][0].spawnTime;
+            if (lastCollision - time > -attackSpawnTime && time > 0)
             {
-                SpawnController.Spawn thisArrow = spawnsFixedTime[actualIndex];
-                ArrowController arrow = Instantiate(arrows[(int)thisArrow.arrow], 
-                    positions[(int)thisArrow.position], 
-                    Quaternion.Euler(0, 0, 180)).GetComponent<ArrowController>();
-                arrow.StartValues(thisArrow.speed, thisArrow.actionDistance);
-                actualIndex++;
-                if (actualIndex < indexCount)
-                {
-                    print ("update last wait for " + actualIndex);
-                    lastWaitFor = spawnsFixedTime[actualIndex].spawnTime;
-                }
-                else 
-                {
-                    print ("damage " + actualIndex);
-                    actualIndex = -1;
-                }
+                print("attackDelay " + (lastCollision - attackSpawnTime));
+                yield return new WaitForSeconds(lastCollision - time + attackSpawnTime);
             }
-            else 
+
+            firstSpawn = time;
+            lastCollision = 0;
+            if (attackSpawnTime < 0) firstSpawn -= attackSpawnTime;
+            foreach (SpawnController.Spawn i in spawnsFixedTime[newIndex])
             {
-                if (time >= levelTime)
+                if (i.spawnTime > time - firstSpawn)
                 {
-                    PlayAttaks(false);
+                    print("spawnDelay " + (i.spawnTime - (time - firstSpawn)));
+                    yield return new WaitForSeconds(i.spawnTime - (time - firstSpawn));
                 }
-                yield return null;
+                int intArrow = (int)i.arrow;
+                int intPosition = (int)i.position;
+                Vector3 thisPosition = positions[intPosition];
+                if (perpendicular == 1) thisPosition = Vector2.Perpendicular(thisPosition);
+                if (inverse == 1) thisPosition = -thisPosition;
+                ArrowController arrow = Instantiate(arrows[intArrow], thisPosition, Quaternion.Euler(0, 0, 180)).GetComponent<ArrowController>();
+                arrow.StartValues(i.speed, i.actionDistance);
+
+                float thisAttack = (arrowSpanwDistance / i.speed) + i.spawnTime + firstSpawn;
+                lastCollision = thisAttack > lastCollision ? thisAttack : lastCollision;
+                print (i.arrow + " " + time);
             }
         }
         yield return null;
@@ -139,20 +141,19 @@ public class GameController : MonoBehaviour
         if (pause)
         {
             Pause();
-            sound.Pause();
+            //sound.Pause();
             return;
         }
         gamePlaying = active;
         if (active)
         {
-            sound.time = secondToPlay;
-            sound.Play();
+            //sound.Play();
             DestroyAllBullets();
             StartCoroutine("Attack");
         }
         else
         {
-            sound.Stop();
+            //sound.Stop();
             StopCoroutine("Attack");
         }
         ui.Play(active);
@@ -163,14 +164,13 @@ public class GameController : MonoBehaviour
         pause = !pause;
         if (pause) 
         {
-            pauseMultiplier = 0;
+            Time.timeScale = 0;
         }
         else 
         {
-            pauseMultiplier = 1;
+            Time.timeScale = 1;
         }
         ui.Pause(pause);
-        PauseAllBullets();
     }
 
     //game events
@@ -190,15 +190,6 @@ public class GameController : MonoBehaviour
             foreach (ArrowController item in actualArrows)
             {
                 item.Stop();
-            }
-    }
-
-    void PauseAllBullets ()
-    {
-        ArrowController[] actualArrows = GameObject.FindObjectsOfType<ArrowController>();
-            foreach (ArrowController item in actualArrows)
-            {
-                item.Pause(pause);
             }
     }
 

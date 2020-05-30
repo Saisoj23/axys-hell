@@ -37,4 +37,20 @@ public class SpriteChange : MonoBehaviour
     {
         spr.sortingOrder = order;
     }
+
+    public void ChangeMaskInteraction (int interaction)
+    {
+        switch (interaction)
+        {
+            case 1: 
+                spr.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+                break;
+            case 2:
+                spr.maskInteraction = SpriteMaskInteraction.VisibleOutsideMask;
+                break;
+            default:
+                spr.maskInteraction = SpriteMaskInteraction.None;
+                break;
+        }
+    }
 }

@@ -30,13 +30,13 @@ public class UIController : MonoBehaviour
         {
             cam.orthographicSize *= Mathf.InverseLerp(0f, Screen.width, Screen.height);
         }
-        bestText.text = PlayerPrefs.GetInt("BestScore", 0).ToString() + "%";
+        bestText.text = PlayerPrefs.GetInt("BestScore", 0).ToString();
     }
 
     void Update()
     {
-        timeText.text = ((int)game.score).ToString() + "%";
-        bestText.text = ((int)game.bestScore).ToString() + "%";
+        timeText.text = ((int)game.score).ToString();
+        bestText.text = ((int)game.bestScore).ToString();
     }
 
     public void Play (bool active)
@@ -49,7 +49,7 @@ public class UIController : MonoBehaviour
 
     public void Pause (bool pause)
     {
-        subTittleText.SetText("Tap anywhere to\nresume");
+        subTittleText.SetText("Tap here to\nresume");
         anim.SetBool("Pause", pause);
         playButton.enabled = pause;
     }
@@ -57,7 +57,7 @@ public class UIController : MonoBehaviour
     public void Stop ()
     {
         anim.SetBool("Playing", false);
-        subTittleText.SetText("Tap anywhere to\nrestart");
+        subTittleText.SetText("Tap here to\nrestart");
         this.enabled = false;
     }
 }

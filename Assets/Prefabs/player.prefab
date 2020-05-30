@@ -166,7 +166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   axis: 1
   rotateSpeed: 1280
-  minTouchSpeed: 0.001
+  minTouchSpeed: 0.01
 --- !u!212 &6040607570125919129
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -247,7 +247,7 @@ MonoBehaviour:
   - {x: -0.4375, y: 0, z: 0}
   m_ShapePathHash: -1882602699
   m_Mesh: {fileID: 0}
-  m_InstanceId: 25520
+  m_InstanceId: 18976
 --- !u!50 &6040607570125919130
 Rigidbody2D:
   serializedVersion: 4
@@ -328,7 +328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprites:
   - {fileID: 6128299156075563123, guid: 7691fadbc8dfcda44953ecca60b44040, type: 3}
-  - {fileID: -7263262467203474343, guid: 7691fadbc8dfcda44953ecca60b44040, type: 3}
+  - {fileID: -5559150632450785296, guid: 7691fadbc8dfcda44953ecca60b44040, type: 3}
   sprite: 0
   lastSprite: 1
   cheking: 1
@@ -460,7 +460,7 @@ MonoBehaviour:
   - {x: 0.125, y: 0.4375, z: 0}
   m_ShapePathHash: 1205307293
   m_Mesh: {fileID: 0}
-  m_InstanceId: 25524
+  m_InstanceId: 18980
 --- !u!50 &6040607571026973621
 Rigidbody2D:
   serializedVersion: 4
@@ -541,7 +541,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprites:
   - {fileID: 3386662938922423588, guid: 7691fadbc8dfcda44953ecca60b44040, type: 3}
-  - {fileID: -5559150632450785296, guid: 7691fadbc8dfcda44953ecca60b44040, type: 3}
+  - {fileID: -8987557684774062561, guid: 7691fadbc8dfcda44953ecca60b44040, type: 3}
   sprite: 0
   lastSprite: 1
   cheking: 1
