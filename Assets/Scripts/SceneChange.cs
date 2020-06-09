@@ -17,6 +17,7 @@ public class SceneChange : MonoBehaviour
     public void ChangeScene(string scene)
     {
         nextScene = scene;
+        Time.timeScale = 1;
         StartCoroutine(SceneLoad());
 
     }
@@ -24,7 +25,16 @@ public class SceneChange : MonoBehaviour
     IEnumerator SceneLoad ()
     {
         anim.SetTrigger("Black");
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(nextScene);
+    }
+
+    public void Exit ()
+    {
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
     }
 }

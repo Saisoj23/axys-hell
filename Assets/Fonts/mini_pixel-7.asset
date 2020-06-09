@@ -53,9 +53,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: mini_pixel-7
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: -390856306
   material: {fileID: 8662898579171154339}
-  materialHashCode: 0
+  materialHashCode: 351929669
   m_Version: 1.1.0
   m_SourceFontFileGUID: 035c8493dedc4774881a45a36297ab28
   m_SourceFontFile_EditorRef: {fileID: 0}
@@ -2442,9 +2442,9 @@ Material:
     - _OutlineWidth: 0
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
-    - _ScaleRatioA: 1
-    - _ScaleRatioB: 1
-    - _ScaleRatioC: 1
+    - _ScaleRatioA: 0.8
+    - _ScaleRatioB: 0.7
+    - _ScaleRatioC: 0.7
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0

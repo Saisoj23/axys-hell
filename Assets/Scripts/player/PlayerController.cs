@@ -55,14 +55,12 @@ public class PlayerController : MonoBehaviour
         }
         else lastPresed = false;
         
-        #if UNITY_EDITOR || !UNITY_ANDROID
         Vector2 axisInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         
-        if (axisInput.magnitude != 0 && Physics.Raycast(cam.ScreenPointToRay(screenMiddle + (axisInput.normalized * 50)), out hit, 20f))
+        if (axisInput.magnitude != 0 && Physics.Raycast(cam.ScreenPointToRay(screenMiddle + (axisInput.normalized * 100)), out hit, 20f))
         {
             input = hit.point.normalized; 
         }
-        #endif
 
         if (game.gamePlaying && !game.pause)
         {

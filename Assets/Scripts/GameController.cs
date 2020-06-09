@@ -102,6 +102,7 @@ public class GameController : MonoBehaviour
             else newIndex = Random.Range(0, indexCount);
             int inverse = Random.Range(0, 2);
             int perpendicular = Random.Range(0, 2);
+            int mirror = Random.Range(0, 2);
 
             float attackSpawnTime = spawnsFixedTime[newIndex][0].spawnTime;
             if (lastCollision - time > -attackSpawnTime && time > 0)
@@ -125,6 +126,7 @@ public class GameController : MonoBehaviour
                 Vector3 thisPosition = positions[intPosition];
                 if (perpendicular == 1) thisPosition = Vector2.Perpendicular(thisPosition);
                 if (inverse == 1) thisPosition = -thisPosition;
+                if (mirror == 1) thisPosition = thisPosition * new Vector2(-1, 1);
                 ArrowController arrow = Instantiate(arrows[intArrow], thisPosition, Quaternion.Euler(0, 0, 180)).GetComponent<ArrowController>();
                 arrow.StartValues(i.speed, i.actionDistance);
 

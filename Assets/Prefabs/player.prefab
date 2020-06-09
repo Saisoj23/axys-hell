@@ -166,7 +166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   axis: 1
   rotateSpeed: 1280
-  minTouchSpeed: 0.01
+  minTouchSpeed: 0.001
 --- !u!212 &6040607570125919129
 SpriteRenderer:
   m_ObjectHideFlags: 0
