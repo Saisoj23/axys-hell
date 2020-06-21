@@ -12,6 +12,7 @@ public class UIController : MonoBehaviour
     [Header("Buttons")]
     public Button playButton;
     public Button pauseButton;
+    public CanvasGroup hudButtons;
     [Header("Images")]
     public Image bestImage;
     public Image timeImage;
@@ -43,13 +44,14 @@ public class UIController : MonoBehaviour
     {
         pauseButton.enabled = active;
         playButton.enabled = !active;
+        hudButtons.interactable = !active;
         anim.SetBool("Playing", active);
         this.enabled = active;
     }
 
     public void Pause (bool pause)
     {
-        subTittleText.SetText("Tap here to\nresume");
+        subTittleText.SetText("Tap here to resume");
         anim.SetBool("Pause", pause);
         playButton.enabled = pause;
     }
@@ -57,7 +59,7 @@ public class UIController : MonoBehaviour
     public void Stop ()
     {
         anim.SetBool("Playing", false);
-        subTittleText.SetText("Tap here to\nrestart");
+        subTittleText.SetText("Tap here to restart");
         this.enabled = false;
     }
 }

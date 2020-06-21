@@ -16,6 +16,7 @@ public class SceneChange : MonoBehaviour
 
     public void ChangeScene(string scene)
     {
+        GameObject.Find("EventSystem").SetActive(false);
         nextScene = scene;
         Time.timeScale = 1;
         StartCoroutine(SceneLoad());

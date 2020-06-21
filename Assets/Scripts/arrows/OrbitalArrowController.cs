@@ -9,6 +9,7 @@ public class OrbitalArrowController : ArrowController
     public float colisionTime;
 
     TrailRenderer trail;
+    DashEffect dash;
 
     bool onParent = false;
 
@@ -16,6 +17,8 @@ public class OrbitalArrowController : ArrowController
     {
         base.Awake();
         trail = GetComponentInChildren<TrailRenderer>();
+        dash = GetComponentInChildren<DashEffect>();
+        dash.sprite = spriteChange.sprites[0];
         trail.enabled = false;
     }
 
@@ -40,14 +43,15 @@ public class OrbitalArrowController : ArrowController
             pivot.transform.eulerAngles = new Vector3(0f, 0f, Mathf.Lerp(0f, 360f, orbitalTime));
             yield return null;
         }
-        trail.enabled = true;
+        //trail.enabled = true;
         RaycastHit2D hit = Physics2D.Raycast(rb.position, -rb.position.normalized);
+        dash.Dash(hit.point, rb.position);
         rb.MovePosition(hit.point);
         for (float t = 0f; t < colisionTime; t += Time.deltaTime)
         {
             yield return null;
         }
-        trail.enabled = false;
+        //trail.enabled = false;
     }
 
     protected override IEnumerator Destroy ()
