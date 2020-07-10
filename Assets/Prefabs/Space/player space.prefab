@@ -130,10 +130,15 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6040607570125919131, guid: 3f0f63b24c54686428f55a9a597203fa,
+        type: 3}
+      propertyPath: axis
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6040607570125919134, guid: 3f0f63b24c54686428f55a9a597203fa,
         type: 3}
       propertyPath: m_Name
-      value: player normal
+      value: player space
       objectReference: {fileID: 0}
     - target: {fileID: 6040607570125919134, guid: 3f0f63b24c54686428f55a9a597203fa,
         type: 3}

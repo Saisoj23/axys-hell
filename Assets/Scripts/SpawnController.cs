@@ -11,7 +11,7 @@ public class SpawnController : MonoBehaviour
 
     [Header("Attak Editor")]
     [SerializeField]
-    [Reorderable(paginate = true, pageSize = 0)]
+    [Reorderable(paginate = true)]
     public Attacks attacks;
 
     [Header("Json Values")]

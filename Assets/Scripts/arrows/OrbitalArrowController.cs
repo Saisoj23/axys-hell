@@ -10,6 +10,8 @@ public class OrbitalArrowController : ArrowController
 
     TrailRenderer trail;
     DashEffect dash;
+    ShieldController shield;
+    PlayerController player;
 
     bool onParent = false;
 
@@ -20,6 +22,8 @@ public class OrbitalArrowController : ArrowController
         dash = GetComponentInChildren<DashEffect>();
         dash.sprite = spriteChange.sprites[0];
         trail.enabled = false;
+        player = FindObjectOfType<PlayerController>();
+        shield = FindObjectOfType<ShieldController>();
     }
 
     protected override IEnumerator Move () 
@@ -45,12 +49,19 @@ public class OrbitalArrowController : ArrowController
         }
         //trail.enabled = true;
         RaycastHit2D hit = Physics2D.Raycast(rb.position, -rb.position.normalized);
+        box.enabled = false;
         dash.Dash(hit.point, rb.position);
         rb.MovePosition(hit.point);
         for (float t = 0f; t < colisionTime; t += Time.deltaTime)
         {
             yield return null;
         }
+        if (hit.collider.CompareTag("Shield")) shield.Defend();
+        else 
+        {
+            player.Hurt();
+        }
+        DestroyArrow();
         //trail.enabled = false;
     }
 

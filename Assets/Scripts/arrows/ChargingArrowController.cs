@@ -102,6 +102,7 @@ public class ChargingArrowController : ArrowController
             laser.transform.localScale = new Vector3(laser.transform.localScale.x, Mathf.InverseLerp(0, laserTime, t) + 0.5f, 1f);
             yield return null;
         }
+        laserSpr.enabled = false;
         for (float i = 0; i < 0.5f; i += Time.deltaTime)
         {
             yield return null;

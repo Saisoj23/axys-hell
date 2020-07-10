@@ -58,8 +58,8 @@ public class LevelSelector : MonoBehaviour
 
         if (input.x != 0 && Mathf.Abs(input.x) > Mathf.Abs(input.y))
         {
-            if (input.x > 0) Next();
-            else Prev();
+            if (input.x > 0) Prev();
+            else Next();
         }
     }
     

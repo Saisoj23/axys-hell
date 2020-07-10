@@ -41,6 +41,11 @@ public class GameController : MonoBehaviour
         bestScore = PlayerPrefs.GetInt("BestScore", 0);
         #if UNITY_EDITOR
         spawn.ReadJson();
+        #else
+        indexToTest = -1;
+        gamePlaying = false;
+        pause = false;
+        editing = false;
         #endif
         OverrideInspector();
     }
@@ -78,7 +83,7 @@ public class GameController : MonoBehaviour
                 SpawnController.Spawn spawnItem = (SpawnController.Spawn)item.Clone();
                 spawnItem.spawnTime -= arrowSpanwDistance / spawnItem.speed;
                 spawnsFixedTime[index].Add(spawnItem);
-                print("override");
+                //print("override");
             }
             spawnsFixedTime[index].Sort((x, y) => x.spawnTime.CompareTo(y.spawnTime));
             index += 1;
@@ -96,10 +101,11 @@ public class GameController : MonoBehaviour
 
         while (gamePlaying)
         {
-            print("while");
+            //print("while");
             int newIndex = 0;
             if (indexToTest >= 0 && indexToTest < indexCount) newIndex = indexToTest;
             else newIndex = Random.Range(0, indexCount);
+            print(newIndex);
             int inverse = Random.Range(0, 2);
             int perpendicular = Random.Range(0, 2);
             int mirror = Random.Range(0, 2);
@@ -107,7 +113,7 @@ public class GameController : MonoBehaviour
             float attackSpawnTime = spawnsFixedTime[newIndex][0].spawnTime;
             if (lastCollision - time > -attackSpawnTime && time > 0)
             {
-                print("attackDelay " + (lastCollision - attackSpawnTime));
+                //print("attackDelay " + (lastCollision - attackSpawnTime));
                 yield return new WaitForSeconds(lastCollision - time + attackSpawnTime);
             }
 
@@ -118,7 +124,7 @@ public class GameController : MonoBehaviour
             {
                 if (i.spawnTime > time - firstSpawn)
                 {
-                    print("spawnDelay " + (i.spawnTime - (time - firstSpawn)));
+                    //print("spawnDelay " + (i.spawnTime - (time - firstSpawn)));
                     yield return new WaitForSeconds(i.spawnTime - (time - firstSpawn));
                 }
                 int intArrow = (int)i.arrow;
@@ -132,7 +138,7 @@ public class GameController : MonoBehaviour
 
                 float thisAttack = (arrowSpanwDistance / i.speed) + i.spawnTime + firstSpawn;
                 lastCollision = thisAttack > lastCollision ? thisAttack : lastCollision;
-                print (i.arrow + " " + time);
+                //print (i.arrow + " " + time);
             }
         }
         yield return null;

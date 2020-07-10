@@ -17,63 +17,6 @@ MonoBehaviour:
   finalSpeed: 5
   stopColor: {r: 0.67058825, g: 0.67058825, b: 0.67058825, a: 1}
   turnSpeed: 5
---- !u!1 &8894426022184310412
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2221821458279860554}
-  - component: {fileID: 8035405899898751599}
-  m_Layer: 2
-  m_Name: second caster
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2221821458279860554
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8894426022184310412}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 9186914990277638097}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8035405899898751599
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8894426022184310412}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShadowGroup: 0
-  m_HasRenderer: 0
-  m_UseRendererSilhouette: 1
-  m_CastsShadows: 1
-  m_SelfShadows: 0
-  m_ApplyToSortingLayers: fb8d9634a99a6d9500000000
-  m_ShapePath:
-  - {x: 0.8125, y: -0.4375, z: 0}
-  - {x: 0.9375, y: -0.4375, z: 0}
-  - {x: 0.9375, y: 0.4375, z: 0}
-  - {x: 0.8125, y: 0.4375, z: 0}
-  m_ShapePathHash: -1217006315
-  m_Mesh: {fileID: 0}
-  m_InstanceId: 19250
 --- !u!1001 &2174568551534303172
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -274,7 +217,7 @@ PrefabInstance:
     - target: {fileID: 7013199810249728023, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
         type: 3}
       propertyPath: m_Name
-      value: smart arrow
+      value: smart normal
       objectReference: {fileID: 0}
     - target: {fileID: 7786854333687930087, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
         type: 3}
@@ -290,12 +233,6 @@ PrefabInstance:
 --- !u!1 &9186914990277638099 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7013199810249728023, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
-    type: 3}
-  m_PrefabInstance: {fileID: 2174568551534303172}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &9186914990277638097 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7013199810249728021, guid: 4e3f398fc8ff1a247b1bace4451a45a1,
     type: 3}
   m_PrefabInstance: {fileID: 2174568551534303172}
   m_PrefabAsset: {fileID: 0}
