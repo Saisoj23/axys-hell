@@ -200,7 +200,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!1 &344224659
 GameObject:
@@ -347,7 +347,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!1 &466974340
 GameObject:
@@ -567,7 +567,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!43 &683985014
 Mesh:
@@ -1235,6 +1235,21 @@ PrefabInstance:
       propertyPath: orthographic size
       value: 5.875
       objectReference: {fileID: 0}
+    - target: {fileID: 4830657987379420044, guid: 8260ba11d699b1741bdb1912da29947f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830657987379420044, guid: 8260ba11d699b1741bdb1912da29947f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830657987379420044, guid: 8260ba11d699b1741bdb1912da29947f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4830657987421711875, guid: 8260ba11d699b1741bdb1912da29947f,
         type: 3}
       propertyPath: m_Sprite
@@ -1654,7 +1669,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!1001 &2764027853320909661
 PrefabInstance:
