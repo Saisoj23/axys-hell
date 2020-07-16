@@ -4007,6 +4007,11 @@ PrefabInstance:
       propertyPath: attacks.array.Array.data[15].SpawnList.array.Array.data[7].actionDistance
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4830657985382438941, guid: 8260ba11d699b1741bdb1912da29947f,
+        type: 3}
+      propertyPath: attacks.array.Array.data[0].SpawnList.array.Array.data[3].spawnTime
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4830657985409451874, guid: 8260ba11d699b1741bdb1912da29947f,
         type: 3}
       propertyPath: m_MatchWidthOrHeight

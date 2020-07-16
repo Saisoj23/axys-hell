@@ -709,8 +709,8 @@ MonoBehaviour:
   - {x: 0, y: -8, z: 0}
   - {x: 5.6, y: -5.6, z: 0}
   - {x: -5.6, y: -5.6, z: 0}
-  - {x: -5.6, y: 5.6, z: 0}
   - {x: 5.6, y: 5.6, z: 0}
+  - {x: -5.6, y: 5.6, z: 0}
   arrows:
   - {fileID: 7013199810249728023, guid: 4e3f398fc8ff1a247b1bace4451a45a1, type: 3}
   - {fileID: 618614869027402135, guid: 3c0c0ee554720ae4b95c7e88f4188ec2, type: 3}
