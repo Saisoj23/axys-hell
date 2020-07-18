@@ -28,6 +28,8 @@ public class LevelSelector : MonoBehaviour
         scene = GameObject.FindObjectOfType<SceneChange>();
         indexCount = levelAnim.Length;
         levelAnim[0].SetTrigger("InitialEnable");
+        levelAnim[0].SetTrigger("InitialUnbloqued");
+        levelAnim[2].SetTrigger("InitialUnbloqued");
     }
 
     void Update()
@@ -66,7 +68,7 @@ public class LevelSelector : MonoBehaviour
     public void Next()
     {
         if (!canContinue) return;
-        levelAnim[indexMenu].SetTrigger("EntryRight");
+        levelAnim[indexMenu].SetTrigger("ExitLeft");
         indexMenu++;
         if (indexMenu >= indexCount) indexMenu = 0;
         levelAnim[indexMenu].SetTrigger("EntryRight");
@@ -78,7 +80,7 @@ public class LevelSelector : MonoBehaviour
     public void Prev()
     {
         if (!canContinue) return;
-        levelAnim[indexMenu].SetTrigger("EntryLeft");
+        levelAnim[indexMenu].SetTrigger("ExitRight");
         indexMenu--;
         if (indexMenu < 0) indexMenu = indexCount - 1;
         levelAnim[indexMenu].SetTrigger("EntryLeft");

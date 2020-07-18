@@ -6094,7 +6094,7 @@ PrefabInstance:
     - target: {fileID: 4830657985382438941, guid: 8260ba11d699b1741bdb1912da29947f,
         type: 3}
       propertyPath: attacks.array.Array.data[7].SpawnList.array.Array.data[4].actionDistance
-      value: 0.75
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4830657985382438941, guid: 8260ba11d699b1741bdb1912da29947f,
         type: 3}
@@ -6989,7 +6989,7 @@ PrefabInstance:
     - target: {fileID: 4830657985382438941, guid: 8260ba11d699b1741bdb1912da29947f,
         type: 3}
       propertyPath: attacks.array.Array.data[12].SpawnList.array.Array.data[2].actionDistance
-      value: 0.75
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4830657985382438941, guid: 8260ba11d699b1741bdb1912da29947f,
         type: 3}
@@ -7004,7 +7004,7 @@ PrefabInstance:
     - target: {fileID: 4830657985382438941, guid: 8260ba11d699b1741bdb1912da29947f,
         type: 3}
       propertyPath: attacks.array.Array.data[12].SpawnList.array.Array.data[3].actionDistance
-      value: 0.75
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4830657985382438941, guid: 8260ba11d699b1741bdb1912da29947f,
         type: 3}
@@ -7029,7 +7029,7 @@ PrefabInstance:
     - target: {fileID: 4830657985382438941, guid: 8260ba11d699b1741bdb1912da29947f,
         type: 3}
       propertyPath: attacks.array.Array.data[12].SpawnList.array.Array.data[4].actionDistance
-      value: 0.75
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4830657985382438941, guid: 8260ba11d699b1741bdb1912da29947f,
         type: 3}
@@ -7044,7 +7044,7 @@ PrefabInstance:
     - target: {fileID: 4830657985382438941, guid: 8260ba11d699b1741bdb1912da29947f,
         type: 3}
       propertyPath: attacks.array.Array.data[12].SpawnList.array.Array.data[5].actionDistance
-      value: 0.75
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4830657985382438941, guid: 8260ba11d699b1741bdb1912da29947f,
         type: 3}
@@ -7064,7 +7064,7 @@ PrefabInstance:
     - target: {fileID: 4830657985382438941, guid: 8260ba11d699b1741bdb1912da29947f,
         type: 3}
       propertyPath: attacks.array.Array.data[12].SpawnList.array.Array.data[6].actionDistance
-      value: 0.75
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4830657985382438941, guid: 8260ba11d699b1741bdb1912da29947f,
         type: 3}
@@ -7089,7 +7089,7 @@ PrefabInstance:
     - target: {fileID: 4830657985382438941, guid: 8260ba11d699b1741bdb1912da29947f,
         type: 3}
       propertyPath: attacks.array.Array.data[12].SpawnList.array.Array.data[7].actionDistance
-      value: 0.75
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4830657985382438941, guid: 8260ba11d699b1741bdb1912da29947f,
         type: 3}
@@ -7374,7 +7374,7 @@ PrefabInstance:
     - target: {fileID: 4830657985382438941, guid: 8260ba11d699b1741bdb1912da29947f,
         type: 3}
       propertyPath: attacks.array.Array.data[13].SpawnList.array.Array.data[2].actionDistance
-      value: 0.75
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4830657985382438941, guid: 8260ba11d699b1741bdb1912da29947f,
         type: 3}
@@ -7389,7 +7389,7 @@ PrefabInstance:
     - target: {fileID: 4830657985382438941, guid: 8260ba11d699b1741bdb1912da29947f,
         type: 3}
       propertyPath: attacks.array.Array.data[13].SpawnList.array.Array.data[3].actionDistance
-      value: 0.75
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4830657985382438941, guid: 8260ba11d699b1741bdb1912da29947f,
         type: 3}
@@ -7414,7 +7414,7 @@ PrefabInstance:
     - target: {fileID: 4830657985382438941, guid: 8260ba11d699b1741bdb1912da29947f,
         type: 3}
       propertyPath: attacks.array.Array.data[13].SpawnList.array.Array.data[4].actionDistance
-      value: 0.75
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4830657985382438941, guid: 8260ba11d699b1741bdb1912da29947f,
         type: 3}
@@ -7429,7 +7429,7 @@ PrefabInstance:
     - target: {fileID: 4830657985382438941, guid: 8260ba11d699b1741bdb1912da29947f,
         type: 3}
       propertyPath: attacks.array.Array.data[13].SpawnList.array.Array.data[5].actionDistance
-      value: 0.75
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4830657985382438941, guid: 8260ba11d699b1741bdb1912da29947f,
         type: 3}
@@ -7449,7 +7449,7 @@ PrefabInstance:
     - target: {fileID: 4830657985382438941, guid: 8260ba11d699b1741bdb1912da29947f,
         type: 3}
       propertyPath: attacks.array.Array.data[13].SpawnList.array.Array.data[6].actionDistance
-      value: 0.75
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4830657985382438941, guid: 8260ba11d699b1741bdb1912da29947f,
         type: 3}
@@ -7474,7 +7474,7 @@ PrefabInstance:
     - target: {fileID: 4830657985382438941, guid: 8260ba11d699b1741bdb1912da29947f,
         type: 3}
       propertyPath: attacks.array.Array.data[13].SpawnList.array.Array.data[7].actionDistance
-      value: 0.75
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4830657985382438941, guid: 8260ba11d699b1741bdb1912da29947f,
         type: 3}
