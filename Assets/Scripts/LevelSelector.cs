@@ -29,7 +29,10 @@ public class LevelSelector : MonoBehaviour
         indexCount = levelAnim.Length;
         levelAnim[0].SetTrigger("InitialEnable");
         levelAnim[0].SetTrigger("InitialUnbloqued");
+        levelAnim[1].SetTrigger("InitialUnbloqued");
         levelAnim[2].SetTrigger("InitialUnbloqued");
+        levelAnim[3].SetTrigger("InitialUnbloqued");
+        levelAnim[4].SetTrigger("InitialUnbloqued");
     }
 
     void Update()
