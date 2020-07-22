@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 
     public float rotateSpeed;
     public float minTouchSpeed;
+    public bool controlMode;
 
     Vector2 direccion;
     Vector2 screenMiddle = new Vector2(Screen.width, Screen.height) / 2;
@@ -34,6 +35,8 @@ public class PlayerController : MonoBehaviour
         rot = shield.transform.parent.gameObject;
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         game = GameObject.FindObjectOfType<GameController>();
+        controlMode = PlayerPrefs.GetInt("ControlMode", 1) == 1 ? true : false;
+        minTouchSpeed = Mathf.Lerp(0.05f, 0.001f, PlayerPrefs.GetFloat("SensibilityValue", 1));
     }
 
     void Update ()
@@ -42,7 +45,7 @@ public class PlayerController : MonoBehaviour
         RaycastHit hit;
         if (Input.GetMouseButton(0) && Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit, 20f)) 
         {
-            if (hit.collider.CompareTag("Background"))
+            if (hit.collider.CompareTag("Background") && controlMode)
             {
                 actualMousePosition = hit.point;
                 if (lastMousePosition != null && lastPresed && Vector2.Distance(actualMousePosition, lastMousePosition) * Time.deltaTime > minTouchSpeed)
@@ -51,6 +54,10 @@ public class PlayerController : MonoBehaviour
                 }
                 lastMousePosition = actualMousePosition;
                 lastPresed = true;
+            }
+            else if (hit.collider.CompareTag("Background") && !controlMode)
+            {
+                input = hit.point.normalized;
             }
         }
         else lastPresed = false;
