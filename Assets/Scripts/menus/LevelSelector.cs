@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelSelector : MonoBehaviour
 {
@@ -9,14 +10,21 @@ public class LevelSelector : MonoBehaviour
     int indexCount;
     
     public Animator[] levelAnim;
+    public TMPro.TMP_Text[] bestScores;
+    public TMPro.TMP_Text[] lastScores;
+    public Color[] textColor;
 
     Camera cam;
     SceneChange scene;
+    CustomLevel custom;
+    MusicAndData musicAndData;
 
     public float minTouchSpeed;
     public float continueColddown;
 
-    Vector2 direccion;
+    int completedLevels;
+    int unbloquedLevels;
+
     Vector2 screenMiddle = new Vector2(Screen.width, Screen.height) / 2;
     bool lastPresed;
     Vector2 lastMousePosition;
@@ -26,13 +34,45 @@ public class LevelSelector : MonoBehaviour
     {
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         scene = GameObject.FindObjectOfType<SceneChange>();
+        musicAndData = GameObject.FindObjectOfType<MusicAndData>();
+        custom = GameObject.FindObjectOfType<CustomLevel>();
         indexCount = levelAnim.Length;
-        levelAnim[0].SetTrigger("InitialEnable");
-        levelAnim[0].SetTrigger("InitialUnbloqued");
-        levelAnim[1].SetTrigger("InitialUnbloqued");
-        levelAnim[2].SetTrigger("InitialUnbloqued");
-        levelAnim[3].SetTrigger("InitialUnbloqued");
-        levelAnim[4].SetTrigger("InitialUnbloqued");
+
+        if (musicAndData != null) musicAndData.PlayMusic(true);
+
+        int difficulty = PlayerPrefs.GetInt("Difficulty", 0);
+        for (int i = 0; i < bestScores.Length; i++)
+        {
+            int bestScore = (PlayerPrefs.GetInt(difficulty + "BestScore" + i, 0));
+            bestScores[i].text = bestScore.ToString();
+            if (bestScore >= 1000) bestScores[i].color = textColor[0];
+        }
+        for (int i = 0; i < lastScores.Length; i++)
+        {
+            lastScores[i].text = (PlayerPrefs.GetInt(difficulty + "LastScore" + i, 0)).ToString();
+            if (PlayerPrefs.GetInt(difficulty + "SavedScore" + i, 0) != 0) lastScores[i].color = textColor[1];
+        }
+
+        indexMenu = PlayerPrefs.GetInt("LastOpenLevel", 0);
+        levelAnim[indexMenu].SetTrigger("InitialEnable");
+
+        completedLevels = PlayerPrefs.GetInt(difficulty + "CompletedLevels", -1);
+        unbloquedLevels = PlayerPrefs.GetInt(difficulty + "UnbloquedLevels", 0);
+
+        for (int i = 0; i < levelAnim.Length - 1; i++)
+        {
+            if (i <= unbloquedLevels) levelAnim[i].SetTrigger("InitialUnbloqued");
+        }
+        levelAnim[levelAnim.Length - 1].SetTrigger("InitialUnbloqued");
+
+        if (completedLevels == unbloquedLevels && unbloquedLevels < levelAnim.Length - 2)
+        {
+            unbloquedLevels++;
+            PlayerPrefs.SetInt(difficulty + "UnbloquedLevels", unbloquedLevels);
+            levelAnim[indexMenu].SetTrigger("ExitLeft");
+            levelAnim[unbloquedLevels].SetTrigger("UnblockRight");
+            indexMenu++;
+        }
     }
 
     void Update()
@@ -76,6 +116,7 @@ public class LevelSelector : MonoBehaviour
         if (indexMenu >= indexCount) indexMenu = 0;
         levelAnim[indexMenu].SetTrigger("EntryRight");
 
+        PlayerPrefs.SetInt("LastOpenLevel", indexMenu);
         canContinue = false;
         StartCoroutine(ContinueColddown());
     }
@@ -88,13 +129,15 @@ public class LevelSelector : MonoBehaviour
         if (indexMenu < 0) indexMenu = indexCount - 1;
         levelAnim[indexMenu].SetTrigger("EntryLeft");
 
+        PlayerPrefs.SetInt("LastOpenLevel", indexMenu);
         canContinue = false;
         StartCoroutine(ContinueColddown());
     }
 
     public void Play ()
     {
-        if (!canContinue) return;
+        if (!canContinue || (indexMenu > unbloquedLevels && indexMenu != levelAnim.Length - 1)) return;
+        print("firstIfPassed");
         switch (indexMenu)
         {
             case 0: 
@@ -109,6 +152,15 @@ public class LevelSelector : MonoBehaviour
             case 3: 
                 scene.ChangeScene("level_space");
                 break;
+            case 4:
+                if (custom.canEnter)
+                {
+                    print("secondIfPassed");
+                    musicAndData.EnterInCustomLevel = true;
+                    indexMenu = custom.themeActive;
+                    Play();
+                }
+                break;
             default:
                 break;
         }
@@ -120,5 +172,4 @@ public class LevelSelector : MonoBehaviour
         yield return new WaitForSeconds(continueColddown);
         canContinue = true;
     }
-
 }

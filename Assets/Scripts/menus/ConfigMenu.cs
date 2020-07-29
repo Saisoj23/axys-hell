@@ -6,6 +6,9 @@ using UnityEngine.Audio;
 
 public class ConfigMenu : MonoBehaviour
 {
+    public Image difficultyImage;
+    public TMPro.TMP_Text difficultyText;
+    bool difficulty;
     public Toggle musicToggle;
     public Toggle soundToggle;
     public Button sliceButton;
@@ -17,12 +20,26 @@ public class ConfigMenu : MonoBehaviour
     public Slider soundSlider;
     public Slider sensibilitySlider;
 
+    public Sprite[] difficultySprites;
+
     public AudioMixer mixer;
 
     public AudioSource aud; 
 
     void Awake()
     {
+        difficulty = PlayerPrefs.GetInt("Difficulty", 0) == 1 ? true : false;
+        if (difficulty)
+        {
+            difficultyImage.sprite = difficultySprites[1];
+            difficultyText.text = "Hard";
+        }
+        else
+        {
+            difficultyImage.sprite = difficultySprites[0];
+            difficultyText.text = "Normal";
+        }
+
         aud.enabled = false;
         musicToggle.isOn = PlayerPrefs.GetInt("Music", 1) == 1 ? false : true;
         musicSlider.value = PlayerPrefs.GetFloat("MusicValue", 1);
@@ -55,6 +72,23 @@ public class ConfigMenu : MonoBehaviour
             sensibilitySlider.interactable = false;
         }
         aud.enabled = true;
+    }
+
+    public void SetDifficulty ()
+    {
+        if (difficulty)
+        {
+            PlayerPrefs.SetInt("Difficulty", 0);
+            difficultyImage.sprite = difficultySprites[0];
+            difficultyText.text = "Normal";
+        }
+        else
+        {
+            PlayerPrefs.SetInt("Difficulty", 1);
+            difficultyImage.sprite = difficultySprites[1];
+            difficultyText.text = "Hard";
+        }
+        difficulty = !difficulty;
     }
 
     public void SetMusic ()

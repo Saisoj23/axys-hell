@@ -10,6 +10,13 @@ public class MusicAndData : MonoBehaviour
     public AudioMixer mixer;
 
     public Animator intro;
+
+    public float fadeTime;
+
+    public AudioClip[] clips;
+    public SpawnController[] spawns;
+
+    public bool EnterInCustomLevel = false;
     
     void Awake()
     {
@@ -48,6 +55,16 @@ public class MusicAndData : MonoBehaviour
         }
     }
 
+    public void PlayMusic(bool active)
+    {
+        if (active && !music.isPlaying) 
+        {
+            music.volume = 1f;
+            music.Play();
+        }
+        else if (!active) StartCoroutine(MusicFade());
+    }
+
     public void SetMusic(bool active)
     {
         if (!active)
@@ -60,5 +77,15 @@ public class MusicAndData : MonoBehaviour
             mixer.SetFloat("MusicVolume", -80f);
             PlayerPrefs.SetInt("Music", 0);
         }
+    }
+
+    IEnumerator MusicFade ()
+    {
+        for (float i = 0; i < fadeTime; i += Time.deltaTime)
+        {
+            music.volume = Mathf.InverseLerp(fadeTime, 0f, i);
+            yield return null;
+        }
+        music.Stop();
     }
 }

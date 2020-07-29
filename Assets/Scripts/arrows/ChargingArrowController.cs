@@ -50,11 +50,11 @@ public class ChargingArrowController : ArrowController
         bool isShield = hit.collider.CompareTag("Shield");
         if (isShield) 
         {
-            laser.transform.localScale = new Vector3((Mathf.Abs(laser.transform.position.x + laser.transform.position.y) - 0.375f) * 2, 1, 1);
+            laser.transform.localScale = new Vector3((Vector2.Distance(laser.transform.position, Vector2.zero) - 0.375f) * 2, 1, 1);
         }
         else 
         {
-            laser.transform.localScale = new Vector3(Mathf.Abs(laser.transform.position.x + laser.transform.position.y) * 2, 1, 1);
+            laser.transform.localScale = new Vector3(Vector2.Distance(laser.transform.position, Vector2.zero) * 2, 1, 1);
         }
         laserSpr.enabled = true;
         if (isShield) shield.Defend();

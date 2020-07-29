@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour
     Vector2 actualMousePosition;
     float timeTurning;
     float lastAngle;
-    Rigidbody2D rb;
     Animator anim;
     SpriteRenderer spr;
     ShieldController shield;
@@ -28,7 +27,6 @@ public class PlayerController : MonoBehaviour
 
     void Awake ()
     {
-        rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         spr = GetComponent<SpriteRenderer>();
         shield = GetComponentInChildren<ShieldController>();
@@ -36,7 +34,7 @@ public class PlayerController : MonoBehaviour
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         game = GameObject.FindObjectOfType<GameController>();
         controlMode = PlayerPrefs.GetInt("ControlMode", 1) == 1 ? true : false;
-        minTouchSpeed = Mathf.Lerp(0.05f, 0.001f, PlayerPrefs.GetFloat("SensibilityValue", 1));
+        minTouchSpeed = Mathf.Lerp(0.01f, 0.001f, PlayerPrefs.GetFloat("SensibilityValue", 1));
     }
 
     void Update ()

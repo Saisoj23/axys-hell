@@ -6,9 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
+    public int level;
+    public int difficulty;
+    public string spawnsString = "";
+    public GameObject completedText;
+    public GameObject savePointsText;
+    public bool custom = false;
+    int[] spawnsSlected = {1, 0, 0, 0};
     [Header("Player")]
     public PlayerController player;
-    public ShieldController shield;
 
     [Header("Attaks Values")]
     public Vector3[] positions;
@@ -26,19 +32,25 @@ public class GameController : MonoBehaviour
     public bool gamePlaying = false;
     public bool pause = false;
     public bool editing = false;
-    [HideInInspector] public float score;
-    [HideInInspector] public int bestScore;
-    [HideInInspector] public float time = 0f;
-    float timeBeforePlay;
-    AudioSource sound;
+    public float score;
+    public int savedScore;
+    public int bestScore;
+    public float time = 0f;
+    public float timeBeforePlay;
+    AudioSource music;
     UIController ui;
+    MusicAndData musicAndData;
+    public SpinnCamera spinn;
 
     void Start ()
     {   
         spawn = GetComponent<SpawnController>();
         ui = GetComponent<UIController>();
-        sound = GetComponent<AudioSource>();
-        bestScore = PlayerPrefs.GetInt("BestScore", 0);
+        music = GetComponent<AudioSource>();
+        musicAndData = GameObject.FindObjectOfType<MusicAndData>();
+        completedText.SetActive(false);
+        savePointsText.SetActive(false);
+        difficulty = PlayerPrefs.GetInt("Difficulty", 0);
         #if UNITY_EDITOR
         spawn.ReadJson();
         #else
@@ -47,6 +59,58 @@ public class GameController : MonoBehaviour
         pause = false;
         editing = false;
         #endif
+
+        if (musicAndData != null)
+        {
+            if (musicAndData.EnterInCustomLevel)
+            {
+                custom = true;
+                musicAndData.EnterInCustomLevel = false;
+                music.clip = musicAndData.clips[PlayerPrefs.GetInt(difficulty + "CustomMusic", 0)];
+                spawn.attacks.Clear();
+                for (int i = 0; i < musicAndData.spawns.Length; i++)
+                {
+                    spawnsSlected[i] = PlayerPrefs.GetInt(difficulty + "CustomSpawn" + i);
+                    if (spawnsSlected[i] == 1 ? true : false)
+                        for (int j = 0; j < musicAndData.spawns[i].attacks.Length; j++)
+                        {
+                            spawn.attacks.Add(musicAndData.spawns[i].attacks[j]);
+                        }
+
+                    spawnsString += spawnsSlected[i];
+                }
+                if (spawnsSlected[3] == 1) 
+                {
+                    player.axis = PlayerController.Axis.Fourth;
+                    if (spinn != null)
+                    {
+                        spinn.sprites[2].enabled = true;
+                        spinn.sprites[3].enabled = true;
+                    }
+                }
+                else 
+                {
+                    player.axis = PlayerController.Axis.Two;
+                    if (spinn != null)
+                    {
+                        spinn.sprites[2].enabled = false;
+                        spinn.sprites[3].enabled = false;
+                    }
+                }
+                bestScore = PlayerPrefs.GetInt(difficulty + "CustomBestScore" + spawnsString, 0);
+                score = PlayerPrefs.GetInt(difficulty + "CustomLastScore" + spawnsString, 0);
+            }
+            else 
+            {
+                custom = false;
+                bestScore = PlayerPrefs.GetInt(difficulty + "BestScore" + level, 0);
+                score = PlayerPrefs.GetInt(difficulty + "LastScore" + level, 0);
+                savedScore = PlayerPrefs.GetInt(difficulty + "SavedScore" + level, 0);
+                if (savedScore != 0) ui.SetColor(1, 1);
+                if (bestScore >= 1000) ui.SetColor(0, 1);
+            }
+        }
+
         OverrideInspector();
     }
 
@@ -55,7 +119,7 @@ public class GameController : MonoBehaviour
         if (gamePlaying && !pause)
         {
             time = Time.time - timeBeforePlay;
-            score = time * 10;
+            score = (time * 10) + savedScore;
             if ((int)score > bestScore)
             {
                 bestScore = (int)score;
@@ -81,7 +145,9 @@ public class GameController : MonoBehaviour
             foreach (SpawnController.Spawn item in listItem.SpawnList)
             {
                 SpawnController.Spawn spawnItem = (SpawnController.Spawn)item.Clone();
-                spawnItem.spawnTime -= arrowSpanwDistance / spawnItem.speed;
+                if (difficulty == 1 ? true : false) 
+                    spawnItem.spawnTime = (spawnItem.spawnTime / 2) - (arrowSpanwDistance / spawnItem.speed);
+                else spawnItem.spawnTime -= arrowSpanwDistance / spawnItem.speed;
                 spawnsFixedTime[index].Add(spawnItem);
                 //print("override");
             }
@@ -149,19 +215,18 @@ public class GameController : MonoBehaviour
         if (pause)
         {
             Pause();
-            //sound.Pause();
             return;
         }
         gamePlaying = active;
         if (active)
         {
-            //sound.Play();
+            music.Play();
             DestroyAllBullets();
             StartCoroutine("Attack");
         }
         else
         {
-            //sound.Stop();
+            music.Pause();
             StopCoroutine("Attack");
         }
         ui.Play(active);
@@ -172,11 +237,13 @@ public class GameController : MonoBehaviour
         pause = !pause;
         if (pause) 
         {
+            music.Pause();
             Time.timeScale = 0;
         }
         else 
         {
             Time.timeScale = 1;
+            music.Play();
         }
         ui.Pause(pause);
     }
@@ -185,7 +252,42 @@ public class GameController : MonoBehaviour
     public void Damage ()
     {
         if (editing) return;
-        PlayerPrefs.SetInt("BestScore", bestScore);
+        if (custom)
+        {
+            PlayerPrefs.SetInt(difficulty + "CustomBestScore" + spawnsString, (int)bestScore);
+            PlayerPrefs.SetInt(difficulty + "CustomLastScore" + spawnsString, (int)score);
+        }
+        else
+        {
+            if (PlayerPrefs.GetInt(difficulty + "CompletedLevels", -1) < level && bestScore >= 1000)
+            {
+                savePointsText.SetActive(false);
+                completedText.SetActive(true);
+                ui.SetColor(0, 1);
+                PlayerPrefs.SetInt(difficulty + "CompletedLevels", level);
+                if (savedScore != 0)
+                {
+                    savedScore = 0;
+                    PlayerPrefs.SetInt(difficulty + "SavedScore" + level, savedScore);
+                    ui.SetColor(1, 0);
+                }
+            }
+            else 
+            {
+                if (score > 250 && savedScore == 0) savePointsText.SetActive(true);
+                else 
+                {
+                    savedScore = 0;
+                    savePointsText.SetActive(false);
+                    ui.SetColor(1, 0);
+                    PlayerPrefs.SetInt(difficulty + "SavedScore" + level, savedScore);
+                }
+                completedText.SetActive(false);
+            }
+            
+            PlayerPrefs.SetInt(difficulty + "BestScore" + level, (int)bestScore);
+            PlayerPrefs.SetInt(difficulty + "LastScore" + level, (int)score);
+        }
         gamePlaying = false;
         ui.Stop();
         PlayAttaks(false);
@@ -195,18 +297,28 @@ public class GameController : MonoBehaviour
     void StopAllBullets ()
     {
         ArrowController[] actualArrows = GameObject.FindObjectsOfType<ArrowController>();
-            foreach (ArrowController item in actualArrows)
-            {
-                item.Stop();
-            }
+        foreach (ArrowController item in actualArrows)
+        {
+            item.Stop();
+        }
     }
 
     void DestroyAllBullets ()
     {
         ArrowController[] actualArrows = GameObject.FindObjectsOfType<ArrowController>();
-            foreach (ArrowController item in actualArrows)
-            {
-                item.MoveAndDestroy();
-            }
+        foreach (ArrowController item in actualArrows)
+        {
+            item.MoveAndDestroy();
+        }
+    }
+
+    public void StopGame ()
+    {
+        music.Stop();
+        ArrowController[] actualArrows = GameObject.FindObjectsOfType<ArrowController>();
+        foreach (ArrowController item in actualArrows)
+        {
+            item.StopAllCoroutines();
+        }
     }
 }

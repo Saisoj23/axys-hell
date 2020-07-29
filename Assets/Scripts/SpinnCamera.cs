@@ -7,7 +7,7 @@ public class SpinnCamera : MonoBehaviour
 
     Camera cam;
     GameController game;
-    public List<SpriteRenderer> sprites = new List<SpriteRenderer>();
+    public SpriteRenderer[] sprites;
     bool lastPlaying = false;
     bool spinning = false;
 
