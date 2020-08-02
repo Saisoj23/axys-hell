@@ -1593,12 +1593,12 @@ PrefabInstance:
     - target: {fileID: 8930865423067330782, guid: 5c69d8a75164d2443a41738a709794c0,
         type: 3}
       propertyPath: m_text
-      value: Stronger Than You
+      value: Metal (Chromatic, Electronic)
       objectReference: {fileID: 0}
     - target: {fileID: 8930865423067330782, guid: 5c69d8a75164d2443a41738a709794c0,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 17
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 8930865423067330782, guid: 5c69d8a75164d2443a41738a709794c0,
         type: 3}
@@ -1609,6 +1609,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.wordCount
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8930865423067330782, guid: 5c69d8a75164d2443a41738a709794c0,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8930865423272733766, guid: 5c69d8a75164d2443a41738a709794c0,
         type: 3}
@@ -3983,22 +3988,22 @@ PrefabInstance:
     - target: {fileID: 8930865423067330782, guid: 5c69d8a75164d2443a41738a709794c0,
         type: 3}
       propertyPath: m_text
-      value: Buttercup
+      value: Darkest Dungeon
       objectReference: {fileID: 0}
     - target: {fileID: 8930865423067330782, guid: 5c69d8a75164d2443a41738a709794c0,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 9
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8930865423067330782, guid: 5c69d8a75164d2443a41738a709794c0,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8930865423067330782, guid: 5c69d8a75164d2443a41738a709794c0,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8930865423272733766, guid: 5c69d8a75164d2443a41738a709794c0,
         type: 3}
@@ -5822,22 +5827,22 @@ PrefabInstance:
     - target: {fileID: 8930865423067330782, guid: 5c69d8a75164d2443a41738a709794c0,
         type: 3}
       propertyPath: m_text
-      value: Hopes and Dreams
+      value: Techno_6
       objectReference: {fileID: 0}
     - target: {fileID: 8930865423067330782, guid: 5c69d8a75164d2443a41738a709794c0,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 16
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8930865423067330782, guid: 5c69d8a75164d2443a41738a709794c0,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8930865423067330782, guid: 5c69d8a75164d2443a41738a709794c0,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8930865423272733766, guid: 5c69d8a75164d2443a41738a709794c0,
         type: 3}
@@ -7893,7 +7898,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Get 100pts in the previous level to unlock
+  m_text: Get 1000pts in the previous level to unlock
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8892dee77cc0d5c4387b18782fd95828, type: 2}
   m_sharedMaterial: {fileID: 7857658379665812288, guid: 8892dee77cc0d5c4387b18782fd95828,
@@ -10514,7 +10519,22 @@ PrefabInstance:
     - target: {fileID: 8930865423067330782, guid: 5c69d8a75164d2443a41738a709794c0,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 17
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8930865423067330782, guid: 5c69d8a75164d2443a41738a709794c0,
+        type: 3}
+      propertyPath: m_text
+      value: Taken Lightly
+      objectReference: {fileID: 0}
+    - target: {fileID: 8930865423067330782, guid: 5c69d8a75164d2443a41738a709794c0,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8930865423067330782, guid: 5c69d8a75164d2443a41738a709794c0,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8930865423272733766, guid: 5c69d8a75164d2443a41738a709794c0,
         type: 3}

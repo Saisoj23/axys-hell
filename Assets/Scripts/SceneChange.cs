@@ -19,14 +19,22 @@ public class SceneChange : MonoBehaviour
         GameObject.Find("EventSystem").SetActive(false);
         nextScene = scene;
         Time.timeScale = 1;
-        StartCoroutine(SceneLoad());
-
+        anim.SetTrigger("Black");
+        StartCoroutine(SceneLoad(1f));
     }
 
-    IEnumerator SceneLoad ()
+    public void ChangeSceneSmooth(string scene)
     {
-        anim.SetTrigger("Black");
-        yield return new WaitForSeconds(1f);
+        GameObject.Find("EventSystem").SetActive(false);
+        nextScene = scene;
+        Time.timeScale = 1;
+        anim.SetTrigger("BlackSmooth");
+        StartCoroutine(SceneLoad(6f));
+    }
+
+    IEnumerator SceneLoad (float wait)
+    {
+        yield return new WaitForSeconds(wait);
         SceneManager.LoadScene(nextScene);
     }
 

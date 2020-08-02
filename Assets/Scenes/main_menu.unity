@@ -1953,12 +1953,12 @@ MonoBehaviour:
           actionDistance: 1.75
         - arrow: 4
           position: 2
-          spawnTime: 2
+          spawnTime: 3
           speed: 2
           actionDistance: 1.75
         - arrow: 4
           position: 3
-          spawnTime: 2
+          spawnTime: 3
           speed: 2
           actionDistance: 1.75
     - SpawnList:

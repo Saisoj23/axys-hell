@@ -20,8 +20,8 @@ public class SpinnCamera : MonoBehaviour
 
     void Awake()
     {
-        cam = GameObject.FindObjectOfType<Camera>();
-        game = GameObject.FindObjectOfType<GameController>();
+        cam = FindObjectOfType<Camera>();
+        game = FindObjectOfType<GameController>();
         foreach (SpriteRenderer item in sprites)
         {
             item.color = new Color(1,1,1,0);

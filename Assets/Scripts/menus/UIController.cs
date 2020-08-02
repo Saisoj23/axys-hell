@@ -40,7 +40,7 @@ public class UIController : MonoBehaviour
         game = GetComponent<GameController>();
         ad = GetComponent<AdController>();
         cam = GetComponentInChildren<Camera>();
-        musicAndData = GameObject.FindObjectOfType<MusicAndData>();
+        musicAndData = FindObjectOfType<MusicAndData>();
 
         if (musicAndData != null) musicAndData.PlayMusic(false);
 
@@ -112,6 +112,13 @@ public class UIController : MonoBehaviour
         {
             sfx.clip = sounds[sound];
         }
+        sfx.Play();
+    }
+
+    public IEnumerator EndingSFXPlay ()
+    {
+        yield return new WaitForSeconds(0.5f);
+        sfx.clip = sounds[3];
         sfx.Play();
     }
 

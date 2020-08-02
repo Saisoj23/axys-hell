@@ -32,20 +32,22 @@ public class ChargingArrowController : ArrowController
         Vector2 target = rb.position.normalized * actionDistance;
         while (rb.position != target)
         {
-            rb.MovePosition(Vector2.MoveTowards(rb.position, target, speed * 2 * Time.deltaTime));
-            yield return null;
+            rb.MovePosition(Vector2.MoveTowards(rb.position, target, speed * 2 * Time.fixedDeltaTime));
+            yield return new WaitForFixedUpdate();
         }
         Vector3 startChargePosition = charging.transform.position;
         actionDistance += (inicialPos.magnitude - actionDistance) / 2;
         float chargeTime = 0f;
         float chargeDistanceTime = 0f;
-        while (chargeTime < 1)
+        while (chargeTime < 1f)
         {
             chargeTime = Mathf.InverseLerp(0f, actionDistance, chargeDistanceTime);
-            chargeDistanceTime += speed * Time.deltaTime; 
+            chargeDistanceTime += speed * Time.fixedDeltaTime; 
             charging.transform.position = Vector3.Lerp(startChargePosition, transform.position + Vector3.forward, chargeTime);
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
+        charging.transform.position = transform.position + Vector3.forward;
+        yield return new WaitForFixedUpdate();
         RaycastHit2D hit = Physics2D.Raycast(rb.position, -rb.position.normalized);
         bool isShield = hit.collider.CompareTag("Shield");
         if (isShield) 
@@ -63,11 +65,11 @@ public class ChargingArrowController : ArrowController
             player.Hurt();
             DestroyArrow();
         }
-        for (float t = 0f; t < laserTime; t += Time.deltaTime)
+        for (float t = 0f; t < laserTime; t += Time.fixedDeltaTime)
         {
             laserSpr.color = new Color(1f, 1f, 1f, Mathf.InverseLerp(laserTime, 0f, t));
             laser.transform.localScale = new Vector3(laser.transform.localScale.x, Mathf.InverseLerp(0, laserTime, t) + 0.5f, 1f);
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
         laserSpr.enabled = false;
         DestroyArrow();

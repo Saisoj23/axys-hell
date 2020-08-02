@@ -31,8 +31,8 @@ public class OrbitalArrowController : ArrowController
         Vector2 target = rb.position.normalized * actionDistance;
         while (rb.position != target)
         {
-            rb.MovePosition(Vector2.MoveTowards(rb.position, target, speed * 2 * Time.deltaTime));
-            yield return null;
+            rb.MovePosition(Vector2.MoveTowards(rb.position, target, speed * 2 * Time.fixedDeltaTime));
+            yield return new WaitForFixedUpdate();
         }
         GameObject pivot = new GameObject("Pivot");
         transform.parent = pivot.transform;
@@ -43,18 +43,20 @@ public class OrbitalArrowController : ArrowController
         while (orbitalTime < 1f)
         {
             orbitalTime = Mathf.InverseLerp(0f, actionDistance, orbitalDistanceTime);
-            orbitalDistanceTime += speed * Time.deltaTime;
+            orbitalDistanceTime += speed * Time.fixedDeltaTime;
             pivot.transform.eulerAngles = new Vector3(0f, 0f, Mathf.Lerp(0f, 360f, orbitalTime));
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
-        //trail.enabled = true;
-        RaycastHit2D hit = Physics2D.Raycast(rb.position, -rb.position.normalized);
+        pivot.transform.eulerAngles = new Vector3(0f, 0f, 360f);
+        yield return new WaitForFixedUpdate();
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, -transform.position.normalized);
         box.enabled = false;
-        dash.Dash(hit.point, rb.position);
-        rb.MovePosition(hit.point);
-        for (float t = 0f; t < colisionTime; t += Time.deltaTime)
+        Vector2 lastPosition = transform.position;
+        transform.position = hit.point;
+        dash.Dash(transform.position, lastPosition);
+        for (float t = 0f; t < colisionTime; t += Time.fixedDeltaTime)
         {
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
         if (hit.collider.CompareTag("Shield")) shield.Defend();
         else 

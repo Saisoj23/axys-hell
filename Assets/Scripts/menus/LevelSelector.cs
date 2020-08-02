@@ -22,6 +22,7 @@ public class LevelSelector : MonoBehaviour
     public float minTouchSpeed;
     public float continueColddown;
 
+    int difficulty;
     int completedLevels;
     int unbloquedLevels;
 
@@ -33,14 +34,14 @@ public class LevelSelector : MonoBehaviour
     void Awake()
     {
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        scene = GameObject.FindObjectOfType<SceneChange>();
-        musicAndData = GameObject.FindObjectOfType<MusicAndData>();
-        custom = GameObject.FindObjectOfType<CustomLevel>();
+        scene = FindObjectOfType<SceneChange>();
+        musicAndData = FindObjectOfType<MusicAndData>();
+        custom = FindObjectOfType<CustomLevel>();
         indexCount = levelAnim.Length;
 
         if (musicAndData != null) musicAndData.PlayMusic(true);
 
-        int difficulty = PlayerPrefs.GetInt("Difficulty", 0);
+        difficulty = PlayerPrefs.GetInt("Difficulty", 0);
         for (int i = 0; i < bestScores.Length; i++)
         {
             int bestScore = (PlayerPrefs.GetInt(difficulty + "BestScore" + i, 0));
@@ -72,6 +73,9 @@ public class LevelSelector : MonoBehaviour
             levelAnim[indexMenu].SetTrigger("ExitLeft");
             levelAnim[unbloquedLevels].SetTrigger("UnblockRight");
             indexMenu++;
+            canContinue = false;
+            PlayerPrefs.SetInt("LastOpenLevel", indexMenu);
+            StartCoroutine(ContinueColddown());
         }
     }
 
@@ -141,6 +145,11 @@ public class LevelSelector : MonoBehaviour
         switch (indexMenu)
         {
             case 0: 
+                if (PlayerPrefs.GetInt(difficulty + "Progress", 0) == 0)
+                {
+                    scene.ChangeScene("text_scene");
+                    break;
+                }
                 scene.ChangeScene("level_normal");
                 break;
             case 1: 

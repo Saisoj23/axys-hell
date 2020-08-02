@@ -10,24 +10,24 @@ public class InverseArrowController : ArrowController
         Vector2 target = rb.position.normalized * actionDistance;
         while (rb.position != target)
         {
-            rb.MovePosition(Vector2.MoveTowards(rb.position, target, speed * Time.deltaTime));
-            yield return null;
+            rb.MovePosition(Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime));
+            yield return new WaitForFixedUpdate();
         }
         target = -target;
         spriteChange.ChangeSprite(2);
         spriteChange.ChangeOrder(-3);
         while (rb.position != target)
         {
-            rb.MovePosition(Vector2.MoveTowards(rb.position, target, speed * 3 * Time.deltaTime));
-            yield return null;
+            rb.MovePosition(Vector2.MoveTowards(rb.position, target, speed * 3 * Time.fixedDeltaTime));
+            yield return new WaitForFixedUpdate();
         }
         box.enabled = true;
         spriteChange.ChangeSprite(0);
         spriteChange.ChangeOrder(0);
         while (rb.position != Vector2.zero)
         {
-            rb.MovePosition(Vector2.MoveTowards(rb.position, Vector2.zero, speed * 3 * Time.deltaTime));
-            yield return null;
+            rb.MovePosition(Vector2.MoveTowards(rb.position, Vector2.zero, speed * 3 * Time.fixedDeltaTime));
+            yield return new WaitForFixedUpdate();
         }
     }
 }

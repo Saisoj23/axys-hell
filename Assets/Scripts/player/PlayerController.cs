@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
         shield = GetComponentInChildren<ShieldController>();
         rot = shield.transform.parent.gameObject;
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        game = GameObject.FindObjectOfType<GameController>();
+        game = FindObjectOfType<GameController>();
         controlMode = PlayerPrefs.GetInt("ControlMode", 1) == 1 ? true : false;
         minTouchSpeed = Mathf.Lerp(0.01f, 0.001f, PlayerPrefs.GetFloat("SensibilityValue", 1));
     }
@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour
         }
         if (rot.transform.eulerAngles.z != lastAngle)
         {
-            rot.transform.eulerAngles = new Vector3(0f, 0f, Mathf.MoveTowardsAngle(rot.transform.eulerAngles.z, lastAngle, rotateSpeed * Time.deltaTime));
+            rot.transform.eulerAngles = new Vector3(0f, 0f, Mathf.MoveTowardsAngle(rot.transform.eulerAngles.z, lastAngle, rotateSpeed * Time.fixedDeltaTime));
         }
     }
 

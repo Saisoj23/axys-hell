@@ -21,7 +21,7 @@ public class MusicAndData : MonoBehaviour
     void Awake()
     {
         music = GetComponent<AudioSource>();
-        if (GameObject.FindObjectsOfType<MusicAndData>().Length > 1)
+        if (FindObjectsOfType<MusicAndData>().Length > 1)
         {
             intro.SetTrigger("Skip");
             Destroy(gameObject);

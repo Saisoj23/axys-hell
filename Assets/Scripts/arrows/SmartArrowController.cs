@@ -9,18 +9,13 @@ public class SmartArrowController : ArrowController
 
     bool onParent = false;
 
-    override protected void Awake ()
-    {
-        base.Awake();
-    }
-
     protected override IEnumerator Move ()
     {
         Vector2 target = rb.position.normalized * actionDistance;
         while (rb.position != target)
         {
-            rb.MovePosition(Vector2.MoveTowards(rb.position, target, speed * Time.deltaTime));
-            yield return null;
+            rb.MovePosition(Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime));
+            yield return new WaitForFixedUpdate();
         }
         GameObject pivot = new GameObject("Pivot");
         /*Rigidbody2D pivotRb = pivot.AddComponent<Rigidbody2D>();
@@ -37,15 +32,13 @@ public class SmartArrowController : ArrowController
             looking = hit.collider.CompareTag("Shield");
             if (looking && !spining)
             {
-                //yield return null;
                 spriteChange.ChangeSprite(2);
                 spining = true;
             }
             if  (spining)
             {
-                orbitalTime += Time.deltaTime * turnSpeed;
+                orbitalTime += Time.fixedDeltaTime * turnSpeed;
                 pivot.transform.eulerAngles = new Vector3(0f, 0f, Mathf.Lerp(initialRot, initialRot + 90, orbitalTime));
-                //pivotRb.MoveRotation(Mathf.Lerp(initialRot, initialRot + 90, orbitalTime));
                 if (orbitalTime >= 1f)
                 {
                     spriteChange.ChangeSprite(0);
@@ -53,15 +46,9 @@ public class SmartArrowController : ArrowController
                     spining = false;
                     orbitalTime = 0;
                 }
-                transform.localPosition = Vector2.MoveTowards(transform.localPosition, Vector2.zero, speed * Time.deltaTime);
-                //rb.MovePosition(rb.position - (new Vector2 (transform.right.x, transform.right.y) * speed * Time.deltaTime));
             }
-            else
-            {
-                transform.localPosition = Vector2.MoveTowards(transform.localPosition, Vector2.zero, speed * Time.deltaTime);
-                //rb.MovePosition(Vector2.MoveTowards(rb.position, Vector2.zero, speed * Time.deltaTime));
-            }
-            yield return null;
+            transform.localPosition = Vector2.MoveTowards(transform.localPosition, Vector2.zero, speed * Time.fixedDeltaTime);
+            yield return new WaitForFixedUpdate();
         }
     }
 

@@ -1255,7 +1255,7 @@ MonoBehaviour:
   editing: 0
   score: 0
   savedScore: 0
-  bestScore: 261
+  bestScore: 0
   time: 0
   timeBeforePlay: 0
   spinn: {fileID: 0}
@@ -1275,6 +1275,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d1961f70407017542b29ed4baaa28211, type: 3}
   - {fileID: 8300000, guid: 11322b9356bc7f84cb0ace945ddacf5e, type: 3}
   - {fileID: 8300000, guid: 620d5d5d408de3648a20af2d6314210d, type: 3}
+  - {fileID: 8300000, guid: 1320e2c94ba225a489ea5ccc8cdfcdd0, type: 3}
   sfx: {fileID: 8583435602059942822}
   playButton: {fileID: 4830657987175979376}
   pauseButton: {fileID: 4830657985882765657}

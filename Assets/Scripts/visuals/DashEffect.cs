@@ -22,8 +22,6 @@ public class DashEffect : MonoBehaviour
         int sprIndex = 0;
         for (float i = 0; i < 1; i += normalicedDistance)
         {
-            print("sprites " + spritesCount);
-            print("normaliced distance " + normalicedDistance);
             GameObject effect = new GameObject("effect" + sprIndex);
             effect.transform.SetParent(transform);
             effect.transform.SetPositionAndRotation(Vector3.Lerp(posA, posB, i), transform.rotation);

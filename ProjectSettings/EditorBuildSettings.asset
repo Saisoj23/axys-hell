@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/level_space.unity
     guid: 813db6d66ba5837499ab27f2a630b1ba
+  - enabled: 1
+    path: Assets/Scenes/text_scene.unity
+    guid: d6f5ba27705fd3f429c8ba653ad03534
   m_configObjects: {}

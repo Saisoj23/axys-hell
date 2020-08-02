@@ -40,6 +40,7 @@ public class GameController : MonoBehaviour
     AudioSource music;
     UIController ui;
     MusicAndData musicAndData;
+    SceneChange scene;
     public SpinnCamera spinn;
 
     void Start ()
@@ -47,7 +48,8 @@ public class GameController : MonoBehaviour
         spawn = GetComponent<SpawnController>();
         ui = GetComponent<UIController>();
         music = GetComponent<AudioSource>();
-        musicAndData = GameObject.FindObjectOfType<MusicAndData>();
+        musicAndData = FindObjectOfType<MusicAndData>();
+        scene = FindObjectOfType<SceneChange>();
         completedText.SetActive(false);
         savePointsText.SetActive(false);
         difficulty = PlayerPrefs.GetInt("Difficulty", 0);
@@ -146,7 +148,7 @@ public class GameController : MonoBehaviour
             {
                 SpawnController.Spawn spawnItem = (SpawnController.Spawn)item.Clone();
                 if (difficulty == 1 ? true : false) 
-                    spawnItem.spawnTime = (spawnItem.spawnTime / 2) - (arrowSpanwDistance / spawnItem.speed);
+                    spawnItem.spawnTime = (spawnItem.spawnTime / 2) - (arrowSpanwDistance / spawnItem.speed) + 0.5f;
                 else spawnItem.spawnTime -= arrowSpanwDistance / spawnItem.speed;
                 spawnsFixedTime[index].Add(spawnItem);
                 //print("override");
@@ -251,7 +253,7 @@ public class GameController : MonoBehaviour
     //game events
     public void Damage ()
     {
-        if (editing) return;
+        if (editing || !gamePlaying) return;
         if (custom)
         {
             PlayerPrefs.SetInt(difficulty + "CustomBestScore" + spawnsString, (int)bestScore);
@@ -271,6 +273,14 @@ public class GameController : MonoBehaviour
                     PlayerPrefs.SetInt(difficulty + "SavedScore" + level, savedScore);
                     ui.SetColor(1, 0);
                 }
+                if (level == 3)
+                {
+                    PlayerPrefs.SetInt(difficulty + "BestScore" + level, (int)bestScore);
+                    PlayerPrefs.SetInt(difficulty + "LastScore" + level, (int)score);
+
+                    StartCoroutine(ui.EndingSFXPlay());
+                    scene.ChangeSceneSmooth("text_scene");
+                }
             }
             else 
             {
@@ -284,7 +294,6 @@ public class GameController : MonoBehaviour
                 }
                 completedText.SetActive(false);
             }
-            
             PlayerPrefs.SetInt(difficulty + "BestScore" + level, (int)bestScore);
             PlayerPrefs.SetInt(difficulty + "LastScore" + level, (int)score);
         }

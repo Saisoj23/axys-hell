@@ -45,8 +45,8 @@ public class ArrowController : MonoBehaviour
     {
         while (rb.position != Vector2.zero)
         {
-            rb.MovePosition(Vector2.MoveTowards(rb.position, Vector2.zero, speed * Time.deltaTime));
-            yield return null;
+            rb.MovePosition(Vector2.MoveTowards(rb.position, Vector2.zero, speed * Time.fixedDeltaTime));
+            yield return new WaitForFixedUpdate();
         }
     }
 
@@ -65,7 +65,7 @@ public class ArrowController : MonoBehaviour
     public virtual void MoveAndDestroy ()
     {
         if (visible)
-        StartCoroutine("MoveToCenter");
+            StartCoroutine("MoveToCenter");
         else
         {
             useAnim = false;
@@ -78,8 +78,8 @@ public class ArrowController : MonoBehaviour
         tag = "False Bullet";
         while (rb.position != Vector2.zero)
         {
-            rb.MovePosition(Vector2.MoveTowards(rb.position, Vector2.zero, finalSpeed * Time.deltaTime));
-            yield return null;
+            rb.MovePosition(Vector2.MoveTowards(rb.position, Vector2.zero, finalSpeed * Time.fixedDeltaTime));
+            yield return new WaitForFixedUpdate();
         }
         DestroyArrow();
     }
