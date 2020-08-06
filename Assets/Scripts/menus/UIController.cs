@@ -58,7 +58,7 @@ public class UIController : MonoBehaviour
         //adButton[0].interactable = false;
         //adButton[1].interactable = false;
 
-        nextAd = Time.time + 60;
+        nextAd = Time.time + 300;
     }
 
     void Update()
@@ -92,7 +92,7 @@ public class UIController : MonoBehaviour
 
         if (Time.time > nextAd && game.custom) 
         {
-            nextAd = Time.time + 60;
+            nextAd = Time.time + 300;
             ad.PlayAd(0);
         }
     }

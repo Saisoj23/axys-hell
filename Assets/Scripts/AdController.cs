@@ -17,14 +17,21 @@ public class AdController : MonoBehaviour, IUnityAdsListener
         ui = GetComponent<UIController>();
         game = GetComponent<GameController>();
 
+        #if UNITY_EDITOR
         Advertisement.AddListener(this);
         Advertisement.Initialize(gameId, true);
+        #elif UNITY_ANDROID
+        Advertisement.AddListener(this);
+        Advertisement.Initialize(gameId, false);
+        #endif
     }
 
     public void PlayAd(int ad)
     {
-        if (ad == 0 && Advertisement.isInitialized && !Advertisement.isShowing) Advertisement.Show(video);
-        else if (ad == 1 && Advertisement.isInitialized && !Advertisement.isShowing) Advertisement.Show(rewader);
+        #if UNITY_ANDROID || UNITY_EDITOR
+        if (ad == 0 && Advertisement.IsReady() && !Advertisement.isShowing) Advertisement.Show(video);
+        else if (ad == 1 && Advertisement.IsReady() && !Advertisement.isShowing) Advertisement.Show(rewader);
+        #endif
     }
 
     public void OnUnityAdsReady (string placementId) 
