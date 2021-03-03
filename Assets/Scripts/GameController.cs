@@ -284,6 +284,7 @@ public class GameController : MonoBehaviour
             }
             else 
             {
+                #if UNITY_ANDROID || UNITY_EDITOR
                 if (score > 250 && savedScore == 0) savePointsText.SetActive(true);
                 else 
                 {
@@ -292,6 +293,7 @@ public class GameController : MonoBehaviour
                     ui.SetColor(1, 0);
                     PlayerPrefs.SetInt(difficulty + "SavedScore" + level, savedScore);
                 }
+                #endif
                 completedText.SetActive(false);
             }
             PlayerPrefs.SetInt(difficulty + "BestScore" + level, (int)bestScore);

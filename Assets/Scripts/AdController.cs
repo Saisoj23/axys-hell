@@ -31,6 +31,8 @@ public class AdController : MonoBehaviour, IUnityAdsListener
         #if UNITY_ANDROID || UNITY_EDITOR
         if (ad == 0 && Advertisement.IsReady() && !Advertisement.isShowing) Advertisement.Show(video);
         else if (ad == 1 && Advertisement.IsReady() && !Advertisement.isShowing) Advertisement.Show(rewader);
+        #else
+        return;
         #endif
     }
 
