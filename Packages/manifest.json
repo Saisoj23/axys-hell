@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.malee.reorderablelist": "file:C:/Users/emman/Desktop/Axis Calamity art/Unity-Reorderable-List-master",
+    "com.malee.reorderablelist": "Packages/com.malee.reorderablelist",
     "com.unity.2d.pixel-perfect": "2.0.4",
     "com.unity.2d.psdimporter": "2.1.4",
     "com.unity.2d.sprite": "1.0.0",
