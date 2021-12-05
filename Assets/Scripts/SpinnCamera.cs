@@ -43,10 +43,12 @@ public class SpinnCamera : MonoBehaviour
                 StartCoroutine(RestarSpin());
             }
         }
+        #if UNITY_ANDROID || UNITY_EDITOR
         if (game.gamePlaying && game.score > score && !spinning && lastPlaying)
         {
             StartCoroutine(Spin());
         }
+        #endif
         lastPlaying = game.gamePlaying;
     }
 
