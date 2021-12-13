@@ -10386,7 +10386,7 @@ PrefabInstance:
     - target: {fileID: 8930865423067330782, guid: 5c69d8a75164d2443a41738a709794c0,
         type: 3}
       propertyPath: m_text
-      value: Slowly and steady
+      value: Slow and steady
       objectReference: {fileID: 0}
     - target: {fileID: 8930865423067330782, guid: 5c69d8a75164d2443a41738a709794c0,
         type: 3}
