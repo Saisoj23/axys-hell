@@ -40,6 +40,13 @@ public class SpawnController : MonoBehaviour
         public SpawnList SpawnList;
     }
 
+    public void Awake ()
+    {
+        #if UNITY_EDITOR
+        ReadJson();
+        #endif
+    }
+
     public void ReadJson()
     {
         jsonString = File.ReadAllText(filePath);

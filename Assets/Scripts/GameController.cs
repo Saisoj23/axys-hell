@@ -53,9 +53,7 @@ public class GameController : MonoBehaviour
         completedText.SetActive(false);
         savePointsText.SetActive(false);
         difficulty = PlayerPrefs.GetInt("Difficulty", 0);
-        #if UNITY_EDITOR
-        spawn.ReadJson();
-        #else
+        #if !UNITY_EDITOR
         indexToTest = -1;
         gamePlaying = false;
         pause = false;

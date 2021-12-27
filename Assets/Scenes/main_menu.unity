@@ -1880,22 +1880,22 @@ MonoBehaviour:
         array:
         - arrow: 4
           position: 0
-          spawnTime: 1
+          spawnTime: 2
           speed: 2
           actionDistance: 1.75
         - arrow: 4
           position: 1
-          spawnTime: 1
+          spawnTime: 2
           speed: 2
           actionDistance: 1.75
         - arrow: 4
           position: 2
-          spawnTime: 3
+          spawnTime: 4
           speed: 2
           actionDistance: 1.75
         - arrow: 4
           position: 3
-          spawnTime: 3
+          spawnTime: 4
           speed: 2
           actionDistance: 1.75
     - SpawnList:
@@ -2019,7 +2019,7 @@ MonoBehaviour:
           position: 3
           spawnTime: 2
           speed: 2
-          actionDistance: 1.75
+          actionDistance: 2.25
     - SpawnList:
         array:
         - arrow: 4
@@ -4597,106 +4597,106 @@ MonoBehaviour:
           position: 2
           spawnTime: 1
           speed: 2
-          actionDistance: 1.75
+          actionDistance: 1
         - arrow: 3
           position: 6
           spawnTime: 2
           speed: 2
-          actionDistance: 1.75
+          actionDistance: 1
         - arrow: 3
           position: 7
           spawnTime: 3
           speed: 2
-          actionDistance: 1.75
+          actionDistance: 1
         - arrow: 3
           position: 3
           spawnTime: 4
           speed: 2
-          actionDistance: 1.75
+          actionDistance: 1
         - arrow: 3
           position: 5
           spawnTime: 5
           speed: 2
-          actionDistance: 1.75
+          actionDistance: 1
         - arrow: 3
           position: 4
           spawnTime: 6
           speed: 2
-          actionDistance: 1.75
+          actionDistance: 1
         - arrow: 3
           position: 1
           spawnTime: 7
           speed: 2
-          actionDistance: 1.75
+          actionDistance: 1
         - arrow: 3
           position: 0
           spawnTime: 8
           speed: 2
-          actionDistance: 1.75
+          actionDistance: 1
     - SpawnList:
         array:
         - arrow: 3
           position: 2
           spawnTime: 1
           speed: 2
-          actionDistance: 1.75
+          actionDistance: 1
         - arrow: 3
           position: 3
           spawnTime: 2
           speed: 2
-          actionDistance: 1.75
+          actionDistance: 1
         - arrow: 3
           position: 0
           spawnTime: 3
           speed: 2
-          actionDistance: 1.75
+          actionDistance: 1
         - arrow: 3
           position: 1
           spawnTime: 4
           speed: 2
-          actionDistance: 1.75
+          actionDistance: 1
         - arrow: 3
           position: 5
           spawnTime: 5
           speed: 2
-          actionDistance: 1.75
+          actionDistance: 1
         - arrow: 3
           position: 6
           spawnTime: 6
           speed: 2
-          actionDistance: 1.75
+          actionDistance: 1
         - arrow: 3
           position: 4
           spawnTime: 7
           speed: 2
-          actionDistance: 1.75
+          actionDistance: 1
         - arrow: 3
           position: 7
           spawnTime: 8
           speed: 2
-          actionDistance: 1.75
+          actionDistance: 1
     - SpawnList:
         array:
         - arrow: 3
           position: 2
           spawnTime: 1
           speed: 2
-          actionDistance: 1.75
+          actionDistance: 1.25
         - arrow: 3
           position: 6
           spawnTime: 2
           speed: 2
-          actionDistance: 1.75
+          actionDistance: 1.25
         - arrow: 3
           position: 3
           spawnTime: 3
           speed: 2
-          actionDistance: 1.75
+          actionDistance: 1.25
         - arrow: 3
           position: 5
           spawnTime: 4
           speed: 2
-          actionDistance: 1.75
+          actionDistance: 1.25
         - arrow: 5
           position: 2
           spawnTime: 5
@@ -4723,22 +4723,22 @@ MonoBehaviour:
           position: 2
           spawnTime: 1
           speed: 2
-          actionDistance: 1.75
+          actionDistance: 1.25
         - arrow: 3
           position: 5
           spawnTime: 2
           speed: 2
-          actionDistance: 1.75
+          actionDistance: 1.25
         - arrow: 3
           position: 6
           spawnTime: 3
           speed: 2
-          actionDistance: 1.75
+          actionDistance: 1.25
         - arrow: 3
           position: 3
           spawnTime: 4
           speed: 2
-          actionDistance: 1.75
+          actionDistance: 1.25
         - arrow: 5
           position: 2
           spawnTime: 5
@@ -4889,62 +4889,62 @@ MonoBehaviour:
         array:
         - arrow: 4
           position: 2
-          spawnTime: 1
+          spawnTime: 2
           speed: 2
           actionDistance: 1.75
         - arrow: 1
           position: 1
-          spawnTime: 1
+          spawnTime: 2
           speed: 2
           actionDistance: 1.75
         - arrow: 1
           position: 0
-          spawnTime: 1
+          spawnTime: 2
           speed: 2
           actionDistance: 1.75
         - arrow: 4
           position: 3
-          spawnTime: 2
+          spawnTime: 4
           speed: 2
           actionDistance: 1.75
         - arrow: 1
           position: 0
-          spawnTime: 2
+          spawnTime: 4
           speed: 2
           actionDistance: 1.75
         - arrow: 1
           position: 1
-          spawnTime: 2
+          spawnTime: 4
           speed: 2
           actionDistance: 1.75
         - arrow: 4
           position: 1
-          spawnTime: 3
+          spawnTime: 6
           speed: 2
           actionDistance: 1.75
         - arrow: 1
           position: 2
-          spawnTime: 3
+          spawnTime: 6
           speed: 2
           actionDistance: 1.75
         - arrow: 1
           position: 3
-          spawnTime: 3
+          spawnTime: 6
           speed: 2
           actionDistance: 1.75
         - arrow: 4
           position: 0
-          spawnTime: 4
+          spawnTime: 8
           speed: 2
           actionDistance: 1.75
         - arrow: 1
           position: 2
-          spawnTime: 4
+          spawnTime: 8
           speed: 2
           actionDistance: 1.75
         - arrow: 1
           position: 3
-          spawnTime: 4
+          spawnTime: 8
           speed: 2
           actionDistance: 1.75
     - SpawnList:

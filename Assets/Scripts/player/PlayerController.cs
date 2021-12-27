@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
                     }
                     break;
                 default:
-                    direccion = new Vector2(Mathf.Round(input.x), Mathf.Round(input.y)).normalized;
+                    direccion = new Vector2(Mathf.Round(input.x >= 0 ? input.x + 0.175f : input.x - 0.175f), Mathf.Round(input.y >= 0 ? input.y + 0.175f : input.y - 0.175f)).normalized;
                     break;
             }
         }
