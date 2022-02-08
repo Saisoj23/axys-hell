@@ -5,6 +5,9 @@ using UnityEngine.Audio;
 
 public class MusicAndData : MonoBehaviour
 {
+    float camSize;
+    float ratio;
+    Camera cam;
     AudioSource music;
 
     public AudioMixer mixer;
@@ -30,6 +33,21 @@ public class MusicAndData : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);  
         }
+    }
+
+    void Update()
+    {
+        #if !UNITY_ANDROID || UNITY_EDITOR
+        if (Screen.width > Screen.height)
+        {
+            ScreenUpdate();
+        }
+        else
+        {
+            cam.orthographicSize = camSize;
+            Screen.SetResolution(Screen.width, Screen.height, Screen.fullScreenMode);
+        }
+        #endif
     }
 
     public void Start ()
@@ -87,5 +105,20 @@ public class MusicAndData : MonoBehaviour
             yield return null;
         }
         music.Stop();
+    }
+
+    public void UpdateCam ()
+    {
+        cam = Camera.main;
+        camSize = cam.orthographicSize;
+    }
+
+    void ScreenUpdate ()
+    {
+        print(cam.orthographicSize);
+        print(camSize);
+        ratio = (float)Screen.height / (float)Screen.width;
+        cam.orthographicSize = camSize * ratio;
+        Screen.SetResolution((int)(Screen.width * ratio), (int)(Screen.height * ratio), Screen.fullScreenMode);
     }
 }

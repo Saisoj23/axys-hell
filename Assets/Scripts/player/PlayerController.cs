@@ -39,6 +39,11 @@ public class PlayerController : MonoBehaviour
 
     void Update ()
     {
+
+        #if !UNITY_ANDROID || UNITY_EDITOR
+        screenMiddle = new Vector2(Screen.width, Screen.height) / 2;
+        #endif
+
         Vector2 input = Vector2.zero;
         RaycastHit hit;
         if (Input.GetMouseButton(0) && Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit, 20f)) 

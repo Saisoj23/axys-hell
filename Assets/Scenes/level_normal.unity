@@ -4128,6 +4128,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4830657986191574904, guid: 8260ba11d699b1741bdb1912da29947f,
+        type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
     - target: {fileID: 4830657986423166941, guid: 8260ba11d699b1741bdb1912da29947f,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -4167,21 +4172,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_firstOverflowCharacterIndex
       value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4830657987379420019, guid: 8260ba11d699b1741bdb1912da29947f,
-        type: 3}
-      propertyPath: orthographic size
-      value: 5.625
-      objectReference: {fileID: 0}
-    - target: {fileID: 4830657987379420019, guid: 8260ba11d699b1741bdb1912da29947f,
-        type: 3}
-      propertyPath: m_NormalizedViewPortRect.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4830657987379420019, guid: 8260ba11d699b1741bdb1912da29947f,
-        type: 3}
-      propertyPath: m_NormalizedViewPortRect.height
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7506760722216779032, guid: 8260ba11d699b1741bdb1912da29947f,
         type: 3}

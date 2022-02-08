@@ -12,6 +12,7 @@ public class SceneChange : MonoBehaviour
     void Awake()
     {
         anim = GetComponent<Animator>();
+        FindObjectOfType<MusicAndData>().UpdateCam();
     }
 
     public void ChangeScene(string scene)
